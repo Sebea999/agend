@@ -1,0 +1,608 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13-feb-2023, 11:49:41
+    Author     : RYUU
+*/
+ 
+
+.contenedor-cajas {
+    /*border: 2px solid red;*/
+    width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(2, 590px);
+    grid-template-rows: auto;
+    grid-gap: 15px;
+}
+
+.contenedor-cajas div .form-label {
+    /*border: 2px solid red;*/
+    min-width: 7em;
+}
+
+
+
+.contenedor-cajas-selec { /* CONTENEDOR PARA EL BLOQUE DE SELECCION DE (SI/NO) */
+    /*border: 4px solid #FF5733;*/
+    width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    /*grid-template-columns: repeat(1, 90%);*/
+    grid-template-rows: auto;
+    grid-gap: 15px;
+}
+.contenedor-cajas-selec .subbloque div {
+    /*border: 4px solid #33FF77;*/
+    /*min-width: 7em;*/
+    display: flex;
+    justify-content: space-between;
+}
+.contenedor-cajas-selec .subbloque div .form-label {
+    /*border: 2px solid red;*/
+    min-width: 10em;
+}
+.contenedor-cajas-selec div div #B2TM { /* txt metabolismo */
+    /*border: 2px solid red;*/
+    min-width: 20em;
+    width: 20em;
+}
+
+
+
+
+.contenedor-cajas-selec-3 { /* CONTENEDOR PARA EL BLOQUE DE SELECCION DE (SI/NO) */
+    /*border: 4px solid #4DC6FF;*/
+    width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(4, 3fr);
+    grid-template-rows: repeat(1fr);
+/*    grid-template-columns: repeat(3, 600px);
+    grid-template-rows: auto;*/
+    grid-gap: 15px;
+    
+}
+.contenedor-cajas-selec-3 .form-label {
+    /*border: 2px solid red;*/
+    min-width: 7em;
+}
+
+
+
+
+.contenedor-cajas-selec-footer { /* CONTENEDOR PARA EL BLOQUE DE SELECCION DE (SI/NO) */
+    /*border: 4px solid green;*/
+    width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(1, 10fr);
+    grid-template-rows: auto;
+    grid-gap: 15px;
+}
+.contenedor-cajas-selec-footer .form-label {
+    /*border: 2px solid red;*/
+    min-width: 15em;
+}
+.contenedor-cajas-selec-footer input[type="text"] {
+    /*border: 2px solid blue;*/
+    min-width: 55em;
+}
+
+
+
+
+#B1TDFH {
+    margin-left: 10px;
+}
+
+.contenedor-cajas input[type="text"]:hover ,
+.contenedor-cajas-selec div div div input[type="text"]:hover ,
+.contenedor-cajas-selec-3 div div div input[type="text"]:hover ,
+.contenedor-cajas-selec-footer div div div input[type="text"]:hover, 
+#B1TDF, /* campo de texto de fecha y no le coloco el hover para que siempre este con los bordes marcados y la transicion activa */
+#B1TDFH
+{
+    border: 1px solid #4DC6FF;
+    border-radius: 1rem;
+    -webkit-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -moz-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -o-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -webkit-transition: border-color 1s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -moz-transition: border-color 1s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -o-transition: border-color 1s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    transition: border-color 1s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+}
+
+.contenedor-cajas textarea:hover ,
+.contenedor-cajas-selec div div div textarea:hover ,
+.contenedor-cajas-selec-3 div div div textarea:hover ,
+.contenedor-cajas-selec-footer div div div textarea:hover {
+    border: 1px solid #4DC6FF;
+    border-radius: 1rem;
+    -webkit-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -moz-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -o-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -webkit-transition: border-color 1s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -moz-transition: border-color 1s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -o-transition: border-color 1s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    transition: border-color 1s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+}
+
+.contenedor-cajas input[type="text"]:focus ,
+.contenedor-cajas-selec div div div input[type="text"]:focus ,
+.contenedor-cajas-selec-3 div div div input[type="text"]:focus ,
+.contenedor-cajas-selec-footer div div div input[type="text"]:focus {
+    border: 1px solid #4DC6FF;
+    border-radius: 1rem;
+    -webkit-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -moz-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -o-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    background-color: #fff;
+    -webkit-transition: background 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -moz-transition: background 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    -o-transition: background 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+    transition: background 2s cubic-bezier(0.42, 0, 0.58, 1) 1ms;
+}
+
+.inactive {
+    background-color: #EBEBEB;
+    /*background-color: #e9ecef;*/
+    opacity: 1;
+    /*background-color: #EAEAEA;*/
+    -webkit-transition: background 3s cubic-bezier(0.25, 0.1, 0.25, 1) 4ms;
+    -moz-transition: background 3s cubic-bezier(0.25, 0.1, 0.25, 1) 4ms;
+    -o-transition: background 3s cubic-bezier(0.25, 0.1, 0.25, 1) 4ms;
+    transition: background 3s cubic-bezier(0.25, 0.1, 0.25, 1) 4ms;
+    -webkit-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 2ms;
+    -moz-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 2ms;
+    -o-transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 2ms;
+    transition: border-radius 2s cubic-bezier(0.42, 0, 0.58, 1) 2ms;
+}
+    
+.active {
+    background: #fff;
+}
+
+
+.cbxselect {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline:0;
+    box-shadow:none;
+    border:0!important;
+    background:#9A9A9A;
+    /*background:#5c6664;*/
+    background-image:none;
+    flex:1;
+    padding:0 .5em;
+    color:#fff;
+    cursor:pointer;
+    font-size:1em;
+    /*font-family:'Open Sans', sans-serif;*/
+    font-weight: 500;
+}
+.cbxselect::-ms-expand{
+    display:none;
+}
+.pnlSelect{
+    position: relative;
+    display: flex;
+    width: 12em;
+    /*height:2.5em;*/
+    height:3em;
+    /*line-height:2.5;*/
+    line-height:3;
+    background:#949494;
+    /*background:#5c6664;*/
+    overflow:hidden;
+    border-radius:.25em;
+}
+.pnlSelect::after{
+    content:'\25BC';
+    position:absolute;
+    top:0;
+    right:0;
+    padding:0 1em;
+    background:#6A6A6A;
+/*    background:#2b2e2e;*/
+    cursor:pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+}
+.pnlSelect:hover::after{
+    color: #fff;
+    /*color: #3BFCD8;*/
+    /*color: #23b499;*/
+}
+
+.lh-2-5{
+    line-height: 3;
+}
+
+
+
+
+
+.c1 {
+    /*border: 1px solid rgba(0,0,0,0.5);*/
+    /*BORDER: 1PX SOLID BLUE;*/
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.c1 .c1Ti {
+    background-color: var(--main-color);
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /*border-radius: 10px;*/
+    padding: 8px 8px;
+}
+
+.c1 .c1Co {
+    padding: 8px 8px;
+}
+
+.c1:first-child .c1Co {
+    display: flex;
+    flex-wrap: wrap;
+}
+.c1:first-child .c1Co div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-right: 12px;
+    margin-bottom: 8px;
+}
+.c1:first-child .c1Co div p {
+    margin-bottom: 5px;
+    margin-right: 8px;
+}
+.c1:first-child .c1Co div input[type="text"] {
+    width: calc(600px/7);
+}
+
+/* textarea dentro de los divs  */
+.c1 .c1Co div {
+    overflow: hidden;
+}
+.c1 .c1Co div textarea {
+    border: 1px solid rgba(0,0,0,0.2);
+    width: 560px;
+    min-width: 560px;
+    max-width: 560px;
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    background-color: #F1F5F9;
+    word-break: break-all;
+}
+.c1 .c1Co div textarea:focus {
+    background-color: #fff;
+}
+
+/*
+    COMBO BOX DE SERVICIOS 
+*/
+.c1 .c1Co .c1CoCBS {
+    /*border: 1px solid blue;*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.c1 .c1Co .c1CoCBS select {
+    width: 350px;
+}
+
+
+/*
+    GRILLA DE SERVICIO ---------    
+*/
+.c1 .c1Co .c1CoGS {
+    /*border: 1px solid red;*/
+    height: 150px;
+    max-height: 150px;
+    min-height: 150px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+/*
+    PANEL QUE ALMACENA EL BOTON PARA GUARDAR LA FICHA DE ATENCION DEL PACIENTE Y EL BOTON PARA VOLVER ATRAS 
+*/
+.btns_atencion {
+    /*border: 2px solid blue;*/
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    margin: auto;
+}
+.btns_atencion .btngua {
+    height: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    margin-right: 15px;
+}
+
+
+
+
+
+
+
+
+.contenedor-cajas-selec .bloque {
+        /*border: 5px solid #FF00EC;*/
+        
+    }
+    
+    .contenedor-cajas-selec .bloque .subbloque {
+        /*border: 2px solid red;*/
+        /*width: 100%;*/ /* PONE EN PRIMERA FILA A CADA COMBO */ /* ----------------[OBS]-------------------  */
+    }
+    .contenedor-cajas-selec .bloque .subbloque > div {
+        /*border: 2px solid yellow;*/
+        display: flex;
+        /*flex-direction: row;*/
+        flex-wrap: wrap;
+        
+    }
+    .contenedor-cajas-selec .bloque .subbloque > div label {
+        /*border: 2px solid red;*/
+        order: 1;
+        align-self: flex-start;
+    }
+    .contenedor-cajas-selec .bloque .subbloque > div > div {
+        /*border: 2px solid blue;*/
+        order: 2;
+        align-self: flex-end;
+    }
+
+
+    
+    
+    
+
+@media only screen and (max-width: 1200px) {
+    
+    .contenedor-cajas {
+        /*border: 2px solid black;*/
+        grid-template-columns: repeat(1, 600px);
+    }
+    
+    .contenedor-cajas-selec {
+        /*border: 5px solid black;*/
+        grid-template-columns: repeat(1, 600px);
+        min-width: 600px;
+    }
+    .contenedor-cajas-selec .bloque {
+        /*border: 4px solid blue;*/
+        width: 700px;
+        min-width: 90%;
+        /*max-width: 90%;*/
+    }
+    .contenedor-cajas-selec .bloque .subbloque {
+        /*border: 5px solid pink;*/
+        width: 100%;
+    }
+    .contenedor-cajas-selec .bloque .subbloque > div {
+        /*border: 3px solid #FF00EC;*/
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .contenedor-cajas-selec .bloque .subbloque > div label {
+        padding-top: 8px;
+    }
+    
+    
+     .contenedor-cajas-selec-3 {
+        /*border: 3px solid red;*/
+        grid-template-columns: repeat(3, 4fr);
+    }
+    
+    .contenedor-cajas-selec-footer input[type="text"] {
+        /*border: 2px solid blue;*/
+        min-width: 30em;
+    }
+    
+}
+
+
+
+/*@media only screen and (max-width: 768px) {*/
+@media only screen and (max-width: 800px) {
+    
+    .contenedor-cajas {
+        grid-template-columns: repeat(1, 400px);
+    }
+    
+    .contenedor-cajas input[type="text"] {
+        /*border: 2px solid red;*/
+        display: flex;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+    
+    
+    .contenedor-cajas textarea {
+        /*border: 2px solid red;*/
+        width: 490px;
+        min-width: 490px;
+        max-width: 490px;
+    }
+    
+    
+    .contenedor-cajas-selec {
+        /*border: 3px solid blue;*/
+        grid-template-columns: repeat(1, 600px);
+    }
+    
+    .contenedor-cajas-selec .bloque {
+        /*border: 5px solid yellow;*/
+        width: 600px;
+        min-width: 90%;
+    }
+    .contenedor-cajas-selec .bloque .subbloque {
+        /*border: 5px solid pink;*/
+        width: 100%;
+    }
+    .contenedor-cajas-selec .bloque .subbloque > div {
+        /*border: 3px solid #FF00EC;*/
+        display: flex;
+        justify-content: space-between;
+        width: 100%
+    }
+    .contenedor-cajas-selec .bloque .subbloque > div label {
+        padding-top: 8px;
+    }
+    .contenedor-cajas-selec .bloque .subbloque > div > div {
+        /*border: 2px solid red;*/
+        /*align-self: flex-end;*/
+    }
+    
+    
+    .contenedor-cajas-selec-3 {
+        /*border: 3px solid red;*/
+        grid-template-columns: repeat(2, 4fr);
+    }
+    
+    .contenedor-cajas-selec-footer input[type="text"] {
+        /*border: 2px solid blue;*/
+        min-width: 20em;
+    }
+    
+}
+
+
+@media screen and (max-width: 630px) {
+    
+    .contenedor-cajas {
+        grid-template-columns: repeat(1, 400px);
+    }
+    
+    
+    .contenedor-cajas textarea {
+        width: 450px;
+        min-width: 450px;
+        max-width: 450px;
+    }
+    
+    .contenedor-cajas-selec {
+        /*border: 5px solid red;*/
+        grid-template-columns: repeat(1, 400px);
+        width: 540px;
+        min-width: 540px;
+        /*max-width: 100%;*/
+    }
+    .contenedor-cajas-selec .bloque {
+        /*border: 5px solid black;*/
+        width: 520px;
+        min-width: 520px;
+        /*max-width: 100%;*/
+    }
+    
+     .contenedor-cajas-selec-3 {
+        /*border: 3px solid red;*/
+        grid-template-columns: repeat(1, 12fr);
+    }
+    
+    .contenedor-cajas-selec-footer input[type="text"] {
+        /*border: 2px solid blue;*/
+        min-width: auto;
+    }
+    
+}
+
+
+@media only screen and (max-width: 540px) {
+    
+    .contenedor-cajas {
+        grid-template-columns: repeat(1, 400px);
+    }
+    
+    .contenedor-cajas textarea {
+        width: 420px;
+        min-width: 420px;
+        max-width: 420px;
+    }
+    
+    .contenedor-cajas-selec {
+        /*border: 5px solid blue;*/
+        grid-template-columns: repeat(1, 400px);
+        width: 450px;
+        min-width: 450px;
+        max-width: 100%;
+    }
+    .contenedor-cajas-selec .bloque {
+        /*border: 5px solid black;*/
+        /*width: 520px;*/
+        min-width: 100%;
+        max-width: 100%;
+    }
+    
+    
+}
+
+
+@media only screen and (max-width: 500px) {
+    
+    .contenedor-cajas {
+        grid-template-columns: repeat(1, 400px);
+    }
+    
+    
+    .contenedor-cajas textarea {
+        width: 380px;
+        min-width: 380px;
+        max-width: 380px;
+    }
+    
+    .contenedor-cajas-selec {
+        /*border: 5px solid green;*/
+        grid-template-columns: repeat(1, 400px);
+    }
+    
+}
+
+
+@media only screen and (max-width: 500px) {
+    
+    .contenedor-cajas {
+        grid-template-columns: repeat(1, 400px);
+    }
+    
+    
+    .contenedor-cajas textarea {
+        width: 380px;
+        min-width: 380px;
+        max-width: 380px;
+    }
+    
+    .contenedor-cajas-selec {
+        /*border: 5px solid green;*/
+        grid-template-columns: repeat(1, 400px);
+    }
+    .contenedor-cajas-selec .bloque {
+        /*border: 5px solid black;*/
+        /*width: 520px;*/
+        min-width: 100%;
+        max-width: 100%;
+    }
+    
+}
+
+

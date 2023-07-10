@@ -1,0 +1,183 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28-may-2021, 10:49:56
+    Author     : RYUU
+*/
+
+
+/*
+    ----    MODAL / VENTANA EMERGENTE   ----    
+*/
+.modal {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    transition: all 500ms ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.contenedor {
+    width: 350px;
+    height: 250px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 1px 7px 25px rgba(0,0,0,0.6);
+    transition: all 500ms ease;
+    position: relative;
+    transform: translateY(-30%);
+}
+
+
+/*
+    CABECERA DEL MODAL 
+*/
+.contenedor header {
+    width: 100%;
+    padding: 10px;
+    background: #db8046;
+    color: #fff;
+    z-index: 5;
+}
+
+.contenedor .titulo2 {
+    width: 100%;
+    height: 20%;
+    /*margin: 3rem 0 0 0;*/
+    color: #fff;
+    background: #0062cc;
+    margin-top: -5px;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.contenedor .titulo2 .titu01 {
+    padding-top: .8rem;
+    padding-left: .5rem;
+}
+
+.contenedor .titulo2 .titu02 {
+    width: 20%;
+}
+
+.contenedor .titulo2 .titu02 .btnTi {
+    width: 100%;
+    height: 100%;
+    padding-top: .8rem;
+    cursor: pointer;
+    margin: auto;
+    text-align: center;
+}
+
+.contenedor .titulo2 .titu02 .btnTi:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+
+
+/*
+    BOTON: X
+*/
+.modal .contenedor .btnSa {
+    width: 38px;
+    height: 35px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 16pt;
+}
+
+.modal .contenedor .btnSa:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.8);
+    transition: all 500ms ease;
+}
+
+
+
+/*
+    CONTENIDO DENTRO DEL MODAL 
+*/
+.modal .contenedor .contenido {
+    margin: .5rem 0 0 1rem;
+    /*margin: 3.5rem 0 0 1rem;*/
+}
+
+.modal .contenedor .contenido .contDataProd p {
+    text-align: left;
+    margin: auto;
+}
+
+.modal .contenedor .contenido .contDataProd .cbxProd {
+    margin: .5rem .5rem .5rem 1rem;
+    width: 80%;
+}
+
+.modal .contenedor .contenido .contDataProd:last-child {
+    margin-top: 1.5rem;
+}
+
+
+/*
+    CAMPOS DE TEXTOS AUXILIARES QUE UTILIZO PARA EL BUSCADOR DE PRODUCTO 
+*/
+/*.modal .contenedor .contenido .contDataProd .tACI, 
+.modal .contenedor .contenido .contDataProd .tACNC, 
+.modal .contenedor .contenido .contDataProd .tACN, 
+.modal .contenedor .contenido .contDataProd .tAFP, 
+.modal .contenedor .contenido .contDataProd .tAFV, 
+.modal .contenedor .contenido .contDataProd .tAA, 
+.modal .contenedor .contenido .contDataProd .tAP, 
+.modal .contenedor .contenido .contDataProd .tAO {*/
+/*.modal .contenedor .contenido .contDataProd input[type = "text"] {*/
+    /*display: none;*/
+/*}*/
+
+
+
+
+/*
+    CHECK MODAL Y SU ACTIVACION 
+*/
+#btn-modal {
+    display: none;
+}
+#btn-modal:checked ~ .modal{
+    opacity: 1;
+    visibility: visible;
+}
+#btn-modal:checked ~ .modal .contenedor {
+    transform: translateY(0%);
+}
+
+/*
+    LABEL QUE ACTIVA EL MODAL PARA MOSTRAR (ESTA VINCULADO AL CHECK)
+*/
+.lbl-modal {
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+

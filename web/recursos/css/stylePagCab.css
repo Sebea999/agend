@@ -1,0 +1,4325 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23-jun-2021, 10:16:27
+    Author     : RYUU
+*/
+/*
+ESTILOS CSS QUE UTILIZO PARA LAS CABECERAS DE VARIAS PAGINAS QUE TENGAN PATRONES EN COMUN PARA EVITAR CREAR HOJAS DE ESTILO CON EL MISMO CONTENIDO 
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --main-color-blu: #00D947; /* verde */
+    /*--main-color-blu: #0069d9;*/ /* azul */
+    --main-color: #DD2F6E;
+    --color-dark: #1D2231;
+    --text-grey: #8390A2;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+/*
+    ========== SCROLLBAR ===========
+*/
+*::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+*::-webkit-scrollbar:vertical {
+    width: 15px;
+}
+
+*::-webkit-scrollbar-button:increment,
+*::-webkit-scrollbar-button {
+    display: none;
+} 
+
+*::-webkit-scrollbar:horizontal {
+    height: 15px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #C7C7C7;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+    
+    -webkit-transition: all 3s cubic-bezier(0.42, 0, 0.58, 1) 1s;
+    -moz-transition: all 3s cubic-bezier(0.42, 0, 0.58, 1) 1s;
+    -o-transition: all 3s cubic-bezier(0.42, 0, 0.58, 1) 1s;
+    transition: all 3s cubic-bezier(0.42, 0, 0.58, 1) 1s;
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+/*
+================================================================================
+*/
+
+
+
+
+
+.divTable {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+}
+
+.tableFilter {
+    width: 1200px;
+    max-width: 90%;
+    /*width: 975px;*/
+    /*width: 100%;*/
+    border: none;
+    border-collapse: collapse;
+    margin: auto;
+    
+    border-spacing: 0px;
+    height: 280px;
+    max-height: 280px;
+    position: relative;
+    display: block;
+    overflow: auto;
+    /*overflow-y: auto;*/
+    /*overflow-x: hidden;*/
+}
+
+.tableFilter thead, 
+.tableFilter tbody {
+    display: block;
+}
+
+.tableFilter thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    /*box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);*/
+}
+/*.tableFilter thead tr {
+    border: 1px solid rgba(0,0,0,0.4);
+        /*border-top: 1px solid #f0f0f0;*/
+        /*border-bottom: 2px solid #f0f0f0;*/
+   /* box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+}*/
+.tableFilter thead td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableFilter thead td:first-child {
+    /*text-align: left;*/
+    padding-left: 1rem;
+}
+
+.tableFilter tbody td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+.tableFilter tbody td input[type = "text"] { /* OCULTO EL CAMPO DE TEXTO QUE ALMACENA EL IDEMPENHO */
+    display: none;
+}
+.tableFilter tbody td:first-child {
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 500;
+}
+/*
+    COLUMNAS DE LA TABLA ----- 
+*/
+.tableFilter thead tr .FCI,
+.tableFilter tbody tr .FCI { /* FCI : factura columna id  */
+    text-align: center;
+    width: 95px;
+    min-width: 95px;
+    max-width: 95px;
+}
+.tableFilter thead tr .FCNF,
+.tableFilter tbody tr .FCNF { /* FCNF : factura columna nro factura  */
+    text-align: center;
+    width: 200px; /* VALOR_ANTERIOR: 165 */
+    min-width: 200px;
+    max-width: 200px;
+}
+.tableFilter thead tr .FCC { /* FCC : factura columna cliente  */
+    text-align: center;
+}
+.tableFilter tbody tr .FCC { /* FCC : factura columna cliente  */
+    text-align: left;
+}
+.tableFilter thead tr .FCC,
+.tableFilter tbody tr .FCC { /* FCC : factura columna cliente  */
+    width: 350px;
+    min-width: 350px;
+    max-width: 350px;
+}
+.tableFilter thead tr .FCFF,
+.tableFilter tbody tr .FCFF { /* FCFF : factura columna fecha factura  */
+    text-align: center;
+    width: 125px;
+    min-width: 125px;
+    max-width: 125px;
+}
+.tableFilter thead tr .FCE,
+.tableFilter tbody tr .FCE { /* FCE : factura columna estado  */
+    text-align: center;
+    width: 105px;
+    min-width: 105px;
+    max-width: 105px;
+}
+.tableFilter thead tr .FCT { /* FCT : factura columna total  */
+    text-align: center;
+}
+.tableFilter tbody tr .FCT { /* FCT : factura columna total  */
+    text-align: right;
+}
+.tableFilter thead tr .FCT,
+.tableFilter tbody tr .FCT { /* FCT : factura columna total  */
+    width: 140px; /* VALOR_ANTERIOR: 120 */
+    min-width: 140px;
+    max-width: 140px;
+}
+.tableFilter thead tr .FCV,
+.tableFilter tbody tr .FCV { /* FCI : factura columna ver (boton)  */
+    text-align: center;
+    width: 120px; /* VALOR_ANTERIOR: 95 */
+    min-width: 120px;
+    max-width: 120px;
+}
+
+
+
+/*
+    PAGINA:   ---- REPORTE DE CLIENTES ---- ------- ----------- 
+*/
+.RC_CID { /* RC_CID : reporte cliente columna id */
+    text-align: center;
+    width: 100px;
+    /*width: 80px;*/
+    min-width: 100px;
+    max-width: 100px;
+}
+.tableFilter thead .RC_CC { /* RC_CC : reporte cliente columna cliente */
+    text-align: center;
+}
+.tableFilter tbody .RC_CC { /* RC_CC : reporte cliente columna cliente */
+    text-align: left;
+}
+.RC_CC { /* RC_CC : reporte cliente columna cliente */
+    width: 350px;
+    min-width: 350px;
+    max-width: 350px;
+}
+.tableFilter thead .RC_CD { /* RC_CD : reporte cliente columna direccion */
+    text-align: center;
+}
+.tableFilter tbody .RC_CD { /* RC_CD : reporte cliente columna direccion */
+    text-align: left;
+}
+.RC_CD { /* RC_CD : reporte cliente columna direccion */
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+}
+.tableFilter thead .RC_CNCI { /* RC_CNCI : reporte cliente columna nro_ci */
+    text-align: center;
+}
+.tableFilter tbody .RC_CNCI { /* RC_CNCI : reporte cliente columna nro_ci */
+    text-align: center;
+}
+.RC_CNCI { /* RC_CNCI : reporte cliente columna nro_ci */
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+}
+.tableFilter thead .RC_CT { /* RC_CT : reporte cliente columna telefono */
+    text-align: center;
+}
+.tableFilter tbody .RC_CT { /* RC_CT : reporte cliente columna telefono */
+    text-align: left;
+}
+.RC_CT { /* RC_CT : reporte cliente columna telefono */
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+}
+/*.tableFilter thead .RC_CI, 
+.tableFilter tbody */
+.RC_CI { /* RC_CI : reporte cliente columna imprimir (boton) */
+/*    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;*/
+    text-align: center;
+    width: 250px;
+    /*width: 150px;*/
+    min-width: 250px;
+    max-width: 250px;
+}
+
+
+
+
+.divTableDataAg { /* OBSERVACION_1: ESTADO DE LA CLASE CUANDO LA BARRA LATERAL ESTA ABIERTA O VISIBLE */
+    box-sizing: border-box;
+    /*border: 2px solid red;*/
+    display: flex;
+    flex-wrap: wrap;
+    /*padding-top: .7rem;*/
+    width: 70vw;
+    /*width: 90vw;*/
+/*    min-width: 100%;
+    max-width: 100%;*/
+}
+
+
+#nav-toggle:checked ~ * .divTableDataAg { /* OBSERVACION_1: CUANDO LA BARRA LATERAL ESTA OCULTO Y NO SE VE */
+    /*border: 2px solid blue;*/
+    width: 90vw;
+    min-width: 90vw;
+    max-width: 90vw;
+    /*margin-left: 70px;*/
+}
+
+
+
+.divTableData { /* OBSERVACION_1: ESTADO DE LA CLASE CUANDO LA BARRA LATERAL ESTA ABIERTA O VISIBLE */
+    box-sizing: border-box;
+    /*border: 2px solid blue;*/
+    display: flex;
+    flex-wrap: wrap;
+    /*padding-top: .7rem;*/
+    /*width: 70vw;*/
+    width: 90vw;
+/*    min-width: 100%;
+    max-width: 100%;*/
+}
+
+
+/*#nav-toggle:checked ~ * .divTableData {  /*OBSERVACION_1: CUANDO LA BARRA LATERAL ESTA OCULTO Y NO SE VE * /
+    border: 2px solid red;
+    width: 90vw;
+    min-width: 90vw;
+    max-width: 90vw;
+    /*margin-left: 70px;* /
+}*/
+
+
+.divTableData table {
+    /*border: 1px solid red;*/
+    width: 60vw;
+    /*width: 60%;*/
+    margin-left: 3rem;
+    border-collapse: collapse;
+}
+
+.divTableData table tbody td {
+    /*border: 1px solid #5D5D5D;*/
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+
+.divTableData table tbody tr td:first-child {
+    text-align: right;
+    font-size: 13pt;
+    font-weight: 500;
+}
+ /* SI LA ULTIMA FILA TIENE LOS BOTONES ENTONCES DESCOMENTAR */
+/*.divTableData table tbody tr:last-child td {
+    text-align: center;
+    padding: 0 1rem;
+}*/
+
+.divTableData table tbody tr:last-child td input[type = "submit"], 
+.divTableData table tbody tr:last-child td a {
+    margin-right: .8rem;
+    margin-top: 1rem;
+}
+
+.divTableData table tbody tr td input[type = "text"], 
+.divTableData table tbody tr td input[type = "date"], 
+.divTableData table tbody tr td select { /* CAMPOS DE TEXTO DENTRO DE LA TABLA */
+    width: 350px;
+}
+.divTableData table tbody tr td textArea { /* CAMPOS DE TEXTOS PARA OBSERVACION DENTRO DE LA TABLA */
+    width: 350px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .divTableData table {
+        margin: auto;
+    }
+    .divTableData table tbody tr td input[type = "text"], 
+    .divTableData table tbody tr td input[type = "date"], 
+    .divTableData table tbody tr td select { /* CAMPOS DE TEXTO DENTRO DE LA TABLA */
+        width: 200px;
+    }
+    .divTableData table tbody tr td textArea { /* CAMPOS DE TEXTOS PARA OBSERVACION DENTRO DE LA TABLA */
+        width: 200px;
+    }
+}
+/*
+    COLUMNAS QUE UTILIZO EN LA PAGINA AJUSTE DE STOCK (pagAjusteStock.jsp) 
+*/
+.ASCI { /* ASCI : ajuste stock columna id */
+    text-align: center;
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+}
+.ASCF { /* ASCF : ajuste stock columna fecha */
+    text-align: center;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}
+.tableFilter thead tr .ASCTM { /* ASCTM : ajuste stock columna tipo movimiento */
+    text-align: center;
+}
+.tableFilter tbody tr .ASCTM { /* ASCTM : ajuste stock columna tipo movimiento */
+    text-align: left;
+}
+.ASCTM { /* ASCTM : ajuste stock columna tipo movimiento */
+    width: 190px;
+    min-width: 190px;
+    max-width: 190px;
+}
+.tableFilter thead tr .ASCR { /* ASCR : ajuste stock columna responsable */
+    text-align: center;
+}
+.tableFilter tbody tr .ASCR { /* ASCR : ajuste stock columna responsable */
+    text-align: left;
+}
+.ASCR { /* ASCR : ajuste stock columna responsable */
+    width: 340px;
+    min-width: 340px;
+    max-width: 340px;
+}
+
+/*
+CLASES QUE UTILIZO PARA LA PRIMERA COLUMNA QUE SERIA EL ID PARA CARGAR EL COLOR DE FONDO DE ESA COLUMNA DEACUERDO AL ESTADO DE ESA FILA 
+*/
+.tableEmAc {
+    background-color: #6DFF33;
+}
+.tableEmVe {
+    background-color: #FFF233;
+}
+.tableEmEx {
+    background-color: #FF3B3B;
+}
+.tableEmLi {
+    background-color: #E7E7E7;
+}
+.tableEmCa {
+    background-color: #A9A9A9;
+}
+
+
+.mainTitle {
+    font-size: 20pt;
+    font-weight: 600;
+    /*padding: 1rem;*/
+    margin: 0px;
+}
+
+.btnAddNewEm { /* BOTONES ADD NEW EMPEÑO */
+    margin-top: .5rem;
+    margin-left: .5rem;
+}
+
+
+.w-100 {
+    width: 100%;
+}
+.w-20 {
+    width: 20%;
+}
+
+.mainFilter {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    /*flex-direction: row;*/
+    /*align-items: center;*/
+}
+
+.mainFilterBox {
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: row;
+}
+
+.mainFilter .mainFilterBox p:first-child {
+    color: #000;
+    padding-top: .5rem;
+    padding-right: .5rem;
+    margin-left: .5rem;
+}
+
+.mainFilter .mainFilterBox p:last-child {
+    color: #000;
+    padding-top: .5rem;
+    padding-left: .5rem;
+}
+
+.mainLabelSearch {
+    font-weight: 500;
+}
+
+.mainFilter .mainFilterBox:last-child input[type = "submit"]:first-child {
+    margin-right: .5rem;
+}
+
+.mainFilterBox div {
+    display: flex;
+    /*flex-direction: row;*/
+    flex-wrap: wrap;
+    /*justify-content: space-between;*/
+}
+.mainFilterBox div input[type = "text"] {
+    width: 180px;
+}
+.mainFilterBox div select {
+    width: 110px;
+}
+
+.boxFiltroBtn {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*
+    PAG:    AJUSTE DE STOCK
+*/
+.mainFilterBoxAS {
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: column;
+}
+.w200 {
+    width: 200px;
+}
+
+
+
+
+/*
+    TABLA DE LA PAGINA PRINCIPAL DE CUENTA CLIENTE ----------------------------- 
+*/
+.tableFilterCC {
+    width: 1200px;
+    max-width: 90%;
+/*    width: 950px;*/
+    /*width: 100%;*/
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border: none;
+    margin: auto;
+    
+    display: block;
+    position: relative;
+    height: 280px;
+    max-height: 280px;
+    overflow: auto;
+}
+.tableFilterCC thead, 
+.tableFilterCC tbody {
+    display: block;
+}
+.tableFilterCC thead {
+    position: sticky;
+    background-color: white;
+    display: inline-block;
+    top: 0;
+    right: 0;
+}
+.tableFilterCC thead tr {
+    border: 1px solid rgba(0,0,0,0.4);
+}
+.tableFilterCC thead tr td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableFilterCC tbody {
+    max-height: 250px;
+    /*overflow: auto;*/
+}
+.tableFilterCC tbody tr td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #222;
+}
+/*  COLUMNAS ----- */
+.CC_CI { /* CC_CI : cuenta cliente columna id */
+    text-align: center;
+    width: 95px;
+    max-width: 95px;
+    min-width: 95px;
+}
+.tableFilterCC thead .CC_CC { /* CC_CC : cuenta cliente columna cliente */
+    text-align: center;
+}
+.tableFilterCC tbody .CC_CC { /* CC_CC : cuenta cliente columna cliente */
+    text-align: left;
+}
+.CC_CC { /* CC_CC : cuenta cliente columna cliente */
+    width: 450px;
+    max-width: 450px;
+    min-width: 450px;
+}
+.CC_CNC { /* CC_CNC : cuenta cliente columna nro ci */
+    width: 165px;
+    max-width: 165px;
+    min-width: 165px;
+    text-align: center;
+}
+.CC_CS { /* CC_CS : cuenta cliente columna saldo */
+    width: 170px;
+    max-width: 170px;
+    min-width: 170px;
+    text-align: center;
+}
+.CC_CV { /* CC_CV: cuenta cliente columna ver (boton) */
+    width: 150px;
+    max-width: 150px;
+    min-width: 150px;
+    text-align: center;
+}
+.CC_CV input[type="text"] {
+    display: none;
+}
+
+
+
+/*
+    PAG.: CUENTA CLIENTE VER (pagCuentaCliente_VerCta) ----------------------------- 
+*/
+/*
+    TABLA CON DATOS DEL CLIENTE 
+*/
+.dataCtaCliente {
+    width: 600px;
+    border-collapse: collapse;
+}
+.dataCtaCliente tbody tr td {
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+.dataCtaCliente tbody tr td:first-child {
+    text-align: right;
+    font-weight: 500;
+}
+
+
+/*
+    TABLA CON DATOS DE LA CUENTAS 
+*/
+.tableCtas {
+    width: 90%;
+    /*width: 975px;*/
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border: none;
+    /*border: 1px solid red;*/
+    margin: auto;
+    
+    display: block;
+    position: relative;
+    height: 250px;
+    max-height: 250px;
+    overflow: scroll;
+}
+.tableCtas thead, 
+.tableCtas tbody {
+    display: block;
+}
+.tableCtas thead {
+    position: sticky;
+    background-color: white;
+    display: inline-block;
+    top: 0;
+    right: 0;
+}
+.tableCtas thead tr {
+    border: 1px solid rgba(0,0,0,0.4);
+}
+.tableCtas thead tr td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+/*.tableCtas tbody {
+    max-height: 250px;
+    overflow-y: auto;
+}*/
+.tableCtas tbody tr td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #222;
+}
+/*  COLUMNAS DE LA GRILLA   */
+.CCVC_NC { /* CCVC_NC : cuenta cliente ver cuenta nro cuenta */
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+    text-align: center;
+}
+.tableCtas thead .CCVC_D { /* CCVC_D : cuenta cliente ver cuenta descripcion  */
+    text-align: center;
+}
+.tableCtas tbody .CCVC_D { /* CCVC_D : cuenta cliente ver cuenta descripcion  */
+    text-align: left;
+}
+.CCVC_D { /* CCVC_D : cuenta cliente ver cuenta descripcion  */
+    width: 300px;
+    max-width: 300px;
+    min-width: 300px;
+}
+.CCVC_FV { /* CCVC_FV : cuenta cliente ver cuenta fecha vencimiento */
+    width: 130px;
+    max-width: 130px;
+    min-width: 130px;
+    text-align: center;
+}
+.tableCtas thead .CCVC_M { /* CCVC_M : cuenta cliente ver cuenta monto */
+    text-align: center;
+}
+.tableCtas tbody .CCVC_M { /* CCVC_M : cuenta cliente ver cuenta monto */
+    text-align: right;
+}
+.CCVC_M { /* CCVC_M : cuenta cliente ver cuenta monto */
+    width: 140px;
+    max-width: 140px;
+    min-width: 140px;
+}
+.tableCtas thead .CCVC_S { /* CCVC_S : cuenta cliente ver cuenta saldo */
+    text-align: center;
+}
+.tableCtas tbody .CCVC_S { /* CCVC_S : cuenta cliente ver cuenta saldo */
+    text-align: right;
+}
+.CCVC_S { /* CCVC_S : cuenta cliente ver cuenta saldo */
+    width: 140px;
+    max-width: 140px;
+    min-width: 140px;
+}
+.CCVC_E { /* CCVC_E : cuenta cliente ver cuenta estado */
+    width: 140px;
+    max-width: 140px;
+    min-width: 140px;
+    text-align: center;
+}
+.tableCtas thead .CCVC_NF {
+    text-align: center;
+}
+.tableCtas tbody .CCVC_NF { /* CCVC_NF : cuenta cliente ver cuenta nro_factura */
+    text-align: left;
+    font-size: 11pt;
+}
+.CCVC_NF {
+    font-size: 11pt;
+    width: 180px;
+    max-width: 180px;
+    min-width: 180px;
+}
+.tableCtas thead .CCVC_FF { /* CCVC_FF : cuenta cliente ver cuenta fecha_factura */
+    text-align: center;
+}
+.tableCtas tbody .CCVC_FF { /* CCVC_FF : cuenta cliente ver cuenta fecha_factura */
+    text-align: left;
+}
+.CCVC_FF {
+    font-size: 11pt;
+    width: 140px;
+    max-width: 140px;
+    min-width: 140px;
+}
+.tableCtas thead .CCVC_BVA { /* CCVC_BVA : cuenta cliente BOTON VER AGENDAMIENTO */
+    text-align: center;
+}
+.tableCtas tbody .CCVC_BVA { /* CCVC_BVA : cuenta cliente BOTON VER AGENDAMIENTO */
+    text-align: left;
+}
+.CCVC_BVA { /* CCVC_BVA : cuenta cliente BOTON VER AGENDAMIENTO */
+    font-size: 11pt;
+    width: 180px;
+    max-width: 180px;
+    min-width: 180px;
+}
+
+
+
+
+
+/*
+    PAGINA:   ---- REPORTE DE ESTADISTICA ---- ------- ----------- 
+*/
+.RE_CID { /* RE_CID : reporte ESTADISTICA columna id */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilter thead .RE_CC { /* RE_CC : reporte ESTADISTICA columna paciente */
+    text-align: center;
+}
+.tableFilter tbody .RE_CC { /* RE_CC : reporte ESTADISTICA columna paciente */
+    text-align: left;
+}
+.RE_CC { /* RE_CC : reporte ESTADISTICA columna paciente */
+    width: 400px;
+    min-width: 400px;
+    max-width: 400px;
+}
+.tableFilter thead .RE_CNCI { /* RE_CNCI : reporte ESTADISTICA columna nro_ci */
+    text-align: center;
+}
+.tableFilter tbody .RE_CNCI { /* RE_CNCI : reporte ESTADISTICA columna nro_ci */
+    text-align: center;
+}
+.RE_CNCI { /* RE_CNCI : reporte ESTADISTICA columna nro_ci */
+    width: 160px;
+    min-width: 160px;
+    max-width: 160px;
+}
+.RE_CVE { /* RE_CI : reporte ESTADISTICA columna imprimir (boton) */
+    text-align: center;
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+}
+
+
+
+
+
+
+/*
+    PAG.: REPORTE FACTURA (pagRpt_Factura.jsp) ----------------------------- 
+*/
+/*
+    TABLA PRINCIPAL 
+*/
+.tableFilterRF { /* table filter reporte factura */
+    width: 1200px;
+    max-width: 90%;
+    /*width: 945px;*/
+    /*width: 100%;*/
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border: none;
+    margin: auto;
+    
+    display: block;
+    position: relative;
+    height: 270px;
+    max-height: 270px;
+    overflow: auto;
+}
+.tableFilterRF thead, 
+.tableFilterRF tbody {
+    display: block;
+}
+.tableFilterRF thead {
+    position: sticky;
+    background-color: white;
+    display: inline-block;
+    top: 0;
+    right: 0;
+}
+.tableFilterRF thead tr {
+    border: 1px solid rgba(0,0,0,0.4);
+}
+.tableFilterRF thead tr td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableFilterRF tbody {
+    max-height: 250px;
+    /*overflow: auto;*/
+}
+.tableFilterRF tbody tr td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    /*font-size: 1rem;*/
+    font-weight: 400;
+    color: #222;
+}
+/*  COLUMNAS ----- */
+.tableFilterRF thead tr .RF_CIF,
+.tableFilterRF tbody tr .RF_CIF { /* RF_CIF : reporte factura columna columna id factura  */
+    text-align: center;
+    width: 95px;
+    min-width: 95px;
+    max-width: 95px;
+}
+.tableFilterRF thead .RF_CNF { /* RF_CNF : reporte factura columna nro factura */
+    text-align: center;
+}
+.tableFilterRF tbody .RF_CNF { /* RF_CNF : reporte factura columna nro factura */
+    text-align: left;
+}
+.RF_CNF { /* RF_CNF : reporte factura columna nro factura */
+    width: 200px; /* valor_anterior: 175 */
+    /*width: 165px;*/
+    max-width: 200px;
+    min-width: 200px;
+}
+.tableFilterRF thead .RF_CC { /* RF_CC : reporte factura columna cliente */
+    text-align: center;
+}
+.tableFilterRF tbody .RF_CC { /* RF_CC : reporte factura columna cliente */
+    text-align: left;
+}
+.RF_CC { /* RF_CC : reporte factura columna cliente */
+    width: 320px;
+    max-width: 320px;
+    min-width: 320px;
+}
+.RF_CFF { /* RF_CFF : reporte factura columna fecha factura */
+    width: 150px;
+    max-width: 150px;
+    min-width: 150px;
+    text-align: center;
+}
+.tableFilterRF thead .RF_CE { /* RF_CE : reporte factura columna estado */
+    text-align: center;
+}
+.tableFilterRF tbody .RF_CE { /* RF_CE : reporte factura columna estado */
+    text-align: left;
+}
+.RF_CE { /* RF_CE : reporte factura columna estado */
+    width: 140px; /* valor_anterior: 150 */
+    max-width: 140px;
+    min-width: 140px;
+}
+.tableFilterRF thead .RF_CT { /* RF_CT: reporte factura columna total */
+    text-align: center;
+}
+.tableFilterRF tbody .RF_CT { /* RF_CT: reporte factura columna total */
+    text-align: right;
+}
+.RF_CT { /* RF_CT: reporte factura columna total */
+    width: 150px;
+    max-width: 150px;
+    min-width: 150px;
+}
+.RF_CIP { /* RF_CIP: reporte factura columna imprimir pdf (boton) */
+    width: 140px; /* valor_anterior: 150 */
+    max-width: 140px;
+    min-width: 140px;
+    text-align: center;
+}
+.RF_CIP input[type="text"] { /* RF_CIP: reporte factura columna imprimir pdf (boton) */
+    display: none;
+}
+
+
+
+/*
+    PAGINA : PANEL DE CONTROL -------------------------------------------------- 
+*/
+.cards_pc { /* COPIA DE LA CLASE "cards", UTILIZO ESTA CLASE PARA COLOCAR EN COLUMNAS LOS SUBPANELES, EN ESO SE DIFERENCIA DE LA OTRA CLASE  */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+    /*margin-top: 1rem;*/
+    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.cards_pc .pc_caja { /* panel de control - caja */
+    /*border: 1px solid red;*/
+    margin-top: .5rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.cards_pc .pc_caja p, /* panel de control - caja */
+.cards_pc .pc_empenhos p, /* panel de control - empeño */
+.cards_pc .pc_inventario p { /* panel de control - inventario */
+    /*border: 1px solid red;*/
+    height: 25px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.cards_pc .pc_empenhos { /* panel de control - empeño */
+    /*border: 1px solid red;*/
+    margin-top: .5rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.cards_pc .pc_empenhos div { /* panel de control - empeño */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.cards_pc .pc_inventario { /* panel de control - inventario */
+    /*border: 1px solid yellow;*/
+    margin-top: .5rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.cards_pc .pc_inventario div { /* panel de control - inventario */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.mainFilterBox .filterDate { /* DIV QUE CONTIENE LA FECHA INICIO Y FECHA FIN, VOY A EDITAR PARA QUE QUEDE BIEN VISUALEMENTE POR ESO CREE ESTA CLASE */
+    display: flex;
+    flex-wrap: wrap;
+}
+.mainFilterBox .filterDate div { /* DIV QUE CONTIENE FECHA INICIO Y OTRO DIV QUE CONTIENE FECHA FIN  */
+    /*border: 1px solid blue;*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.mainFilterBox .filterDate div p { /* ETIQUETAS PARA FECHA INICIO Y FECHA FIN */ 
+    /*border: 1px solid yellow;*/
+}
+.mainFilterBox .filterDate div input[type="date"] { /* CAMPO DE TEXTO TIPO FECHA QUE ES PARA FECHA INICIO Y FECHA FIN */
+    /*border: 1px solid yellow;*/
+    width: 200px;
+    max-width: 200px;
+    min-width: 200px;
+}
+
+
+.cards_pc .pc_caja .card-single, 
+.cards_pc .pc_empenhos div .card-single, 
+.cards_pc .pc_inventario div .card-single {
+    display: flex;
+    justify-content: space-between;
+    background: none;
+    /*background: #fff;*/
+    /*padding: 2rem;*/
+    padding: .2rem;
+    border-radius: 5px;
+}
+
+.cards_pc .pc_caja .card-single a, 
+.cards_pc .pc_empenhos div .card-single a, 
+.cards_pc .pc_inventario div .card-single a {
+    /*padding: 1.5rem 2rem;*/
+    margin-top: .5rem;
+    margin-right: .5rem;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid rgba(0,105,217,0.8);
+    border-radius: 15px;
+}
+
+.cards_pc .pc_caja .card-single a div:last-child span, 
+.cards_pc .pc_empenhos div .card-single a div:last-child span, 
+.cards_pc .pc_inventario div .card-single a div:last-child span {
+    padding-top: .2rem;
+    padding-right: .3rem;
+    padding-bottom: .3rem;
+    font-size: 3rem;
+    color: #5C5C5C;
+    /*color: var(--main-color-blu);*/
+}
+
+.cards_pc .pc_caja .card-single a div:first-child span, 
+.cards_pc .pc_empenhos div .card-single a div:first-child span, 
+.cards_pc .pc_inventario div .card-single a div:first-child span {
+    color: var(--text-grey);
+}
+
+.cards_pc .pc_caja .card-single a div:first-child h1 {
+    /*border: 1px solid blue;*/
+    width: auto/*430px*/;
+    /*min-width: 430px;*/
+    max-width: 430px;
+    font-size: 28pt;
+    color: #5C5C5C;
+    /*color: #353535;*/
+    /*color: var(--text-grey);*/
+    padding-left: .5rem;
+    margin-right: 8px;
+}
+.cards_pc .pc_empenhos div .card-single a div:first-child h1 {
+    /*border: 1px solid red;*/
+    width: auto/*260px*/; 
+    /*min-width: 260px;*/
+    max-width: 260px;
+    font-size: 28pt;
+    color: #666666;
+    /*color: #353535;*/
+    /*color: var(--text-grey);*/
+    padding-top: .3rem;
+    padding-left: .5rem;
+    margin-right: 8px;
+}
+.cards_pc .pc_inventario div .card-single a div:first-child h1 {
+    /*border: 1px solid red;*/
+    width: auto/*260px*/;
+    /*min-width: 260px;*/
+    max-width: 260px;
+    font-size: 28pt;
+    color: #666666;
+    /*color: #353535;*/
+    /*color: var(--text-grey);*/
+    padding-top: .3rem;
+    padding-left: .5rem;
+    margin-right: 8px;
+}
+
+.cards_pc .pc_caja .card-single a, 
+.cards_pc .pc_empenhos div .card-single a, 
+.cards_pc .pc_inventario div .card-single a {
+    text-decoration: none;
+}
+.cards_pc .pc_caja .card-single a div:first-child h1 a:hover, 
+.cards_pc .pc_empenhos div .card-single a div:first-child h1 a:hover, 
+.cards_pc .pc_inventario div .card-single a div:first-child h1 a:hover {
+    text-decoration: none;
+}
+/*
+    HOVER.-
+*/
+/*.cards_pc .pc_caja .card-single a div:first-child h1:hover, 
+.cards_pc .pc_empenhos div .card-single a div:first-child h1:hover, 
+.cards_pc .pc_inventario div .card-single a div:first-child h1:hover {
+    color: #fff;
+    background: #007bff;
+    text-decoration: none;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -ms-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}*/
+
+
+
+
+
+/*
+    PAGINA : PLAN DE HORARIO  -------------------------------------------------- 
+*/
+.cbxMed { /* cbxMed : combobox medico  */
+    width: 380px;
+    min-width: 360px;
+    display: block;
+    /*visibility: visible;*/
+}
+
+#check_med { /* check_med :  check medico  */
+    margin-top: 11px;
+    margin-left: 1rem;
+    margin-right: .5rem;
+    width: 15px;
+    height: 15px;
+}
+
+#check_med:checked ~ * .cbxMed {
+    display: none;
+    /*visibility: collapse;*/
+}
+
+
+
+
+
+/*
+    ------- PANEL PARA EL COMBO DE CLINICA PARA LA PAGINA DE REPORTE DE CUENTA PACIENTE ------------ 
+*/
+.mar-lef-subtract-4rem {
+    /*border: 1px solid red;*/
+    margin-left: -4rem;
+}
+
+.comboelementcli {
+/*    border: 1px solid blue;*/
+/*    display: flex;
+    flex-direction: row;
+    justify-content: space-around;*/
+    
+}
+
+
+
+
+
+/*
+    ----- COMBO DE CLINICA ----- 
+*/
+.panel_clinica {
+    /*border: 1px solid blue;*/
+}
+.cbxClinica{ /* cbxClinica : combobox clinica  */
+    /*border: 1px solid red;*/
+    width: 380px;
+    min-width: 360px;
+    display: block;
+    /*visibility: visible;*/
+}
+
+#check_clinica { /* check_clinica :  check clinica  */
+/*    border: 1px solid red;*/
+    margin-top: 11px;
+    margin-left: 1rem;
+    margin-right: .5rem;
+    width: 15px;
+    height: 15px;
+}
+
+#check_clinica:checked ~ * .cbxClinica {
+    display: none;
+    /*visibility: collapse;*/
+}
+
+
+
+
+/*
+    PAGINA : ATENCION  -------------------------------------------------- 
+*/
+.cbxPac { /* cbxPac : combobox paciente  */
+    width: 380px;
+    min-width: 360px;
+    display: block;
+    /*visibility: visible;*/
+}
+
+#check_pac { /* check_pac :  check paciente  */
+    margin-top: 11px;
+    margin-left: 1rem;
+    margin-right: .5rem;
+    width: 15px;
+    height: 15px;
+}
+
+#check_pac:checked ~ * .cbxPac {
+    display: none;
+    /*visibility: collapse;*/
+}
+
+
+
+
+/*
+    PAGINA : AGENDAMIENTO  -------------------------------------------------- 
+*/
+/* COMBO DE ESTADO */
+.cbxEstado { /* cbxEstado : combobox estado  */
+    width: 380px;
+    min-width: 360px;
+    display: block;
+    /*visibility: visible;*/
+}
+
+#check_estado { /* check_estado :  check estado  */
+    margin-top: 11px;
+    margin-left: 1rem;
+    margin-right: .5rem;
+    width: 15px;
+    height: 15px;
+}
+
+#check_estado:checked ~ * .cbxEstado {
+    border: 2px solid red;
+    display: none;
+    /*visibility: collapse;*/
+}
+
+/* COMBO DE ESPECIALIDAD */
+.cbxEspe { /* cbxEspe : combobox especialidad  */
+    width: 380px;
+    min-width: 360px;
+    display: block;
+    /*visibility: visible;*/
+}
+
+#check_espe { /* check_espe :  check especialidad  */
+    margin-top: 11px;
+    margin-left: 1rem;
+    margin-right: .5rem;
+    width: 15px;
+    height: 15px;
+}
+
+#check_espe:checked ~ * .cbxEspe {
+    display: none;
+    /*visibility: collapse;*/
+}
+
+
+
+/*
+    PAGINA AGENDAMIENTO VER --- 
+*/
+.tableAgenVer {
+    width: 80vw;
+    /*width: 965px;*/
+    /*min-width: max-content;*/
+    /*max-width: 965px;*/
+    border: none;
+    border-collapse: collapse;
+    margin: auto;
+    
+    border-spacing: 0px;
+    height: 280px;
+    max-height: 280px;
+    position: relative;
+    display: block;
+    overflow: auto;
+}
+
+.tableAgenVer thead, 
+.tableAgenVer tbody {
+    display: block;
+}
+
+.tableAgenVer thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    /*box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);*/
+}
+.tableAgenVer thead td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableAgenVer thead td:first-child {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.tableAgenVer tbody td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+.tableAgenVer tbody td input[type = "text"] { /* OCULTO EL CAMPO DE TEXTO QUE ALMACENA EL IDEMPENHO */
+    display: none;
+}
+.tableAgenVer tbody td:first-child {
+    font-size: 12pt;
+    font-weight: 500;
+}
+/*
+    COLUMNAS DE LA TABLA ----- 
+*/
+.tableAgenVer thead tr .AD_CI,
+.tableAgenVer tbody tr .AD_CI { /* AD_CI : agendamiento detalle columna item  */
+    text-align: center;
+    margin: auto;
+    width: 90px;
+    min-width: 90px;
+    max-width: 90px;
+}
+.tableAgenVer thead tr .AD_CFA,
+.tableAgenVer tbody tr .AD_CFA { /* AD_CFA : agendamiento detalle columna fecha agendamiento  */
+    text-align: center;
+    width: 190px;
+    min-width: 190px;
+    max-width: 190px;
+}
+.tableAgenVer thead tr .AD_CH,
+.tableAgenVer tbody tr .AD_CH { /* AD_CH : agendamiento detalle columna hora  */
+    text-align: center;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}
+.tableAgenVer thead tr .AD_CP { /* AD_CP : agendamiento detalle columna paciente  */
+    text-align: center;
+}
+.tableAgenVer tbody tr .AD_CP { /* AD_CP : agendamiento detalle columna paciente  */
+    text-align: left;
+}
+.tableAgenVer thead tr .AD_CP,
+.tableAgenVer tbody tr .AD_CP { /* AD_CP : agendamiento detalle columna paciente  */
+    width: 350px;
+    min-width: 350px;
+    max-width: 350px;
+}
+.tableAgenVer thead tr .AD_CMC { /* AD_CMC : agendamiento detalle columna motivo consulta  */
+    text-align: center;
+}
+.tableAgenVer tbody tr .AD_CMC { /* AD_CMC : agendamiento detalle columna motivo consulta  */
+    text-align: left;
+}
+.tableAgenVer thead tr .AD_CMC,
+.tableAgenVer tbody tr .AD_CMC { /* AD_CMC : agendamiento detalle columna motivo consulta  */
+    width: 400px;
+    /*width: 380px;*/
+    min-width: 400px;
+    max-width: 400px;
+}
+.tableAgenVer thead tr .AD_CNC,
+.tableAgenVer tbody tr .AD_CNC { /* AD_CNC : agendamiento detalle columna nro ci  */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+
+
+/*
+    clase que utilizo para mostrar un pequeño mensaje 
+*/
+.agen_fec_msn {
+    /*border: 1px solid red;*/
+    font-size: 8pt;
+}
+
+/*
+    pagina:     ADD AGENDAMIENTO - SECRETARIO / FILTRO DE PLAN HORARIO DEL MEDICO 
+*/
+.tableAASF { /*  TABLE ADD AGENDAMIENTO SECRETARIO FILTER   */
+    width: 90%;
+/*    width: 650px;
+    max-width: 650px;*/
+    border: none;
+    border-collapse: collapse;
+    /*margin: auto;*/
+    
+    border-spacing: 0px;
+    height: 280px;
+    max-height: 280px;
+    position: relative;
+    display: block;
+    overflow: auto;
+}
+.tableAASF thead, 
+.tableAASF tbody {
+    display: block;
+}
+.tableAASF thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    /*box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);*/
+}
+.tableAASF thead td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableAASF thead td:first-child {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.tableAASF tbody td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+.tableAASF tbody td input[type = "text"] { /* OCULTO EL CAMPO DE TEXTO QUE ALMACENA EL IDEMPENHO */
+    display: none;
+}
+.tableAASF tbody td:first-child {
+    font-size: 12pt;
+    font-weight: 500;
+}
+/*
+    COLUMNAS DE LA TABLA ----- 
+*/
+.tableAASF thead tr .TAAF_CDi { /* TAAF_CDi : table add agendamiento filter - columna dia  */
+    text-align: center;
+}
+.tableAASF tbody tr .TAAF_CDi { /* TAAF_CDi : table add agendamiento filter - columna dia  */
+    text-align: left;
+}
+.tableAASF thead tr .TAAF_CDi, 
+.tableAASF tbody tr .TAAF_CDi { /* TAAF_CDi : table add agendamiento filter - columna dia  */
+    position: relative;
+    /*border: 1px solid yellow;*/
+    width: 170px;
+    min-width: 170px;
+    max-width: 170px;
+    height: 40px;
+    padding-bottom: 15px;
+}
+.tableAASF tbody tr .TAAF_CDi span { /* TAAF_CDi : table add agendamiento filter - columna dia  */
+    /*border: 1px solid red;*/
+    position: absolute;
+    left: 15px;
+    top: 5px;
+}
+.tableAASF thead tr .TAAF_CT, 
+.tableAASF tbody tr .TAAF_CT { /* TAAF_CT : table add agendamiento filter - columna turno  */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.tableAASF thead tr .TAAF_CDe, 
+.tableAASF tbody tr .TAAF_CDe { /* TAAF_CDe : table add agendamiento filter - columna desde  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableAASF thead tr .TAAF_CH, 
+.tableAASF tbody tr .TAAF_CH { /* TAAF_CH : table add agendamiento filter - columna hasta  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+
+
+
+/*
+    TABLA DE AGENDAMIENTOS DE LA FECHA SELECCIONADA 
+*/
+.panelADLF { /* panelADLF : panel agendamiento de la fecha */
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+}
+.tableAgendFecs {
+    width: 800px;
+    /*width: 100%;*/
+    /*border: 2px solid red;*/
+    border: none;
+    border-collapse: collapse;
+    margin: auto;
+    
+    border-spacing: 0px;
+    height: 280px;
+    max-height: 280px;
+    position: relative;
+    display: block;
+    overflow: auto;
+    /*overflow-y: auto;*/
+    /*overflow-x: hidden;*/
+}
+.tableAgendFecs thead, 
+.tableAgendFecs tbody {
+    display: block;
+}
+.tableAgendFecs thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    /*box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);*/
+}
+/*.tableAgendFecs thead tr {
+    border: 1px solid rgba(0,0,0,0.4);
+        /*border-top: 1px solid #f0f0f0;*/
+        /*border-bottom: 2px solid #f0f0f0;*/
+   /* box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+}*/
+.tableAgendFecs thead td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableAgendFecs thead td:first-child {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.tableAgendFecs tbody td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+.tableAgendFecs tbody td input[type = "text"] { /* OCULTO EL CAMPO DE TEXTO QUE ALMACENA EL IDEMPENHO */
+    display: none;
+}
+.tableAgendFecs tbody td:first-child {
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 500;
+}
+/*
+    COLUMNAS DE LA TABLA ----- 
+*/
+.tableAgendFecs thead tr .PAAS_CA,
+.tableAgendFecs tbody tr .PAAS_CA { /* PAAS_CA : pagina añadir agendamiento secretario - codigo agendamiento  */
+    text-align: center;
+    width: 95px;
+    min-width: 95px;
+    max-width: 95px;
+}
+.tableAgendFecs thead tr .PAAS_FA,
+.tableAgendFecs tbody tr .PAAS_FA { /* PAAS_FA : pagina añadir agendamiento secretario - fecha agendamiento  */
+    text-align: center;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}
+.tableAgendFecs thead tr .PAAS_FH,
+.tableAgendFecs tbody tr .PAAS_FH { /* PAAS_FH : pagina añadir agendamiento secretario - fecha hora  */
+    text-align: center;
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+}
+.tableAgendFecs thead tr .PAAS_P { /* PAAS_P : pagina añadir agendamiento secretario - paciente  */
+    text-align: center;
+}
+.tableAgendFecs tbody tr .PAAS_P { /* PAAS_P : pagina añadir agendamiento secretario - paciente  */
+    text-align: left;
+    font-size: 10pt;
+}
+.tableAgendFecs thead tr .PAAS_P,
+.tableAgendFecs tbody tr .PAAS_P { /* PAAS_P : pagina añadir agendamiento secretario - paciente  */
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+}
+.tableAgendFecs thead tr .PAAS_M { /* PAAS_M : pagina añadir agendamiento secretario - medico  */
+    text-align: center;
+}
+.tableAgendFecs tbody tr .PAAS_M { /* PAAS_M : pagina añadir agendamiento secretario - medico  */
+    text-align: left;
+    font-size: 10pt;
+}
+.tableAgendFecs thead tr .PAAS_M,
+.tableAgendFecs tbody tr .PAAS_M { /* PAAS_M : pagina añadir agendamiento secretario - medico  */
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
+}
+.tableAgendFecs thead tr .PAAS_T { /* PAAS_T : pagina añadir agendamiento secretario - tipo (especialidad)  */
+    text-align: center;
+}
+.tableAgendFecs tbody tr .PAAS_T { /* PAAS_T : pagina añadir agendamiento secretario - tipo (especialidad)  */
+    text-align: left;
+    font-size: 10pt;
+}
+.tableAgendFecs thead tr .PAAS_T,
+.tableAgendFecs tbody tr .PAAS_T { /* PAAS_T : pagina añadir agendamiento secretario - tipo (especialidad)  */
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+}
+.tableAgendFecs thead tr .PAAS_C { /* PAAS_C : pagina añadir agendamiento secretario - clinica  */
+    text-align: center;
+}
+.tableAgendFecs tbody tr .PAAS_C { /* PAAS_C : pagina añadir agendamiento secretario - clinica  */
+    text-align: left;
+    font-size: 10pt;
+}
+.tableAgendFecs thead tr .PAAS_C,
+.tableAgendFecs tbody tr .PAAS_C { /* PAAS_C : pagina añadir agendamiento secretario - clinica  */
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+.tableAgendFecs thead tr .PAAS_E,
+.tableAgendFecs tbody tr .PAAS_E { /* PAAS_E : pagina añadir agendamiento secretario - estado  */
+    text-align: center;
+    width: 110px;
+    min-width: 110px;
+    max-width: 110px;
+}
+.tableAgendFecs thead tr .PAAS_MSN,
+.tableAgendFecs tbody tr .PAAS_MSN { /* PAAS_MSN : pagina añadir agendamiento secretario - mensaje (mas que nada fila para mostrar el mensaje de que no hay agendamientos en esa fecha)  */
+    text-align: center;
+/*    width: 100%;
+    min-width: 100%;
+    max-width: 100%;*/
+    column-width: 100vw;
+}
+
+
+
+
+
+/*
+    PAGINA : FICHA DE ATENCION DEL PACIENTE  -------------------------------------------------- 
+*/
+.tableAtencion {
+    width: 90vw;
+    /*width: 965px;*/
+    /*min-width: max-content;*/
+    /*max-width: 965px;*/
+    /*width: 100%;*/
+    border: none;
+    border-collapse: collapse;
+    margin: auto;
+    
+    border-spacing: 0px;
+    height: 280px;
+    max-height: 280px;
+    position: relative;
+    display: block;
+    overflow: auto;
+}
+
+.tableAtencion thead, 
+.tableAtencion tbody {
+    display: block;
+}
+
+.tableAtencion thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    /*box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);*/
+}
+.tableAtencion thead td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableAtencion thead td:first-child {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.tableAtencion tbody td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+.tableAtencion tbody td input[type = "text"] { /* OCULTO EL CAMPO DE TEXTO QUE ALMACENA EL IDEMPENHO */
+    display: none;
+}
+.tableAtencion tbody td:first-child {
+    font-size: 12pt;
+    font-weight: 500;
+}
+/*
+    COLUMNAS DE LA TABLA ----- 
+*/
+.tableAtencion thead tr .AC_I,
+.tableAtencion tbody tr .AC_I { /* AC_I : atencion columna item  */
+    text-align: center;
+    margin: auto;
+    width: 90px;
+    min-width: 90px;
+    max-width: 90px;
+}
+.tableAtencion thead tr .AC_FA,
+.tableAtencion tbody tr .AC_FA { /* AC_FA : atencion columna fecha agendamiento  */
+    text-align: center;
+    width: 190px;
+    min-width: 190px;
+    max-width: 190px;
+}
+.tableAtencion thead tr .AC_H,
+.tableAtencion tbody tr .AC_H { /* AC_H : atencion columna hora  */
+    text-align: center;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}
+.tableAtencion thead tr .AC_P { /* AC_P : atencion columna paciente  */
+    text-align: center;
+}
+.tableAtencion tbody tr .AC_P { /* AC_P : atencion columna paciente  */
+    text-align: left;
+}
+.tableAtencion thead tr .AC_P,
+.tableAtencion tbody tr .AC_P { /* AC_P : atencion columna paciente  */
+    width: 350px;
+    min-width: 350px;
+    max-width: 350px;
+}
+.tableAtencion thead tr .AC_NC,
+.tableAtencion tbody tr .AC_NC { /* AC_NC : atencion columna nro ci  */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.tableAtencion thead tr .AC_BA,
+.tableAtencion tbody tr .AC_BA { /* AC_BA : atencion columna botones acciones  */
+    text-align: center;
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+/*    width: 200px;
+    min-width: 200px;
+    max-width: 200px;*/
+}
+.tableAtencion tbody tr .AC_BA input[type="submit"]{ /* AC_BA : atencion columna botones acciones  */
+    font-size: 10pt;
+}
+/*
+    PAGINA :  FICHA DE ATENCION / ADJUNTAR ARCHIVOS A LA FICHA -------------------------------------------------- 
+*/
+/*
+    TABLA DONDE SE ADJUNTARA ARCHIVOS PARA LA FICHA----- 
+*/
+.tableListFilesFicha {
+    width: 600px;
+    /*max-width: 90%;*/
+    border: none;
+    border-collapse: collapse;
+    /*margin: auto;*/
+    border-spacing: 0px;
+    height: 280px;
+    max-height: 280px;
+    position: relative;
+    display: block;
+    overflow: auto;
+}
+.tableListFilesFicha thead, 
+.tableListFilesFicha tbody {
+    display: block;
+}
+
+.tableListFilesFicha thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    /*box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);*/
+}
+/*.tableListFilesFicha thead tr {
+    border: 1px solid rgba(0,0,0,0.4);
+        /*border-top: 1px solid #f0f0f0;*/
+        /*border-bottom: 2px solid #f0f0f0;*/
+   /* box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+}*/
+.tableListFilesFicha thead td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableListFilesFicha thead td:first-child {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.tableListFilesFicha tbody td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .8rem;
+    color: #222;
+}
+.tableListFilesFicha tbody td input[type = "text"] { /* OCULTO EL CAMPO DE TEXTO QUE ALMACENA EL IDEMPENHO */
+    display: none;
+}
+/*.tableListFilesFicha tbody td:first-child {
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 500;
+}*/
+/*
+    COLUMNAS DE LA TABLA DE LA PAGINA DE - ADJUNTAR ARCHIVOS A LA FICHA ----- 
+*/
+/*.tableListFilesFicha thead tr td .TAF_CA,
+.tableListFilesFicha tbody tr td */
+.TAF_CA { /* TAF_CA : table adjuntar archivos columna acciones  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableListFilesFicha thead tr td .TAF_CDA,
+.TAF_CDA{ /* TAF_CDA : table adjuntar archivos columna descripcion del archivo  */
+    text-align: center;
+}
+.tableListFilesFicha tbody tr td .TAF_CDA, 
+.TAF_CDA{ /* TAF_CDA : table adjuntar archivos columna descripcion del archivo  */
+    text-align: left;
+}
+/*.tableListFilesFicha thead tr .TAF_CDA,
+.tableListFilesFicha tbody tr */
+.TAF_CDA { /* TAF_CDA : table adjuntar archivos columna descripcion del archivo  */
+    width: 420px;
+    min-width: 420px;
+    max-width: 420px;
+}
+.TAF_CDAV { /* TAF_CDAV : table adjuntar archivos columna descripcion del archivo view (ESTILO PARA LA COLUMNA PERO PARA LA PAGINA DE VER DATOS DE LA FICHA)  */
+    width: 450px;
+    min-width: 450px;
+    max-width: 450px;
+}
+
+
+
+
+
+
+
+/*
+    PAGINA : PANEL DE CONTROL / EMPEÑOS VIGENTES  -------------------------------------------------- 
+*/
+/*  FILTROS   */
+.cbxRFCli { /* cbxRFCli : combobox resumen_factura_cliente  */
+    width: 380px;
+    min-width: 360px;
+    display: block;
+    /*visibility: visible;*/
+}
+#check_cli { /* rfcheckcli :  check cliente  */
+    margin-top: 11px;
+    margin-left: 1rem;
+    margin-right: .5rem;
+    width: 15px;
+    height: 15px;
+}
+#check_cli:checked ~ * .cbxRFCli {
+    display: none;
+    /*visibility: collapse;*/
+}
+/*  TABLA  */
+.PCEtableFilter {
+    width: 90vw;
+    /*width: 865px;*/
+    height: 280px;
+    max-height: 280px;
+    margin: auto;
+    
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    display: block;
+    position: relative;
+    overflow: auto;
+}
+.PCEtableFilter thead,
+.PCEtableFilter tbody {
+    display: block;
+}
+.PCEtableFilter thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    z-index: 5; /* ESTA CLASE LA UTILIZO EN TODAS LAS TABLAS DE PANEL DE CONTROL CON RELACION A EMPEÑO, Y COMO LA CLASE DE LOS TOOPTIP SE SOBREPONEN POR ENCIMA DEL HEADER DE LA TABLA, ENTONCES AL COLOCAR UN Z-INDEX MAYOR AL DE ELLOS, YA ME DEJA LA CABECERA DE LA TABLA POR ENCIMA Y NO LOS BOTONES POR ENCIMA DE LAS CABECERAS AL BAJAR EL SCROLL   */
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.PCEtableFilter thead tr td {
+    padding: .5rem 0;
+    text-align: center;
+    font-weight: 700;
+}
+.PCEtableFilter tbody tr td {
+    padding: .4rem .5rem;
+    border: 1px solid #5D5D5D;
+    font-size: .9rem;
+    color: #222;
+}
+.PCEtableFilter tbody tr td input[type = "text"] { /* oculto el campo de texto que almacena el id */
+    display: none;
+}
+/*
+    COLUMNAS ------ 
+*/
+.PCE_CI { /* PCE_CI :     panel control empeño columna id */
+    text-align: center;
+    width: 90px;
+    min-width: 90px;
+    max-width: 90px;
+}
+.PCE_CNE { /* PCE_CNE :     panel control empeño columna nro empeño */
+    text-align: center;
+    width: 105px;
+    min-width: 105px;
+    max-width: 105px;
+}
+.PCEtableFilter thead .PCE_CC { /* PCE_CC :     panel control empeño columna cliente */
+    text-align: center;
+}
+.PCEtableFilter tbody .PCE_CC { /* PCE_CC :     panel control empeño columna cliente */
+    text-align: left;
+}
+.PCE_CC { /* PCE_CC :     panel control empeño columna cliente */
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+}
+.PCE_CFP { /* PCE_CFP :     panel control empeño columna fecha prestamo */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.PCE_CFV { /* PCE_CFV :     panel control empeño columna fecha vencimiento */
+    text-align: center;
+    width: 125px;
+    min-width: 125px;
+    max-width: 125px;
+}
+.PCE_CFV_C { /* PCE_CFV_C :     panel control empeño columna fecha vencimiento cuota */
+    text-align: center;
+    width: 210px;
+    min-width: 210px;
+    max-width: 210px;
+}
+.PCEtableFilter thead .PCE_CE { /* PCE_CE :     panel control empeño columna estado */
+    text-align: center;
+}
+.PCEtableFilter tbody .PCE_CE { /* PCE_CE :     panel control empeño columna estado */
+    text-align: left;
+}
+.PCE_CE { /* PCE_CE :     panel control empeño columna estado */
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+}
+.PCEtableFilter thead .PCE_CV { /* PCE_CV :     panel control empeño columna ver (boton) */
+    text-align: center;
+}
+.PCEtableFilter tbody .PCE_CV { /* PCE_CV :     panel control empeño columna ver (boton) */
+    text-align: left;
+}
+.PCE_CV { /* PCE_CV :     panel control empeño columna ver (boton) */
+    width: 85px;
+    min-width: 85px;
+    max-width: 85px;
+}
+.PCEtableFilter thead .PCE_CA { /* PCE_CA :     panel control empeño columna acciones (botones) */
+    text-align: center;
+}
+.PCEtableFilter tbody .PCE_CA { /* PCE_CA :     panel control empeño columna acciones (botones) */
+    text-align: left;
+}
+.PCEtableFilter tbody tr td .PCE_CA form { /* PCE_CA :     panel control empeño columna acciones (botones) */
+    display: flex;
+    flex-direction: row;
+    font-size: 10pt;
+}
+.PCE_CA { /* PCE_CA :     panel control empeño columna acciones (botones) */
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
+}
+/*
+    VERSION 02 DE LA MISMA COLUMNA 
+*/
+.PCEtableFilter thead .PCE_CAV2 { /* PCE_CA :     panel control empeño columna acciones (botones) */
+    text-align: center;
+}
+.PCEtableFilter tbody .PCE_CAV2 { /* PCE_CA :     panel control empeño columna acciones (botones) */
+    text-align: left;
+}
+.PCE_CAV2 { /* PCE_CA :     panel control empeño columna acciones (botones) */
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+}
+/*
+    VERSION 03 DE LA MISMA COLUMNA 
+*/
+.PCEtableFilter thead .PCE_CAV3 { /* PCE_CA :     panel control empeño columna acciones (botones) */
+    text-align: center;
+}
+.PCEtableFilter tbody .PCE_CAV3 { /* PCE_CA :     panel control empeño columna acciones (botones) */
+    text-align: left;
+}
+.PCE_CAV3 { /* PCE_CA :     panel control empeño columna acciones (botones) */
+    width: 400px;
+    min-width: 400px;
+    max-width: 400px;
+}
+/*
+    COLUMNA PARA LA PAGINA DE RESUMEN EMPEÑO / PANEL DE CONTROL 
+*/
+.PCEtableFilter thead .PCERE_CA { /* PCERE_CA :     panel control empeño resumen empeño columna acciones (botones) */
+    text-align: center;
+}
+.PCEtableFilter tbody .PCERE_CA { /* PCERE_CA :     panel control empeño resumen empeño columna acciones (botones) */
+    text-align: left;
+}
+.PCERE_CA { /* PCERE_CA :     panel control empeño resumen empeño columna acciones (botones) */
+    width: 470px;
+    min-width: 470px;
+    max-width: 470px;
+}
+/*
+    COLUMNAS QUE UTILIZO PARA LA MISMA TABLA SOLO QUE PARA LA PAGINA DE PANEL DE CONTROL / INVENTARIO - PRENDAS EMPEÑADAS Y PRENDAS EN VENTAS 
+*/
+.PCE_CDIT { /* PCE_CDIT :     panel de control empeño - columna detalle item  */
+    text-align: center;
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+}
+.PCEtableFilter thead .PCE_CDP { /* PCE_CDP :       panel de control empeño - columna detalle producto (descripcion) */
+    text-align: center;
+}
+.PCEtableFilter tbody .PCE_CDP { /* PCE_CDP :       panel de control empeño - columna detalle producto (descripcion) */
+    text-align: left;
+}
+.PCE_CDP { /* PCE_CDP :       panel de control empeño - columna detalle producto (descripcion) */
+    width: 380px;
+    min-width: 380px;
+    max-width: 380px;
+}
+.PCE_CDIV { /* PCE_CDIV :     panel de control empeño - columna detalle iva */
+    text-align: center;
+    width: 85px;
+    min-width: 85px;
+    max-width: 85px;
+}
+
+
+
+/*
+    ----    PAG USUARIO     ----
+*/
+.tableFilterUsu {
+    width: 1200px;
+    max-width: 90%;
+    /*width: 920px;*/
+/*    width: 100%;*/
+    /*margin: 1rem;*/
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    margin: auto;
+    
+    display: block;
+    position: relative;
+    height: 280px;
+    max-height: 280px;
+    overflow: auto;
+    /*overflow-y: auto;*/
+}
+
+.tableFilterUsu thead, 
+.tableFilterUsu tbody {
+    display: block;
+}
+
+.tableFilterUsu thead {
+    position: sticky;
+    display: inline-block;
+    right: 0;
+    top: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    /*border-top: 1px solid #f0f0f0;*/
+    /*border-bottom: 2px solid #f0f0f0;*/
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+}
+.tableFilterUsu thead tr td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+/*.tableFilterUsu thead tr td:first-child {
+    text-align: left;
+    padding-left: 1rem;
+}*/
+
+.tableFilterUsu tbody tr td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+.tableFilterUsu tbody tr td input[type = "text"] { /* oculto el campo de texto que almacena el id */
+    display: none;
+}
+/*    --  COLUMNAS  --     */
+.tableFilterUsu thead tr .UCC { /* UCC : usuario columna cliente */
+    text-align: center;
+}
+.tableFilterUsu tbody tr .UCC { /* UCC : usuario columna cliente */
+    text-align: left;
+}
+.UCC { /* UCC : usuario columna cliente */
+    width: 500px;
+    min-width: 500px;
+    max-width: 500px;
+}
+.UCCI { /* UCCI : usuario columna cinro */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.UCT { /* UCT : usuario columna telefono */
+    text-align: center;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}
+.UCE { /* UCE : usuario columna editar (boton) */
+    text-align: center;
+    width: 120px; /* valor anterior: 100 */
+    min-width: 120px;
+    max-width: 120px;
+}
+
+
+
+/*
+    PAGINA: pagAjusteStock_det -----------------------------------------------
+*/
+/*
+    CAMPOS DE TEXTO QUE USO PARA CARGAR LA TABLA CON LAS LISTA DE LOS PRODUCTOS QUE VOY A PASAR AL DETALLE 
+*/
+.boxFCP {
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.boxFCP .boxFCP1 {
+    width: 90vw;
+    /*border: 2px solid red;*/
+    display: flex;
+    flex-direction: row;
+    margin-top: .5rem;
+}
+.boxFCP .panelBtn { /* panel de los dos botones ("Cargar Producto a la Lista" y "Limpiar") */
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+}
+.boxFCP .boxFCP1 .div1 { /* etiquetas */
+    /*border: 1px solid yellow;*/
+    width: 150px;
+    max-height: 40px;
+}
+.boxFCP .boxFCP1 .div1fci p, /* etiquetas */
+.boxFCP .boxFCP1 .div1 p { /* etiquetas */
+    margin-left: .5rem;
+    font-size: 13pt;
+    text-align: right;
+    padding-right: .5rem;
+    padding-top: .5rem;
+}
+.boxFCP .boxFCP1 .div1fci { /* etiquetas */ /* factura cargar cliente */
+    /*border: 1px solid yellow;*/
+    width: 250px;
+    max-height: 40px;
+}
+.boxFCP .boxFCP1 .div2,
+.boxFCP .boxFCP1 .div2Prod { /* campos de texto */ /* div2Prod: es una clase solo para el panel donde se encuentra el boton de buscar producto  */
+    /*border: 2px solid green;*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.boxFCP .boxFCP1 .div2 input[type = "text"],
+.boxFCP .boxFCP1 .div2Prod input[type = "text"] { /* campos de texto */
+    width: 200px;
+    max-width: 200px;
+}
+.boxFCP .boxFCP1 .div2 .txtProDesc { /* campos de texto de descripcion del producto */
+    margin-right: .5rem;
+    width: 415px;
+    max-width: 415px;
+    min-width: 250px;
+}
+.boxFCP .boxFCP1 .div2 .cbxIva { /* combo box de iva */
+    width: 200px;
+    max-width: 200px;
+    height: 40px;
+}
+.boxFCP .boxFCP1 .div2 .disNone { /* clase para ocultar campos de textos / idproducto */
+    display: none;
+}
+.boxFCP .boxFCP1 .div2 .btnANP { /* boton de add producto */
+    margin-left: .5rem;
+}
+
+/*
+    TABLA DONDE CARGO LOS PRODUCTOS QUE VOY A PASAR AL DETALLE 
+*/
+.boxFCP .boxFCP1 .tableFCP {
+    width: 100vw;
+    /*width: 1025px;*/
+    border-spacing: 0px;
+    border-collapse: collapse;
+    /*border: 1px solid green;*/
+    border: none;
+    margin: auto;
+    
+    display: block;
+    position: relative;
+    height: 210px;
+    max-height: 210px;
+    overflow: auto;
+    /*overflow-y: auto;*/
+}
+.boxFCP .boxFCP1 .tableFCP thead, 
+.boxFCP .boxFCP1 .tableFCP tbody {
+    display: block;
+}
+.boxFCP .boxFCP1 .tableFCP thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.1);
+}
+.boxFCP .boxFCP1 .tableFCP thead tr td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr td {
+    border: 1px solid #5D5D5D;
+    padding: .4rem 0;
+    font-size: 1rem;
+    color: #222;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr td input[type="text"] {
+    display: none;
+}
+/* 
+    COLUMNAS ---------- 
+*/
+.ASDCI { /* ajuste stock detalle columna item */
+    text-align: center;
+    width: 80px;
+    max-width: 80px;
+    min-width: 80px;
+}
+.boxFCP .boxFCP1 .tableFCP thead tr .ASDCD { /* ajuste stock detalle columna descripcion */
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr .ASDCD { /* ajuste stock detalle columna descripcion */
+    padding-left: .5rem;
+    text-align: left;
+}
+.ASDCD { /* ajuste stock detalle columna descripcion */
+    width: 220px;
+    max-width: 220px;
+    min-width: 220px;
+}
+.boxFCP .boxFCP1 .tableFCP thead tr .ASDCM { /* ajuste stock detalle columna marca */
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr .ASDCM { /* ajuste stock detalle columna marca */
+    text-align: center;
+}
+.ASDCM { /* ajuste stock detalle columna marca */
+    width: 120px;
+    max-width: 120px;
+    min-width: 120px;
+}
+.boxFCP .boxFCP1 .tableFCP thead tr .ASDCL { /* ajuste stock detalle columna lote */
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr .ASDCL { /* ajuste stock detalle columna lote */
+    padding-left: .5rem;
+    text-align: left;
+}
+.ASDCL { /* ajuste stock detalle columna lote */
+    width: 240px;
+    max-width: 240px;
+    min-width: 240px;
+}
+.ASDCC { /* ajuste stock detalle columna cantidad */
+    text-align: center;
+    width: 120px;
+    max-width: 120px;
+    min-width: 120px;
+}
+.boxFCP .boxFCP1 .tableFCP thead tr .ASDCCO { /* ajuste stock detalle columna costo */
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr .ASDCCO { /* ajuste stock detalle columna costo */
+    padding-right: .5rem;
+    text-align: right;
+}
+.ASDCCO { /* ajuste stock detalle columna costo */
+    width: 120px;
+    max-width: 120px;
+    min-width: 120px;
+}
+.boxFCP .boxFCP1 .tableFCP thead tr .ASDCST { /* ajuste stock detalle columna subtotal */
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr .ASDCST { /* ajuste stock detalle columna subtotal */
+    padding-right: .5rem;
+    text-align: right;
+}
+.ASDCST { /* ajuste stock detalle columna subtotal */
+    width: 120px;
+    max-width: 120px;
+    min-width: 120px;
+}
+.ASDCE { /* ajuste stock detalle columna eliminar (boton) */
+    text-align: center;
+    width: 120px;
+    max-width: 120px;
+    min-width: 120px;
+}
+
+
+
+
+
+/*
+    CLASE QUE SAQUE DEL CSS DE FACTURA (styleFacturaCobrar)
+*/
+/*
+    CLASE QUE UTILIZO PARA EL FORMULARIO DE FACTURA CUENTA CLIENTE DONDE ALMACENA LOS BOTONES DE "VOVLER A LA CABECERA" Y EL BOTON DE "CARGAR DETALLE" 
+*/
+.boxBtnCtaCli,
+.boxBtnCtaCli form {
+    width: 100%; /* EL TAMAÑO DEL WIDTH ES IGUAL AL DE LA TABLA */
+    /*width: 940px;*/ /* EL TAMAÑO DEL WIDTH ES IGUAL AL DE LA TABLA */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.boxBtnCtaCli input[type = "text"],
+.boxBtnCtaCli form input[type = "text"] { /* OCULTO LOS CAMPOS DE TEXTO QUE UTILIZO PARA PASAR AL CONTROLADOR */
+    display: none;
+}
+
+.btnPanel {
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+    flex-wrap: wrap;
+}
+.btnPanel input[type = "text"] {
+    display: none;
+}
+
+
+
+
+
+
+/*
+    PAGINA : AJUSTE DE STOCK  -------------------------------------------------- 
+*/
+.cbxAS_TM { /* cbxAS_TM : combobox ajuste stock tipo movimiento  */
+    width: 220px;
+    min-width: 200px;
+    display: block;
+    /*visibility: visible;*/
+}
+#check_tipo_mov { /* check_tipo_mov :  check tipo movimiento  */
+    /*border: 1px solid yellow;*/
+    margin-top: 11px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+}
+#check_tipo_mov:checked ~ * .cbxAS_TM {
+    display: none;
+    /*visibility: collapse;*/
+}
+
+
+
+/*
+    PAGINA : VER CUENTA CLIENTE  -------------------------------------------------- 
+*/
+.CCV_PFC { /* CCV_PFC : CUENTA CLIENTE VER - PANEL FILTRO CUENTA  */
+    /*border: 1px solid red;*/
+    width: auto;
+    margin-top: .5rem;
+}
+.CCV_PFC div { /* etiqueta de "Filtrar por Nro.:"  */
+    /*border: 1px solid blue;*/
+    margin-left: 5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/*.CCV_PFC input[type="submit"] {
+    height: 2.5rem;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}*/
+.h2_5Rem {
+    height: 2.5rem;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+
+
+
+
+/*
+    PAGINA :  PACIENTE -------------------------------------------------- 
+*/
+/*
+    COLUMNAS DE LA TABLA DE REGISTROS ----- 
+*/
+.tableFilter thead tr .P_IMG,
+.tableFilter tbody tr .P_IMG { /* P_IMG : paciente columna imagen  */
+    text-align: center;
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+}
+.tableFilter thead tr .P_CI,
+.tableFilter tbody tr .P_CI { /* P_CI : paciente columna id  */
+    text-align: center;
+    width: 95px;
+    min-width: 95px;
+    max-width: 95px;
+}
+.tableFilter thead tr .P_CP { /* P_CP : paciente columna paciente  */
+    text-align: center;
+}
+.tableFilter tbody tr .P_CP { /* P_CP : paciente columna paciente  */
+    text-align: left;
+}
+.tableFilter thead tr .P_CP,
+.tableFilter tbody tr .P_CP { /* P_CP : paciente columna paciente  */
+    width: 400px; /* valor anterior: 360 */
+    min-width: 400px;
+    max-width: 400px;
+}
+.tableFilter thead tr .P_CCI,
+.tableFilter tbody tr .P_CCI { /* P_CCI : paciente columna ci  */
+    text-align: center;
+    width: 160px;
+    min-width: 160px;
+    max-width: 160px;
+}
+.tableFilter thead tr .P_CT,
+.tableFilter tbody tr .P_CT { /* P_CT : paciente columna telefono  */
+    text-align: center;
+    width: 170px; /* vlor anterior: 140 */
+    min-width: 170px;
+    max-width: 170px;
+}
+.tableFilter thead tr .P_CE,
+.tableFilter tbody tr .P_CE { /* P_CE : paciente columna boton editar  */
+    text-align: center;
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+/*    width: 105px;
+    min-width: 105px;
+    max-width: 105px;*/
+}
+.tableFilter tbody tr .P_CE input[type="submit"]{ /* P_CE : paciente columna boton editar  */
+    font-size: 11pt;
+}
+
+/*
+    PAGINA :  REGISTRAR PACIENTE -------------------------------------------------- 
+*/
+.divTableData {
+    /*border: 2px solid yellow;*/
+    display: flex;
+    flex-wrap: wrap;
+    /*padding-top: .7rem;*/
+}
+
+.divTableData form {
+    /*border: 1px solid red;*/
+    width: 100%;
+}
+
+.divTableData form table {
+    /*border: 1px solid red;*/
+    width: 60%;
+    margin-left: 3rem;
+    border-collapse: collapse;
+}
+
+.divTableData form table tbody td {
+    /*border: 1px solid #5D5D5D;*/
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+
+.divTableData form table tbody tr td:first-child {
+    text-align: right;
+    font-size: 13pt;
+    font-weight: 500;
+}
+
+.divTableData form table tbody tr:last-child td {
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.divTableData form table tbody tr:last-child td input[type = "submit"], 
+.divTableData form table tbody tr:last-child td a {
+    margin-right: .8rem;
+    margin-top: 1rem;
+}
+
+
+
+/*
+    PAGINA :  REGISTRAR PACIENTE -------------------------------------------------- 
+*/
+.pac_panel {
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 4rem;
+    margin-bottom: 1rem;
+}
+/* BLOQUE DE CAMPOS DE TEXTOS Y LABELS  */
+.pac_panel .pac_panel_1 {
+    /*border: 1px solid blue;*/
+    margin-top: .5rem;
+    margin-left: 1rem;
+}
+/* BLOQUE DE LABELS */
+.pac_panel .pac_panel_2 {
+    /*border: 1px solid yellow;*/
+    margin-bottom: .5rem;
+}
+/* BLOQUE DE CAMPOS DE TEXTOS */
+.pac_panel .pac_panel_3,
+.pac_panel .pac_panel_3_ci {
+    /*border: 1px solid green;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+/* CAMPO DE TEXTO  */
+.pac_panel .pac_panel_3 input[type = "text"] {
+    /*border: 1px solid red;*/
+    width: 100%;
+}
+    /*    CAMPO DE TEXTO Y BOTON PARA GENERAR CI TEMPORAL / LO PONGO APARTE PARA DARLE UN WIDTH DIFERENTE    */
+    .pac_panel .pac_panel_3_ci input[type = "text"] {
+        /*border: 1px solid red;*/
+        width: 50%;
+    }
+    .pac_panel .pac_panel_3_ci input[type = "submit"] {
+        /*border: 1px solid red;*/
+        width: 40%;
+    }
+/* CAMPO DE FECHA, DE LA FECHA DE NACIMIENTO  */
+.pac_panel .pac_panel_3 input[type = "date"] {
+    /*border: 1px solid red;*/
+    width: 100%;
+}
+/* COMBO BOX DE SEXO */
+.pac_panel .pac_panel_3 select {
+    /*border: 1px solid red;*/
+    width: 100%;
+}
+/* BOTONERA */
+.pac_panel .pac_panel_btns {
+    /*border: 1px solid blue;*/
+    width: 100%;
+    margin-top: 1.5rem;
+    padding-left: 1.3rem;
+    display: flex;
+    justify-content: space-around;
+}
+.pac_panel .pac_panel_btns input[type="text"] {
+    display: none;
+}
+/* LABEL PARA BUSCAR POR NRO DE CI */
+.pac_panel_1 .pac_panel_3 .lblBCI {
+    /*border: 1px solid blue;*/
+    width: auto;
+    font-size: 10pt;
+    padding-top: 6px;
+}
+
+
+
+.main_control {
+/*    border: 1px solid red;*/
+    /*width: auto;*/
+/*    width: 100%;
+    min-width: 100%;*/
+    overflow: hidden;
+}
+
+.contentAAS {
+/*    border: 1px solid yellow;*/
+    /*transition: margin-left 300ms;*/
+    overflow: hidden;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+#nav-toggle:checked ~ * .contentAAS {
+/*    border: 2px solid green;*/
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    /*margin-left: 70px;*/
+}
+
+
+.panelWin { /* panel window : panel de la ventana para que se adapte al tamaño de la ventana y no sobre pase, por eso tienen diferentes tamaños cuando esta abierto y cuando no */
+    /*border: 1px solid red;*/
+    transition: margin-left 300ms;
+    overflow: hidden;
+    width: 70vw;
+    min-width: 70vw;
+    max-width: 70vw;
+}
+
+#nav-toggle:checked ~ * .panelWin { /* CUANDO LA BARRA LATERAL ESTA OCULTO Y NO SE VE */
+    /*border: 2px solid blue;*/
+    width: 90vw;
+    min-width: 90vw;
+    max-width: 90vw;
+    /*margin-left: 70px;*/
+}
+
+
+
+/*
+    PAGINA :  VER PACIENTE -------------------------------------------------- 
+*/
+.datosPac {
+    /*border: 1px solid red;*/
+    /*padding-top: 10px;*/
+/*    display: grid;
+    grid-template-columns: repeat(2, 600px);
+    grid-template-rows: auto;
+    grid-column-gap: 50px;
+    grid-row-gap: 30px;*/
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.datosPac .datosPacBlo1 {
+    /*border: 1px solid blue;*/
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+
+/*  PANEL DE DATOS PERSONALES  */
+.datos-pac {
+    /*border: 2px solid green;*/
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    padding-bottom: 15px;
+    width: 550px;
+}
+.datos-pac .datosPacTitle { /* TITULO DEL PANEL "DATOS PERSONALES" */
+    /*border: 1px solid blue;*/
+    background-color: var(--main-color-blu);
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    height: 50px;
+}
+.datos-pac .datosPacTitle p { /* LABEL DEL TITULO DEL PANEL */
+    font-size: 15pt;
+    font-weight: 500;
+    color: #fff;
+    margin-top: .5rem;
+    margin-left: 10px;
+}
+.datos-pac .datosPacBody { /* CONTENEDORES DE LOS LABEL Y LOS DATOS  */ 
+    /* fondo */
+    background-color: #fff;
+    padding-bottom: 5px;
+/*    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;*/
+}
+.datos-pac .datosPacBody div { /* CONTENEDORES DE LOS LABEL Y LOS DATOS  */ 
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.datos-pac .datosPacBody div p:first-child { /* label de los datos */
+    /*border: 1px solid yellow;*/
+    margin-top: 5px;
+    margin-right: 10px;
+    font-weight: 500;
+    margin-left: 10px;
+    margin-bottom: 0px;
+}
+.datos-pac .datosPacBody div p:last-child { /* label de los datos */
+    /*border: 1px solid green;*/
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+.datos-pac .datosPacBtn  { /* BOTON DE EDITAR PACIENTE  */ 
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    margin-bottom: 15px;
+    /* fondo */
+    background-color: #fff;
+    padding-bottom: 5px;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+.datos-pac .datosPacBtn input[type="text"] {
+    display: none;
+}
+
+/*  PANEL DE ANTECEDENTES FAMILIARES  */
+.antec-fam {
+    /*border: 2px solid blue;*/
+    width: 550px;
+    padding: 0 20px;
+    padding-bottom: 15px;
+}
+.antec-fam .datosTitle { /* TITULO DEL PANEL "ANTECEDENTES FAMILIARES" */
+    /*border: 1px solid blue;*/
+    background-color: var(--main-color-blu);
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    height: 50px;
+}
+.antec-fam .datosTitle p { /* LABEL DEL TITULO DEL PANEL */
+    font-size: 15pt;
+    font-weight: 500;
+    color: #fff;
+    padding-top: .5rem;
+    margin-left: 10px;
+}
+.antec-fam .datosAnte { /* PANEL DEL TEXTAREA */
+    /*border: 1px solid green;*/
+    height: 260px;
+    padding-left: 15px;
+    padding-top: 15px;
+    /* fondo */
+    background-color: #fff;
+}
+.antec-fam .datosAnte textarea { /* TEXTAREA DE ANTECEDENTES */
+    /*border: 1px solid green;*/
+    height: 230px;
+    min-height: 230px;
+    max-height: 230px;
+    width: 480px;
+    /*width: 550px;*/
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding-left: 10px;
+    padding-top: 15px;
+}
+.antec-fam .datosPacBtn { /* BOTON DE EDITAR PACIENTE  */ 
+    /*border: 1px solid blue;*/
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-left: 10px;
+    padding-top: 15px;
+    position: relative;
+    /* fondo */
+    background-color: #fff;
+    padding-bottom: 50px;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+.antec-fam .datosPacBtn input[type="text"] {
+    display: none;
+}
+.btnAnteImpr {
+    /*border: 2px solid blue;*/
+    position: absolute;
+    left: 15px;
+}
+.btnAnteSave {
+    /*border: 2px solid blue;*/
+    position: absolute;
+    right: 35px;
+}
+
+
+/* PANEL QUE REEMPLAZA A LA GRILLA (grillaFicAte) PARA PRESENTAR LAS FICHAS DEL PACIENTE DE OTRA MANERA CON ESTA NUEVA CLASE */
+.panelFicPac {
+    /*border: 2px solid blue;*/
+    width: 650px;
+    min-width: 650px;
+    padding: 0 25px;
+}
+.panelFicPac .btn-exp-pac {
+    font-size: 14pt;
+    border-color: rgba(54,191,36,1);
+    background-color: #fff;
+    color: #26AB15;
+    text-align: center;
+}
+.panelFicPac .btn-exp-pac:focus,
+.panelFicPac .btn-exp-pac:active,
+.panelFicPac .btn-exp-pac:link
+{
+    border-color: rgba(27,142,13,1);
+}
+
+
+/*  PANEL DE LA GRILLA CON EL HISTORICO DE LAS FICHAS DE ATENCION DEL PACIENTE   */
+.grillaFicAte {
+    margin: auto;
+    /*border: 1px solid red;*/
+    width: 95%;
+    height: 270px;
+    /*grid-column: 1 / 4;*/
+}
+.grillaFicAte .tableFicAte {
+    /*width: 945px;*/
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border: none;
+    margin: auto;
+    
+    display: block;
+    position: relative;
+    height: 260px;
+    max-height: 260px;
+    overflow: auto;
+}
+.tableFicAte thead, 
+.tableFicAte tbody {
+    display: block;
+}
+.tableFicAte thead {
+    position: sticky;
+    background-color: white;
+    display: inline-block;
+    top: 0;
+    right: 0;
+}
+.tableFicAte thead tr {
+    border: 1px solid rgba(0,0,0,0.4);
+}
+.tableFicAte thead tr td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableFicAte tbody {
+    max-height: 250px;
+    /*overflow: auto;*/
+}
+.tableFicAte tbody tr td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #222;
+}
+/*  COLUMNAS ----- */
+.tableFicAte thead .PFA_CI, 
+.tableFicAte tbody .PFA_CI  { /* PFA_CI : PACIENTE FICHA ATENCION COLUMNA ITEM  */
+    text-align: center;
+    width: 90px;
+    max-width: 90px;
+    min-width: 90px;
+}
+.tableFicAte thead .PFA_CF { /* PFA_CF : PACIENTE FICHA ATENCION COLUMNA FECHA  */
+    text-align: center;
+}
+.tableFicAte tbody .PFA_CF { /* PFA_CF : PACIENTE FICHA ATENCION COLUMNA FECHA */
+    text-align: left;
+}
+.tableFicAte thead .PFA_CF,
+.tableFicAte tbody .PFA_CF { /* PFA_CF : PACIENTE FICHA ATENCION COLUMNA FECHA */
+    width: 200px;
+    max-width: 200px;
+    min-width: 200px;
+}
+.tableFicAte thead .PFA_CMC { /* PFA_CMC : PACIENTE FICHA ATENCION COLUMNA MOTIVO CONSULTA */
+    text-align: center;
+}
+.tableFicAte tbody .PFA_CMC { /* PFA_CMC : PACIENTE FICHA ATENCION COLUMNA MOTIVO CONSULTA */
+    text-align: left;
+}
+.tableFicAte thead .PFA_CMC,
+.tableFicAte tbody .PFA_CMC { /* PFA_CMC : PACIENTE FICHA ATENCION COLUMNA MOTIVO CONSULTA */
+    width: 400px;
+    max-width: 400px;
+    min-width: 400px;
+}
+.tableFicAte thead .PFA_CD { /* PFA_CD : PACIENTE FICHA ATENCION COLUMNA DIAGNOSTICO */
+    text-align: center;
+}
+.tableFicAte tbody .PFA_CD { /* PFA_CD : PACIENTE FICHA ATENCION COLUMNA DIAGNOSTICO */
+    text-align: left;
+}
+.tableFicAte thead .PFA_CD, 
+.tableFicAte tbody .PFA_CD { /* PFA_CD : PACIENTE FICHA ATENCION COLUMNA DIAGNOSTICO */
+    width: 350px;
+    max-width: 350px;
+    min-width: 350px;
+}
+.tableFicAte thead .PFA_CA, 
+.tableFicAte tbody .PFA_CA { /* PFA_CA : PACIENTE FICHA ATENCION COLUMNA ACCIONES */
+    text-align: center;
+    width: 190px;
+    max-width: 190px;
+    min-width: 190px;
+}
+.PFA_CA input[type="text"] { /* PFA_CA : PACIENTE FICHA ATENCION COLUMNA ACCIONES */
+    display: none;
+}
+
+
+/*
+    PANEL PARA LA IMAGEN EN EL EXPEDIENTE DEL PACIENTE 
+*/
+.datosMainImg {
+    /*border: 4px solid red;*/
+    height: 370px;
+    min-height: 370px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* imagen */
+.datosMainImg .pacImg {
+    height: 210px;
+    min-height: 210px;
+    /*height: 140px;*/
+    width: 210px;
+    /*width: 140px;*/
+    border-radius: 50%;
+    padding: 3px;
+    background: #36BF24; /*verde*/
+    
+}
+.datosMainImg .pacImg img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+/* name del paciente */
+.datosMainImg .dataName {
+    /*border: 4px solid yellow;*/
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: rgba(0,0,0,.8);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-align: center;
+}
+/* datos */
+.datosMainImg .dataPac {
+    /*border: 4px solid green;*/
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    width: 550px;
+    /*width: 360px;*/
+    height: 250px;
+    /*height: 150px;*/
+}
+.datosMainImg .dataPac div, 
+.datosMainImg .dataPac .dataPacTab, 
+.datosMainImg .dataPac .dataPacHis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.datosMainImg .dataPac .dataPacTab {
+    /*border: 1px solid blue;*/
+    width: 350px;
+    /*width: 50%;*/
+}
+.datosMainImg .dataPac .dataPacHis {
+    /*border: 1px solid blue;*/
+    width: 250px;
+    /*width: 50%;*/
+}
+.datosMainImg .dataPac div .tableData {
+    width: auto;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    /*border: 1px solid red;*/
+    border: none;
+    margin: auto;
+    display: block;
+    /*position: relative;*/
+/*    height: 210px;
+    max-height: 210px;*/
+    /*overflow: auto;*/
+}
+.datosMainImg .dataPac div .tableData tbody {
+    display: block;
+}
+.datosMainImg .dataPac div .tableData tbody tr td {
+    /*border: 1px solid red;*/
+    padding: .4rem .6rem;
+    font-size: 1.2rem;
+    color: rgba(0,0,0,.7);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    text-align: center;
+}
+/* clase para los labels del expediente - etiqueta para los datos de la ultima ficha que muestra abajo de la imagen */
+.peLabel {
+    color: rgba(0,0,0,.5);
+    font-size: 12pt;
+    margin-right: 8px;
+}
+
+
+
+
+/*
+    PAGINA :  REFERENCIA CLINICA -------------------------------------------------- 
+*/
+/*
+    COLUMNAS DE LA TABLA DE REGISTROS ----- 
+*/
+.tableFilter thead tr .RCCI,
+.tableFilter tbody tr .RCCI { /* RPCI : referencia clinica columna id  */
+    text-align: center;
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+}
+.tableFilter thead tr .RCCC { /* RCCC : referencia clinica columna clinica (desc)  */
+    text-align: center;
+}
+.tableFilter tbody tr .RCCC { /* RCCC : referencia clinica columna clinica (desc)  */
+    text-align: left;
+}
+.tableFilter thead tr .RCCC,
+.tableFilter tbody tr .RCCC { /* RCCC : referencia clinica columna clinica (desc)  */
+    width: 320px;
+    min-width: 320px;
+    max-width: 320px;
+}
+.tableFilter thead tr .RCCD { /* RCCD : referencia clinica columna direccion  */
+    text-align: center;
+}
+.tableFilter tbody tr .RCCD { /* RCCD : referencia clinica columna direccion  */
+    text-align: left;
+}
+.tableFilter thead tr .RCCD,
+.tableFilter tbody tr .RCCD { /* RCCD : referencia clinica columna direccion  */
+    width: 380px; /* VALOR_ANTERIOR: 230 */
+    min-width: 380px;
+    max-width: 380px;
+}
+.tableFilter thead tr .RCCE,
+.tableFilter tbody tr .RCCE { /* RCCE : referencia clinica columna estado  */
+    text-align: center;
+    width: 115px;
+    min-width: 115px;
+    max-width: 115px;
+}
+.tableFilter thead tr .RCCBA,
+.tableFilter tbody tr .RCCBA { /* RCCBA : referencia clinica columna botones acciones  */
+    text-align: center;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+
+
+
+
+/*
+    PAGINA :  REFERENCIA CIUDAD -------------------------------------------------- 
+*/
+/*
+    COLUMNAS DE LA TABLA DE REGISTROS ----- 
+*/
+.tableFilter thead tr .RCICI,
+.tableFilter tbody tr .RCICI { /* RCICI : referencia CIUDAD columna id  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilter thead tr .RCICC { /* RCICC : referencia CIUDAD columna ciudad (desc)  */
+    text-align: center;
+}
+.tableFilter tbody tr .RCICC { /* RCICC : referencia CIUDAD columna ciudad (desc)  */
+    text-align: left;
+}
+.tableFilter thead tr .RCICC,
+.tableFilter tbody tr .RCICC { /* RCICC : referencia CIUDAD columna ciudad (desc)  */
+    width: 370px;
+    min-width: 370px;
+    max-width: 370px;
+}
+.tableFilter thead tr .RCICE,
+.tableFilter tbody tr .RCICE { /* RCICE : referencia CIUDAD columna estado  */
+    text-align: center;
+    width: 125px;
+    min-width: 125px;
+    max-width: 125px;
+}
+.tableFilter thead tr .RCICBA,
+.tableFilter tbody tr .RCICBA { /* RCICBA : referencia CIUDAD columna botones acciones  */
+    text-align: center;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+
+
+
+
+/*
+    PAGINA :  REFERENCIA ESPECIALIDAD -------------------------------------------------- 
+*/
+/*
+    COLUMNAS DE LA TABLA DE REGISTROS ----- 
+*/
+.tableFilter thead tr .RECI,
+.tableFilter tbody tr .RECI { /* RPCI : referencia especialidad columna id  */
+    text-align: center;
+    width: 110px;
+    min-width: 110px;
+    max-width: 110px;
+}
+.tableFilter thead tr .RECD { /* RECD : referencia especialidad columna descripcion  */
+    text-align: center;
+}
+.tableFilter tbody tr .RECD { /* RECD : referencia especialidad columna descripcion  */
+    text-align: left;
+}
+.tableFilter thead tr .RECD,
+.tableFilter tbody tr .RECD { /* RECD : referencia especialidad columna descripcion  */
+    width: 400px; /* valor anterior: 350 */
+    min-width: 400px;
+    max-width: 400px;
+}
+.tableFilter thead tr .RECE,
+.tableFilter tbody tr .RECE { /* RECE : referencia especialidad columna estado  */
+    text-align: center;
+    width: 125px;
+    min-width: 125px;
+    max-width: 125px;
+}
+.tableFilter thead tr .RECBA,
+.tableFilter tbody tr .RECBA { /* RECBA : referencia especialidad columna botones acciones  */
+    text-align: center;
+    width: 240px;
+    min-width: 240px;
+    max-width: 240px;
+}
+
+
+
+
+
+/*
+    PAGINA :  PLAN HORARIO -------------------------------------------------- 
+*/
+/*
+    COLUMNAS DE LA TABLA ----- 
+*/
+.tableFilter thead tr .PH_CI,
+.tableFilter tbody tr .PH_CI { /* PH_CI : plan horario columna id  */
+    text-align: center;
+    width: 110px; /* valor_anterior: 95 */
+    min-width: 110px;
+    max-width: 110px;
+}
+.tableFilter thead tr .PH_CC { /* PH_CC : plan horario columna clinica  */
+    text-align: center;
+}
+.tableFilter tbody tr .PH_CC { /* PH_CC : plan horario columna clinica  */
+    text-align: left;
+}
+.tableFilter thead tr .PH_CC,
+.tableFilter tbody tr .PH_CC { /* PH_CC : plan horario columna clinica  */
+    width: 220px; /* valor_anterior: 200 */
+    min-width: 220px;
+    max-width: 220px;
+}
+.tableFilter thead tr .PH_CES { /* PH_CES : plan horario columna especialidad  */
+    text-align: center;
+}
+.tableFilter tbody tr .PH_CES { /* PH_CES : plan horario columna especialidad  */
+    text-align: left;
+}
+.tableFilter thead tr .PH_CES,
+.tableFilter tbody tr .PH_CES { /* PH_CES : plan horario columna especialidad  */
+    width: 280px; /* valor_anterior: 200 */
+    min-width: 280px;
+    max-width: 280px;
+}
+.tableFilter thead tr .PH_CM { /* PH_CM : plan horario columna medico  */
+    text-align: center;
+}
+.tableFilter tbody tr .PH_CM { /* PH_CM : plan horario columna medico  */
+    text-align: left;
+}
+.tableFilter thead tr .PH_CM,
+.tableFilter tbody tr .PH_CM { /* PH_CM : plan horario columna medico  */
+    width: 360px; /* valor_anterior: 300 */
+    min-width: 360px;
+    max-width: 360px;
+}
+.tableFilter thead tr .PH_CE,
+.tableFilter tbody tr .PH_CE { /* PH_CE : plan horario columna estado  */
+    text-align: center;
+    width: 120px; /* valor_anterior: 100 */
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilter thead tr .PH_CBA,
+.tableFilter tbody tr .PH_CBA { /* PH_CBA : plan horario columna botones acciones  */
+    text-align: center;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+
+
+
+/*
+    PAGINA :   AGENDAMIENTO  -------------------------------------------------- 
+*/
+.tableFilterAgen {
+    width: 1200px;
+    max-width: 90%;
+    /*width: 975px;*/
+    border: none;
+    border-collapse: collapse;
+    margin: auto;
+    
+    border-spacing: 0px;
+    height: 280px;
+    max-height: 280px;
+    position: relative;
+    display: block;
+    overflow: auto;
+}
+.tableFilterAgen thead, 
+.tableFilterAgen tbody {
+    display: block;
+}
+.tableFilterAgen thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    /*box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);*/
+}
+.tableFilterAgen thead td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableFilterAgen tbody td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+.tableFilterAgen tbody td input[type = "text"] { /* OCULTO EL CAMPO DE TEXTO QUE ALMACENA EL IDEMPENHO */
+    display: none;
+}
+.tableFilterAgen tbody td:first-child {
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 500;
+}
+/*
+    COLUMNAS DE LA TABLA ----- 
+*/
+.tableFilterAgen thead tr .TA_CI,
+.tableFilterAgen tbody tr .TA_CI { /* TA_CI : table agendamiento columna id  */
+    text-align: center;
+    width: 110px;
+    min-width: 110px;
+    max-width: 110px;
+}
+.tableFilterAgen thead tr .TA_CC { /* TA_CC : table agendamiento columna clinica  */
+    text-align: center;
+}
+.tableFilterAgen tbody tr .TA_CC { /* TA_CC : table agendamiento columna clinica  */
+    text-align: left;
+}
+.tableFilterAgen thead tr .TA_CC,
+.tableFilterAgen tbody tr .TA_CC { /* TA_CC : table agendamiento columna clinica  */
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
+}
+.tableFilterAgen thead tr .TA_CE { /* TA_CE : table agendamiento columna especialidad  */
+    text-align: center;
+}
+.tableFilterAgen tbody tr .TA_CE { /* TA_CE : table agendamiento columna especialidad  */
+    text-align: left;
+}
+.tableFilterAgen thead tr .TA_CE,
+.tableFilterAgen tbody tr .TA_CE { /* TA_CE : table agendamiento columna especialidad  */
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+}
+.tableFilterAgen thead tr .TA_CM { /* TA_CM : table agendamiento columna medico  */
+    text-align: center;
+}
+.tableFilterAgen tbody tr .TA_CM { /* TA_CM : table agendamiento columna medico  */
+    text-align: left;
+}
+.tableFilterAgen thead tr .TA_CM,
+.tableFilterAgen tbody tr .TA_CM { /* TA_CM : table agendamiento columna medico  */
+    width: 360px;
+    min-width: 360px;
+    max-width: 360px;
+}
+.tableFilterAgen thead tr .TA_CS,
+.tableFilterAgen tbody tr .TA_CS { /* TA_CS : table agendamiento columna estado  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterAgen thead tr .TA_CBA,
+.tableFilterAgen tbody tr .TA_CBA { /* TA_CBA : table agendamiento columna botones acciones  */
+    text-align: center;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+
+
+
+/*
+    PAGINA :  CONFIGURACION DE AGENDAMIENTO / PANEL DE CONTROL -------------------------------------------------- 
+*/
+/*
+    COLUMNAS DE LA TABLA ----- 
+*/
+.tableFilter thead tr .PCAC_CI,
+.tableFilter tbody tr .PCAC_CI { /* PCAC_CI : panel de control - agend config - columna id  */
+    text-align: center;
+    width: 95px;
+    min-width: 95px;
+    max-width: 95px;
+}
+.tableFilter thead tr .PCAC_CDC { /* PCAC_CDC : panel de control - agend config - columna descripcion config  */
+    text-align: center;
+}
+.tableFilter tbody tr .PCAC_CDC { /* PCAC_CDC : panel de control - agend config - columna descripcion config  */
+    text-align: left;
+}
+.tableFilter thead tr .PCAC_CDC,
+.tableFilter tbody tr .PCAC_CDC { /* PCAC_CDC : panel de control - agend config - columna descripcion config  */
+    width: 460px; /* valor_anterior: 350 */
+    min-width: 460px;
+    max-width: 460px;
+}
+.tableFilter thead tr .PCAC_CC { /* PCAC_CC : panel de control - agend config - columna clinica  */
+    text-align: center;
+}
+.tableFilter tbody tr .PCAC_CC { /* PCAC_CC : panel de control - agend config - columna clinica  */
+    text-align: left;
+}
+.tableFilter thead tr .PCAC_CC,
+.tableFilter tbody tr .PCAC_CC { /* PCAC_CC : panel de control - agend config - columna clinica  */
+    width: 240px; /* valor_anterior: 200 */
+    min-width: 240px;
+    max-width: 240px;
+}
+.tableFilter thead tr .PCAC_CE,
+.tableFilter tbody tr .PCAC_CE { /* PCAC_CE : panel de control - agend config - columna estado  */
+    text-align: center;
+    width: 150px; /* valor_anterior: 130 */
+    min-width: 150px;
+    max-width: 150px;
+}
+.tableFilter thead tr .PCAC_CBA,
+.tableFilter tbody tr .PCAC_CBA { /* PCAC_CBA : panel de control - agend config - columna botones acciones  */
+    text-align: center;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+/* LABEL DE OBSERVACION SOBRE LA DESCRIPCION DE AGENDAMIENTO DE LA PAGINA DE CONFIGURACION DE AGENDAMIENTO  */
+.lblObsDescAgend {
+    padding: .5rem;
+    font-size: 10pt;
+    background-color: rgba(0,0,0,.1);
+    border-radius: .5rem;
+    color: rgba(0,0,0,.7);
+}
+
+
+
+/*
+    TABLA DETALLE ----- PLAN HORARIO DETALLE -----   
+*/
+.pac_panel_1 .tablePlanHoDet {
+/*    width: 95%;
+    min-width: 95%;
+    max-width: 95%;*/
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+    margin: auto;
+    
+    border-spacing: 0px;
+    height: 280px;
+    max-height: 280px;
+    position: relative;
+    display: block;
+    overflow: auto;
+}
+.tablePlanHoDet thead, 
+.tablePlanHoDet tbody {
+    display: block;
+}
+
+.tablePlanHoDet thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+}
+.tablePlanHoDet thead td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tablePlanHoDet thead td:first-child {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.tablePlanHoDet tbody td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+.tablePlanHoDet tbody td input[type = "text"] { /* OCULTO EL CAMPO DE TEXTO QUE ALMACENA EL IDEMPENHO */
+    display: none;
+}
+.tablePlanHoDet tbody td:first-child {
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 500;
+}
+
+.pac_panel_1 .tablePlanHoDet thead tr .PHD_CI,
+.pac_panel_1 .tablePlanHoDet tbody tr .PHD_CI { /* PHD_CI : plan horario detalle columna item  */
+    text-align: center;
+    width: 85px;
+    min-width: 85px;
+    max-width: 85px;
+}
+.tablePlanHoDet thead tr .PHD_CT,
+.tablePlanHoDet tbody tr .PHD_CT { /* PHD_CT : plan horario detalle columna turno  */
+    text-align: center;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}
+.tablePlanHoDet thead tr .PHD_CDi { /* PHD_CDi : plan horario detalle columna dia  */
+    text-align: center;
+}
+.tablePlanHoDet tbody tr .PHD_CDi { /* PHD_CDi : plan horario detalle columna dia  */
+    text-align: left;
+}
+.tablePlanHoDet thead tr .PHD_CDi,
+.tablePlanHoDet tbody tr .PHD_CDi { /* PHD_CDi : plan horario detalle columna dia  */
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+}
+.tablePlanHoDet thead tr .PHD_CDe,
+.tablePlanHoDet tbody tr .PHD_CDe { /* PHD_CDe : plan horario detalle columna desde  */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.tablePlanHoDet thead tr .PHD_CH,
+.tablePlanHoDet tbody tr .PHD_CH { /* PHD_CH : plan horario detalle columna hasta  */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.pac_panel_1 .tablePlanHoDet thead tr .PHD_CBE,
+.pac_panel_1 .tablePlanHoDet tbody tr .PHD_CBE { /* PHD_CBE : plan horario detalle columna boton eliminar  */
+    padding-bottom: .5rem;
+    text-align: center;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+
+
+
+
+/*
+    PAGINA :  HISTORICO FICHA ATENCION - PACIENTE / REPORTE PACIENTE -------------------------------------------------- 
+*/
+/*
+    TABLA DONDE SE MOSTRARAN LOS DATOS DE LAS FICHAS DEL PACIENTE----- 
+*/
+.tableFilterListFic {
+    width: 1200px;
+    max-width: 90%;
+    /*width: 975px;*/
+    /*width: 100%;*/
+    border: none;
+    border-collapse: collapse;
+    margin: auto;
+    
+    border-spacing: 0px;
+    height: 280px;
+    max-height: 280px;
+    position: relative;
+    display: block;
+    overflow: auto;
+    /*overflow-y: auto;*/
+    /*overflow-x: hidden;*/
+}
+.tableFilterListFic thead, 
+.tableFilterListFic tbody {
+    display: block;
+}
+
+.tableFilterListFic thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    /*box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);*/
+}
+/*.tableFilterListFic thead tr {
+    border: 1px solid rgba(0,0,0,0.4);
+        /*border-top: 1px solid #f0f0f0;*/
+        /*border-bottom: 2px solid #f0f0f0;*/
+   /* box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+}*/
+.tableFilterListFic thead td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.tableFilterListFic thead td:first-child {
+    /*text-align: left;*/
+    padding-left: 1rem;
+}
+
+.tableFilterListFic tbody td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+.tableFilterListFic tbody td input[type = "text"] { /* OCULTO EL CAMPO DE TEXTO QUE ALMACENA EL IDEMPENHO */
+    display: none;
+}
+.tableFilterListFic tbody td:first-child {
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 500;
+}
+/*
+    COLUMNAS DE LA TABLA ----- 
+*/
+.tableFilterListFic thead tr .HFA_CI,
+.tableFilterListFic tbody tr .HFA_CI { /* HFA_CI : historico ficha atencion columna id  */
+    text-align: center;
+    width: 95px;
+    min-width: 95px;
+    max-width: 95px;
+}
+.tableFilterListFic thead tr .HFA_CC { /* HFA_CC : historico ficha atencion columna clinica  */
+    text-align: center;
+}
+.tableFilterListFic tbody tr .HFA_CC { /* HFA_CC : historico ficha atencion columna clinica  */
+    text-align: left;
+}
+.tableFilterListFic thead tr .HFA_CC,
+.tableFilterListFic tbody tr .HFA_CC { /* HFA_CC : historico ficha atencion columna clinica  */
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+.tableFilterListFic thead tr .HFA_CFH,
+.tableFilterListFic tbody tr .HFA_CFH { /* HFA_CFH : historico ficha atencion columna fecha y hora  */
+    text-align: center;
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
+}
+.tableFilterListFic thead tr .HFA_CMC { /* HFA_CMC : historico ficha atencion columna motivo de la consulta  */
+    text-align: center;
+}
+.tableFilterListFic tbody tr .HFA_CMC { /* HFA_CMC : historico ficha atencion columna motivo de la consulta  */
+    text-align: left;
+}
+.tableFilterListFic thead tr .HFA_CMC,
+.tableFilterListFic tbody tr .HFA_CMC { /* HFA_CMC : historico ficha atencion columna motivo de la consulta  */
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+}
+.tableFilterListFic thead tr .HFA_CE,
+.tableFilterListFic tbody tr .HFA_CE { /* HFA_CE : historico ficha atencion columna estatura  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterListFic thead tr .HFA_CP,
+.tableFilterListFic tbody tr .HFA_CP { /* HFA_CP : historico ficha atencion columna peso  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterListFic thead tr .HFA_CPG,
+.tableFilterListFic tbody tr .HFA_CPG { /* HFA_CPG : historico ficha atencion columna porcentaje de grasa  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterListFic thead tr .HFA_CEM,
+.tableFilterListFic tbody tr .HFA_CEM { /* HFA_CEM : historico ficha atencion columna edad metabolica  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterListFic thead tr .HFA_CPM,
+.tableFilterListFic tbody tr .HFA_CPM { /* HFA_CEM : historico ficha atencion columna porcentaje muscular  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterListFic thead tr .HFA_CRM,
+.tableFilterListFic tbody tr .HFA_CRM { /* HFA_CRM : historico ficha atencion columna rm  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterListFic thead tr .HFA_CIMC,
+.tableFilterListFic tbody tr .HFA_CIMC { /* HFA_CIMC : historico ficha atencion columna imc  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterListFic thead tr .HFA_CV,
+.tableFilterListFic tbody tr .HFA_CV { /* HFA_CV : historico ficha atencion columna visceral  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterListFic thead tr .HFA_CB,
+.tableFilterListFic tbody tr .HFA_CB { /* HFA_CB : historico ficha atencion columna balanza  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterListFic thead tr .HFA_CS,
+.tableFilterListFic tbody tr .HFA_CS { /* HFA_CS : historico ficha atencion columna status (estado)  */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.tableFilterListFic thead tr .HFA_CA,
+.tableFilterListFic tbody tr .HFA_CA { /* HFA_CA : historico ficha atencion columna acciones (boton)  */
+    text-align: center;
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+}
+
+/* ICONO DEL BOTON "ARCHIVO ADJUNTO" DE LA TABLA DE HISTORICO DE FICHAS DE ATENCION */
+.iconSize12pt {
+    font-size: 12pt;
+}
+/* ESTILO PARA EL BOTON DE "ARCHIVO ADJUNTO" DEL HISTORICO DE FICHAS DE ATENCION DEL PACIENTE */
+.btn-file-linked {
+    border: 1px solid rgba(0,0,0,.5);
+    border-radius: 25px;
+    padding: 8px;
+    cursor: pointer;
+}
+.btn-file-linked:hover {
+    border: 1px solid rgba(255,87,51,1);
+}
+.btn-file-linked:hover i {
+    color: red;
+}
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 1500px) {
+/*    .sidebar {
+        width: 70px;
+    }
+
+    .sidebar .sidebar-brand, 
+    .sidebar li {
+        padding-left: 1rem;
+        text-align: center;
+    }
+
+    .sidebar li a {
+        padding-left: 0rem;
+    }
+
+    .sidebar .sidebar-brand h2 span:last-child, 
+    .sidebar li a span:last-child {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 70px;
+    }
+
+    .main-content header {
+        width: calc(100% - 70px);
+        left: 70px;
+    }*/
+
+    .panelWin { /* panel window : panel de la ventana para que se adapte al tamaño de la ventana y no sobre pase, por eso tienen diferentes tamaños cuando esta abierto y cuando no */
+/*        border: 3px solid green;*/
+        overflow: hidden;
+        width: 65vw;
+        min-width: 65vw;
+        max-width: 65vw;
+    }
+    
+
+}
+
+
+@media only screen and (max-width: 1100px) {
+
+    .panelWin { /* panel window : panel de la ventana para que se adapte al tamaño de la ventana y no sobre pase, por eso tienen diferentes tamaños cuando esta abierto y cuando no */
+/*        border: 3px solid black;*/
+        overflow: hidden;
+        width: 80vw;
+        min-width: 80vw;
+        max-width: 80vw;
+    }
+    
+}
+
+
+
+@media only screen and (max-width: 960px) {
+/*    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .recent-grid {
+        grid-template-columns: 60% 40%;
+    }*/
+    
+    
+    
+    /*
+        PAGINA :  CUENTA PACIENTE Y REPORTE DE CUENTA PACIENTE ---------------------------------------------------------------- 
+    */
+    .dataCtaCliente {
+        width: 90%;
+        /*border: 1px solid red;*/
+    }
+    
+    .CCV_PFC div { /* etiqueta de "Filtrar por Nro.:"  */
+        /*border: 2px solid green;*/
+        margin-left: 2rem;
+    }
+    
+    
+    /*
+        PAGINA :  REGISTRAR PACIENTE ---------------------------------------------------------------- 
+    */
+    .pac_panel {
+        /*border: 1px solid red;*/
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+    }
+    .pac_panel .pac_panel_1 {
+        /*border: 1px solid blue;*/
+        margin-top: .5rem;
+        margin-left: 1rem;
+    }
+    .pac_panel .pac_panel_2 {
+        /*border: 1px solid yellow;*/
+        margin-bottom: .5rem;
+    }
+    .pac_panel .pac_panel_3,
+    .pac_panel .pac_panel_3_ci {
+        /*border: 1px solid green;*/
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .pac_panel .pac_panel_3 input[type = "text"] {
+        /*border: 1px solid red;*/
+        width: 100%;
+    }
+        /*    CAMPO DE TEXTO Y BOTON PARA GENERAR CI TEMPORAL / LO PONGO APARTE PARA DARLE UN WIDTH DIFERENTE    */
+        .pac_panel .pac_panel_3_ci input[type = "text"] {
+            width: 100%;
+        }
+        .pac_panel .pac_panel_3_ci input[type = "submit"] {
+            width: 90%;
+            margin-top: .5rem;
+        }
+    .pac_panel .pac_panel_3 input[type = "date"] {
+        /*border: 1px solid red;*/
+        width: 100%;
+    }
+    .pac_panel .pac_panel_3 select {
+        /*border: 1px solid red;*/
+        width: 100%;
+    }
+    /*      ---------------------------------------------------------------------------------------         */
+    
+    
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .mainTitle {
+        margin-top: 1.5rem;
+    }
+
+    .mainFilter {
+        /*border: 1px solid yellow;*/
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .mainFilterBox {
+        width: 100%;
+        /*border: 1px solid red;*/
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .mainFilterBox div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    /*  PAG.:   REGISTRAR PACIENTE  */
+    .divTableData form table {
+        margin: auto;
+    }
+    
+    
+    
+}
+
+
+
+
+@media only screen and (max-width: 560px) {
+/*    .cards {
+        grid-template-columns: 100%;
+    }*/
+    
+    
+    .boxFCP .boxFCP1 .div2Prod {
+        /*border: 2px solid blue;*/
+        width: 300px;
+    }
+    .boxFCP .boxFCP1 .div2Prod .btnANP {
+        /*border: 2px solid yellow;*/
+        margin-top: .5rem;
+    }
+    
+}
+
+
+
+/*
+    TOOLTIP PARA LAS PAGINAS DE PANEL DE CONTROL -----
+    OBS.: PARA MOSTRAR INFORMACION DETALLANDO MEJOR LO QUE HARA LOS BOTONES DE LAS GRILLAS.
+*/
+/*
+    BOTON GENERAR NRO. TEMPORAL (PACIENTE)
+*/
+.tooltip_btn_gnt {
+    position: relative;
+    display: inline-block;
+/*    border: 1px solid red;
+    width: 220px;*/
+}
+.tooltiptext_btn_gnt {
+    /*visibility: hidden;*/
+    display: none;
+    width: 220px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 5px;
+    /* position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+.tooltip_btn_gnt:hover .tooltiptext_btn_gnt {
+    /*visibility: visible;*/
+    display: block;
+}
+/*
+    BOTON VER (EMPEÑO) / IZQUIERDA 
+*/
+.tooltip_btn_ver_izq {
+    position: relative;
+    display: inline-block;
+    color: red;
+}
+.tooltiptext_btn_ver_izq {
+    /*visibility: hidden;*/
+    display: none;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* position the tooltip */
+    position: absolute;
+    z-index: 1;
+    /* para que muestre a la izquierda */
+    top: -5px;
+    right: 105%;
+}
+.tooltip_btn_ver_izq:hover .tooltiptext_btn_ver_izq {
+    /*visibility: visible;*/
+    display: block;
+}
+
+/*
+    BOTON ANULAR
+*/
+.tooltip_btn_anu {
+    position: relative;
+    display: inline-block;
+    color: red;
+}
+.tooltiptext_btn_anu {
+    /*visibility: hidden;*/
+    display: none;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+.tooltip_btn_anu:hover .tooltiptext_btn_anu {
+    /*visibility: visible;*/
+    display: block;
+}
+/*
+    BOTON ANULAR / LA INFORMACION LE VA A MOSTRAR A LA IZQUIERDA DEL USUARIO 
+*/
+.tooltip_btn_anu_izq {
+    position: relative;
+    display: inline-block;
+    color: red;
+}
+.tooltiptext_btn_anu_izq {
+    /*visibility: hidden;*/
+    display: none;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* position the tooltip */
+    position: absolute;
+    z-index: 1;
+    /* para que muestre a la izquierda */
+    top: -5px;
+    right: 105%;
+}
+.tooltip_btn_anu_izq:hover .tooltiptext_btn_anu_izq {
+    /*visibility: visible;*/
+    display: block;
+}
+
+/*
+    BOTON CANCELAR
+*/
+.tooltip_btn_canc {
+    position: relative;
+    display: inline-block;
+    color: red;
+}
+.tooltiptext_btn_canc {
+    /*visibility: hidden;*/
+    display: none;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+.tooltip_btn_canc:hover .tooltiptext_btn_canc {
+    /*visibility: visible;*/
+    display: block;
+}
+
+
+/*
+    BOTON EXPIRAR
+*/
+.tooltip_btn_exp {
+    position: relative;
+    display: inline-block;
+    color: red;
+}
+.tooltiptext_btn_exp {
+    /*visibility: hidden;*/
+    display: none;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+.tooltip_btn_exp:hover .tooltiptext_btn_exp {
+    /*visibility: visible;*/
+    display: block;
+}
+
+/*
+    BOTON LIQUIDAR
+*/
+.tooltip_btn_liq {
+    position: relative;
+    display: inline-block;
+    color: red;
+}
+.tooltiptext_btn_liq {
+    display: none;
+    /*visibility: hidden;*/
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+.tooltip_btn_liq:hover .tooltiptext_btn_liq {
+    /*visibility: visible;*/
+    display: block;
+}
+/*
+    BOTON LIQUIDAR
+*/
+.tooltip_btn_liq_izq {
+    position: relative;
+    display: inline-block;
+    color: red;
+}
+.tooltiptext_btn_liq_izq {
+    display: none;
+    /*visibility: hidden;*/
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* position the tooltip */
+    position: absolute;
+    z-index: 1;
+    /* para que muestre a la izquierda */
+    top: -5px;
+    right: 105%;
+}
+.tooltip_btn_liq_izq:hover .tooltiptext_btn_liq_izq {
+    /*visibility: visible;*/
+    display: block;
+}
+
+
+
+.fs-12 {/*font size 12pt*/
+    font-size: 12pt;
+}
+.wi-550 {
+    width: 550px;
+}
+.wi-550min {
+    min-width: 550px;
+}
+.wi-550max {
+    max-width: 550px;
+}
+
+.wi-320 {
+    width: 320px;
+}
+.wi-320min {
+    min-width: 320px;
+}
+.wi-320max {
+    max-width: 320px;
+}
+
+.wi-250 {
+    width: 250px;
+}
+.wi-250min {
+    min-width: 250px;
+}
+.wi-250max {
+    max-width: 250px;
+}
+
+.he-38 {
+    height: 38px;
+}
+
+
+.panelbtnISR { /* panel de botones de "registrarte" y "volver atras" de la pagina de inicio de sesion - registrar usuario */
+    display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;
+}
+
+
+main {
+/*    border: 2px solid red;*/
+}
+
+.backGre{
+    background: rgba(0,255,0,.3);
+}
+.backBla{
+    background: rgba(0,0,0,.3);
+}
+.backRe{
+    background: rgba(255,0,0,.3);
+}
+
+.bGray3-0-2 {
+    border: 3px solid rgba(0,0,0,0.2);
+}
+
+

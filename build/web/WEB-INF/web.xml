@@ -1,27 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app version="3.1" 
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+    
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
+    
+    <!-- bootstraps the root web application context before servlet initialization -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    
+    
+<!-- 
+    [OBS] :configuracion para la sesion de hibernate.- 
+-->
+<!--    <listener>
+        <listener-class>org.springframework.web.util.HttpSessionMutexListener</listener-class>
+    </listener>
+    
+    <filter>
+        <filter-name>openSessionInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+        <init-param>
+            <param-name>sessionFactoryBeanName</param-name>
+            <param-value>sessionFactory</param-value>
+        </init-param>
+        <init-param>
+            <param-name>singleSession</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>openSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+    
+    
+    
+    <!-- Declare a Spring MVC DispatcherServlet as usual -->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>2</load-on-startup>
+        <!-- Again, config locations must consist of one or more comma- or space-delimited and fully-qualified @Configuration classes -->
+        <init-param>
+            <param-name>contextServletLocation</param-name>
+            <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+            <!--            <param-value>com.agend.config.MyWebAppInitializer.java</param-value>-->
+            <!--<param-value>src.java.com.agend.config.ServletInitializer.java</param-value>-->
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
+    
+    
+    <!-- como lo tenia [OBS] :le decimos a nuestro formController que tipo de peticion va a responder -->
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>*.htm</url-pattern>
+        <!--<url-pattern>/</url-pattern>--> <!-- con esto le digo que a todas -->
+        <url-pattern>*.htm</url-pattern> <!-- con esto le digo que solo a las que terminen en .htm -->
     </servlet-mapping>
+    
+    
+    
+    
+    
+    
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>180</session-timeout> <!-- 3 horas en min -->
     </session-config>
+    
     <welcome-file-list>
-        <welcome-file>redirect.jsp</welcome-file>
+        <welcome-file>inicio_sesion.htm</welcome-file>
+        <!--<welcome-file>redirect.jsp</welcome-file>-->
     </welcome-file-list>
+    
+    <!-- // los filtros son interseptores que recogen actividades desde las distintas peticiones  -->
+    <filter>
+        <filter-name>charsetFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>charsetFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jsp/pageError404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>400</error-code>
+        <location>/WEB-INF/jsp/pageError400.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>401</error-code>
+        <location>/WEB-INF/jsp/pageError401.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/jsp/pageError403.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsp/pageError500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>501</error-code>
+        <location>/WEB-INF/jsp/pageError501.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>502</error-code>
+        <location>/WEB-INF/jsp/pageError502.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>503</error-code>
+        <location>/WEB-INF/jsp/pageError503.jsp</location>
+    </error-page>
+    
 </web-app>

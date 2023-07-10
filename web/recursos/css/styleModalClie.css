@@ -1,0 +1,181 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28-jun-2021, 10:39:40
+    Author     : RYUU
+*/
+
+
+/*
+    ----    MODAL / VENTANA EMERGENTE   ----    
+*/
+.modalCl {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    transition: all 500ms ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modalPanelCl {
+    /*border: 1px solid blue;*/
+    width: 400px;
+    /*width: 350px;*/
+    height: 250px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 1px 7px 25px rgba(0,0,0,0.6);
+    transition: all 500ms ease;
+    /*position: relative;*/
+    transform: translateY(-30%);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+/*
+    CABECERA DEL MODAL -----------------------
+*/
+/*.modalCl header {
+    width: 100%;
+    padding: 10px;
+    background: #db8046;
+    color: #fff;
+    z-index: 5;
+}*/
+
+.modalPanelCl .panelHeader {
+    /*border: 1px solid yellow;*/
+    width: 100%;
+    height: 20%;
+    /*margin: 3rem 0 0 0;*/
+    color: #fff;
+    background: #0062cc;
+    margin-top: -5px;
+    
+    display: flex;
+    flex-direction: column;
+    /*flex-direction: row;*/
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.modalPanelCl .panelHeader .header01 {
+    width: 70%;
+    padding-top: .8rem;
+    padding-left: .5rem;
+}
+
+.modalPanelCl .panelHeader .header02 {
+    width: 20%;
+}
+
+.modalPanelCl .panelHeader .header02 .btnTi {
+    width: 100%;
+    height: 100%;
+    padding-top: .8rem;
+    cursor: pointer;
+    margin: auto;
+    text-align: center;
+}
+
+.modalPanelCl .panelHeader .header02 .btnTi:hover {
+    /*background: rgba(0, 0, 0, 0.3);*/
+}
+
+
+/*
+    BOTON: X -------------------
+*/
+.modalCl .modalPanelCl .btnSa {
+    width: 38px;
+    height: 35px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 16pt;
+}
+.modalCl .modalPanelCl .btnSa:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.8);
+    transition: all 500ms ease;
+}
+
+
+/*
+    CONTENIDO DENTRO DEL MODAL +-----------------------
+*/
+/*.modalCl .modalPanelCl .panelBodyCl {*/
+.panelBodyCl {
+    height: 180px;
+    width: 90%;
+    margin: .5rem 0 0 1rem;
+    /*margin-left: -400px;*/
+    /*margin: 3.5rem 0 0 1rem;*/
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.boxBody {
+    box-sizing:border-box;
+    width: 100%;
+}
+.boxBody:first-child {
+    height: 40px;
+}
+.boxBody .boxLabel {
+    width: 80px;
+    text-align: left;
+    margin-top: 0;
+    padding-top: 8px;
+}
+.boxBodyMiddle {
+    margin: auto;
+    width: 90%;
+}
+/*.boxBody:last-child {*/
+.boxBody:last-child input[type = "submit"] {
+    margin: auto;
+    margin-top: 0;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+
+
+/*
+    CHECK MODAL Y SU ACTIVACION 
+*/
+#btn-cli {
+    display: none;
+}
+#btn-cli:checked ~ .modalCl {
+    opacity: 1;
+    visibility: visible;
+}
+#btn-cli:checked ~ .modalCl .modalPanelCl {
+    transform: translateY(0%);
+}
+

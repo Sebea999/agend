@@ -1,0 +1,46 @@
+Error: A JNI error has occurred, please check your installation and try again 
+SOLUCION CON EL JDK 7u80
+
+
+Java Virtual Machine Launcher
+--
+A Java Exception has occurred. 
+
+
+
+
+error: registry key 
+has value '1.8', but '1.7' is required
+----
+https://stackoverflow.com/questions/29697543/registry-key-error-java-version-has-value-1-8-but-1-7-is-required
+
+
+C:\ProgramData\Oracle\Java\javapath
+
+C:\Program Files\Common Files\Oracle\Java\javapath
+
+
+block de notas .bat:
+----
+java -jar campesinito.jar
+
+
+
+error java 2
+https://www.google.com/search?q=error+no+me+abre+el+.jar+java+windows+10&ei=zFgVYbKLN_a_5OUPw9qZqAI&oq=error+no+me+abre+el+.jar+java+wi&gs_lcp=Cgdnd3Mtd2l6EAMYADIFCCEQoAEyBQghEKABMgUIIRCgATIECCEQFTIECCEQFToHCAAQRxCwAzoECAAQQzoNCC4QsQMQxwEQ0QMQQzoFCC4QgAQ6BQgAEIAEOggILhCxAxCDAToLCAAQgAQQsQMQgwE6CAgAELEDEIMBOgsILhCxAxDHARCvAToECC4QQzoICAAQgAQQsQM6CwguEIAEELEDEIMBOggILhCABBCxAzoHCAAQsQMQQzoGCAAQFhAeOggIIRAWEB0QHkoFCDoSATNKBAhBGABQ1PxMWPisTWCAt01oA3ACeAGAAfEBiAG8HZIBBzE5LjEwLjSYAQCgAQHIAQjAAQE&sclient=gws-wiz
+https://www.lawebdelprogramador.com/foros/Java/1381676-jar-no-se-ejecuta.html
+https://www.javamexico.org/foros/java_standard_edition/mi_computadora_no_abre_los_archivos_jar
+https://www.youtube.com/watch?v=ZAqo8XZfPwk
+https://www.youtube.com/watch?v=2L_JtHbssTE
+
+
+primer mensaje de error de java
+https://stackoverflow.com/questions/29697543/registry-key-error-java-version-has-value-1-8-but-1-7-is-required
+
+
+error mysql
+https://programmerclick.com/article/4634752891/
+https://stackoverflow.com/questions/50169576/mysql-8-0-11-error-connect-to-caching-sha2-password-the-specified-module-could-n
+
+
+

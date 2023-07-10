@@ -1,0 +1,25 @@
+
+
+DELETE FROM sys_usuario WHERE IDUSUARIO > 0 ;
+-- sys_perfil
+-- sys_empresa
+DELETE FROM ope_transaccion_det ;
+DELETE FROM ope_transaccion ;
+-- ope_tipo_concepto
+DELETE FROM ope_stock ;
+DELETE FROM ope_producto WHERE IDPRODUCTO > 0 ;
+DELETE FROM ope_plan_horario_det ;
+DELETE FROM ope_plan_horario ;
+DELETE FROM ope_marca ;
+DELETE FROM ope_factura_det ;
+DELETE FROM ope_factura ;
+DELETE FROM ope_atencion_paciente_det ;
+DELETE FROM ope_atencion_paciente ;
+DELETE FROM rh_servicio ;
+DELETE FROM ope_agendamiento_det ;
+DELETE FROM ope_agendamiento ;
+DELETE FROM rh_especialidad ;
+DELETE FROM sys_config_agend ;
+DELETE FROM ope_clinica WHERE IDCLINICA > 1 ;
+DELETE FROM cc_cuenta_cliente ;
+DELETE FROM rh_persona WHERE IDPERSONA > 1 ;
