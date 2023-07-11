@@ -1,0 +1,718 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23-jun-2021, 13:28:45
+    Author     : RYUU
+*/
+
+/*
+    -------------       CABECERA     ---------------
+*/
+.box {
+    border: 1px solid rgba(0,0,0,.5);
+    border-radius: 10px;
+    box-shadow: 4px 2px 10px 3px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+.box .box1 {
+/*    border: 2px solid green;*/
+}
+.box .box1 .box2 {
+    /*border: 1px solid yellow;*/
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+.box .box1 .box2 div {
+    /*border: 1px solid blue;*/
+    display: flex;
+    flex-direction: row;
+}
+.box .box1 .box2 div .box3l { /* LABELS */
+    margin-left: 10px;
+    margin-top: 8px;
+}
+.box .box1 .box2 div .box3t { /* CAMPOS DE TEXTO    / NRO DE FACTURA Y FECHA FACTURA */
+    margin-left: 10px;
+    /*border: 1px solid green;*/
+}
+    .box .box1 .box2 div .box3t .cbxTipoFact { /* CAMPOS DE TEXTO    / TIPO FACTURA */
+        width: 200px;
+        max-width: 200px;
+        height: 40px;
+    }
+.box .box1 .box2 div .box3t1 { /* TEXT FIELDS   / CLIENTE Y RAZON SOCIAL */
+    margin-left: 10px;
+    /*border: 1px solid red;*/
+    width: 300px;
+}
+.box .box1 .box2 div .box3t11 { /* TEXT FIELDS  / CI Y RUC */
+    margin-left: 10px;
+    /*border: 1px solid yellow;*/
+    width: 200px;
+}
+.box .box1 .box2 div .box3b { /* BUTTON     / CARGAR CLIENTE */
+    /*border: 1px solid blue;*/
+    width: 150px;
+    margin-left: 15px;
+}
+
+.boxBtnFinally { /* PANEL DE LOS BOTONES DE "CANCELAR" Y "CARGAR DETALLE" */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.boxBtnFinally form input[type = "text"], 
+.boxBtnFinally input[type = "text"] {
+    display: none;
+}
+
+
+
+/*
+    -------------       DETALLE     ---------------
+*/
+.detBox {
+    border: 1px solid rgba(0,0,0,.5);
+    border-radius: 10px;
+    box-shadow: 4px 2px 10px 3px rgba(0,0,0,0.2);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*
+    BOTONES DE CARGAR PRODUCTO Y CARGAR CUENTA ---------------------------------
+*/
+.detBox .detBox1:first-child {
+    /*border: 1px solid blue;*/
+    padding-top: 10px;
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.detBox .detBox1:first-child input[type="submit"]:last-child {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+
+/*
+    TABLA DE FACTURA -----------------------------------------------------------
+*/
+.tableCobDet {
+    width: 1185px;
+    /*width: 1190px;*/
+    border-collapse: collapse;
+    border-spacing: 0px;
+    margin: auto;
+    border: none;
+    
+    display: block;
+    position: relative;
+    height: 250px;
+    max-height: 250px;
+    overflow: auto;
+/*    overflow-y: auto;*/
+}
+
+/* CABECERA Y DETALLE */
+.tableCobDet thead, tbody {
+    display: block;
+}
+
+/* CABECERA DE LA TABLA */
+.tableCobDet thead {
+    position: sticky;
+    background-color: white;
+    display: inline-block;
+    top: 0;
+    right: 0;
+}
+.tableCobDet thead tr {
+    border: 1px solid rgba(0,0,0,0.4);
+}
+.tableCobDet thead td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* DETALLE DE LA TABLA */
+.tableCobDet tbody {
+    max-height: 250px;
+    /*overflow-y: auto;*/
+    /*overflow-x: hidden;*/
+}
+.tableCobDet tbody td {
+    border: 1px solid #5D5D5D;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #222;
+}
+/* COLUMNAS DE LA GRILLA */
+.tableCobDet thead .GRICAB_CI, 
+.tableCobDet tbody .GRICAB_CI { /* CLASE QUE UTILIZO PARA LA COLUMNA ITEM */
+    width: 90px;
+    max-width: 90px;
+    min-width: 90px;
+    text-align: center;
+}
+.tableCobDet thead .GRICAB_CD { /* CLASE QUE UTILIZO PARA LA COLUMNA DESCRIPCION - CABECERA */
+    text-align: center;
+}
+.tableCobDet tbody .GRICAB_CD { /* CLASE QUE UTILIZO PARA LA COLUMNA DESCRIPCION - DETALLE  */
+    text-align: left;
+}
+.tableCobDet thead .GRICAB_CD, 
+.tableCobDet tbody .GRICAB_CD { /* CLASE QUE UTILIZO PARA LA COLUMNA DESCRIPCION - CAB Y DET */
+    width: 445px;
+    max-width: 445px;
+    min-width: 445px;
+    /* EN CASO DE QUE SE DESCOMENTE Y SE MUESTRE LA COLUMNA DE "MONTO IVA" ENTONCES DESCOMENTAR ESTE CODIGO YA QUE ESTA ES LA MEDIDA QUE SE ENCONTRABA ANTES DE COMENTARLA */
+/*    width: 290px;
+    max-width: 290px;
+    min-width: 290px;*/
+}
+.tableCobDet thead .GRICAB_CP, 
+.tableCobDet tbody .GRICAB_CP { /* CLASE QUE UTILIZO PARA LA COLUMNA PRECIO */
+    width: 130px;
+    max-width: 130px;
+    min-width: 130px;
+    text-align: center;
+}
+.tableCobDet thead .GRICAB_CA, 
+.tableCobDet tbody .GRICAB_CA { /* CLASE QUE UTILIZO PARA LA COLUMNA CANTIDAD */
+    width: 80px;
+    max-width: 80px;
+    min-width: 80px;
+    text-align: center;
+}
+.tableCobDet thead .GRICAB_CIV, 
+.tableCobDet tbody .GRICAB_CIV { /* CLASE QUE UTILIZO PARA LA COLUMNA IVA */
+    width: 80px;
+    max-width: 80px;
+    min-width: 80px;
+    text-align: center;
+}
+.tableCobDet thead .GRICAB_CMI { /* CLASE QUE UTILIZO PARA LA COLUMNA MONTO IVA - CABECERA */
+    text-align: center;
+}
+.tableCobDet tbody .GRICAB_CMI { /* CLASE QUE UTILIZO PARA LA COLUMNA MONTO IVA - DETALLE */
+    text-align: right;
+}
+.tableCobDet thead .GRICAB_CMI, 
+.tableCobDet tbody .GRICAB_CMI { /* CLASE QUE UTILIZO PARA LA COLUMNA MONTO IVA - CAB Y DET */
+    width: 160px;
+    max-width: 160px;
+    min-width: 160px;
+}
+.tableCobDet thead .GRICAB_CST { /* CLASE QUE UTILIZO PARA LA COLUMNA SUBTOTAL - CABECERA */
+    text-align: center;
+}
+.tableCobDet tbody .GRICAB_CST { /* CLASE QUE UTILIZO PARA LA COLUMNA SUBTOTAL - DETALLE */
+    text-align: right;
+}
+.tableCobDet thead .GRICAB_CST, 
+.tableCobDet tbody .GRICAB_CST { /* CLASE QUE UTILIZO PARA LA COLUMNA SUBTOTAL - CAB Y DET */
+    width: 170px;
+    max-width: 170px;
+    min-width: 170px;
+}
+.tableCobDet thead .GRICAB_CE, 
+.tableCobDet tbody .GRICAB_CE { /* CLASE QUE UTILIZO PARA LA COLUMNA ELIMINAR */
+    width: 170px;
+    max-width: 170px;
+    min-width: 170px;
+    text-align: center;
+}
+/* OCULTAR TEXTFIELDS */
+.tableCobDet tbody td input[type = "text"] { /* oculto el campo de texto que almacena el idcliente */
+    display: none;
+}
+
+
+
+
+
+
+
+
+/*
+    LABELS AND TEXT FIELDS DE TOTALES ------------------------------------------
+    _OBSERVACION: USO TANTOS DIVS PARA PODER CREAR BLOQUES DE UN LABEL Y UN TEXTFIELD PARA ASI BAJAR JUNTOS AL HACER WRAP Y UTILIZO MUCHO EL DISPLAY FLEX PARA DARLE DIRECCIONES A LOS ELEMENTOS DENTRO DE LOS DIV Y ALINEARLOS A LA DERECHA 
+*/
+.detBox .detBox1Lbl {
+    /*border: 1px solid yellow;*/
+    padding-top: 10px;
+}
+.detBox .detBox1Lbl .detBox12 { /* LABELS AND TEXT FIELDS */
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: row; /* COLOCO ACA EL DISPLAY FLEX PARA PODER HACER WRAP DE LOS DOS ELEMENTOS, LABEL Y TEXTFIELD Y QUE NO ME BAJE UNO SOLO SINO LOS DOS JUNTOS */
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.detBox .detBox1Lbl .detBox12 .detBox12Box {
+    /*border: 1px solid blue;*/
+    display: flex;
+    flex-direction: row; /* COLOCO ACA OTRO DISPLAY FLEX PARA PODER UNIR LOS DOS ELEMENTOS Y QUE ME APAREZCA JUNTOS, EL LABEL Y ALADO EL TEXTFIELD */
+    flex-wrap: nowrap;
+}
+.detBox .detBox1Lbl .detBox12 .detBox12Box .detBox12l { /* LABELS */
+    /*border: 1px solid yellow;*/
+    margin-right: 8px;
+    padding-top: 10px;
+    height: 42px;
+}
+.detBox .detBox1Lbl .detBox12 .detBox12Box .detBox12t { /* TEXT FIELDS */
+    /*border: 1px solid green;*/
+    margin-right: 10px;
+}
+.detBox .detBox1Lbl .detBox12  .detBox12Box .detBox12t input[type="text"] {
+    width: 250px;
+    text-align: right;
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+
+/*
+    BOTON COBRAR 
+*/
+.detBox .detBox1 .detBox123 { /* BUTTON */
+    /*border: 1px solid red;*/
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.detBox .detBox1 .detBox123 .detBox12b { /* BUTTON       /   DIV DEL BTN_COBRAR  */
+    /*border: 1px solid red;*/
+    width: 150px;
+    margin: 12px 10px 10px 0px;
+}
+.detBox .detBox1 .detBox123 .detBox12b2 { /* BUTTON       /   DIV DEL BTN_VOLVER_A_LA_CABECERA  */
+    /*border: 1px solid red;*/
+    width: 250px;
+    margin: 12px 10px 10px 0px;
+}
+.detBox .detBox1 .detBox123 .detBox12b input[type="submit"] { /* BOTON DE COBRAR */
+    width: 100%;
+}
+.w-edit { /* BOTON DE "VOLVER A LA CABECERA" */ 
+    width: 200px;
+}
+
+/*
+    DETALLE DE LA FACTURA / CLASE QUE UTILIZO PARA PODER CAMBIAR EL COLOR DEL TEXTO DEL TIPO_CONCEPTO DE DESCUENTO 
+*/
+.tableCobDet tbody tr .FD_IDTC {
+    color: red;
+}
+
+
+
+
+/*
+    PAGINA: pagFactura_CtaCliente -----------------------------------------------
+*/
+/*
+    TABLA DE CUENTAS DEL CLIENTE SELECCIONADO EN LA CABECERA 
+*/
+.tableFacCtaCliente {
+    border: none;
+    width: 88vw;
+    /*width: 1060px;*/
+    /*width: 940px;*/
+    border-collapse: collapse;
+    border-spacing: 0px;
+    
+    display: block;
+    position: relative;
+    height: 250px;
+    max-height: 250px;
+    overflow: auto;
+    /*overflow-y: auto;*/
+}
+
+.tableFacCtaCliente thead, 
+.tableFacCtaCliente tbody {
+    display: block;
+}
+
+.tableFacCtaCliente thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);
+}
+
+.tableFacCtaCliente thead tr td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+
+.tableFacCtaCliente tbody tr td {
+    border: 1px solid #5D5D5D;
+/*    padding: .5rem 1rem;*/
+    padding: .4rem 0;
+    font-size: 1rem;
+    color: #222;
+}
+.tableFacCtaCliente tbody td input[type = "text"] { /* CAMPOS DE TEXTOS OCULTOS QUE UTILIZO PARA EL BOTON DE "ELIMINAR PRODUCTO */
+    /*display: none;*/
+}
+.tableFacCtaCliente tbody td input[type = "checkbox"] { /* CHECKBOX PARA SELECCIONAR LAS CUENTAS */
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+/*
+    COLUMNAS 
+*/
+.FCCI { /* FACTURA COBRAR COLUMNA IDCUENTACLIENTE */
+    text-align: center;
+    width: 90px;
+    min-width: 90px;
+    max-width: 90px;
+}
+.tableFacCtaCliente thead tr .FCCNE { /* FACTURA COBRAR COLUMNA NRO EMPEÑO */
+    text-align: center;
+}
+.tableFacCtaCliente tbody tr .FCCNE { /* FACTURA COBRAR COLUMNA NRO EMPEÑO */
+    text-align: left;
+    padding-left: .5rem;
+}
+.FCCNE { /* FACTURA COBRAR COLUMNA NRO EMPEÑO */
+    width: 420px;
+    min-width: 420px;
+    max-width: 420px;
+/*    width: 180px;
+    min-width: 180px;
+    max-width: 180px;*/
+}
+.FCCNC { /* FACTURA COBRAR COLUMNA NRO CUOTA */
+    text-align: center;
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+}
+.FCCM { /* FACTURA COBRAR COLUMNA MONTO */
+    text-align: center;
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+}
+.FCCIN { /* FACTURA COBRAR COLUMNA INTERES */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.FCCFV { /* FACTURA COBRAR COLUMNA FECHA VENCIMIENTO */
+    text-align: center;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+}
+.FCCCH { /* FACTURA COBRAR COLUMNA CHECK */
+    text-align: center;
+    width: 110px;
+    min-width: 110px;
+    max-width: 110px;
+}
+
+/*
+    CLASE QUE UTILIZO PARA EL FORMULARIO DE FACTURA CUENTA CLIENTE DONDE ALMACENA LOS BOTONES DE "VOVLER A LA CABECERA" Y EL BOTON DE "CARGAR DETALLE" 
+*/
+.boxBtnCtaCli,
+.boxBtnCtaCli form {
+    width: 940px; /* EL TAMAÑO DEL WIDTH ES IGUAL AL DE LA TABLA */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.boxBtnCtaCli input[type = "text"],
+.boxBtnCtaCli form input[type = "text"] { /* OCULTO LOS CAMPOS DE TEXTO QUE UTILIZO PARA PASAR AL CONTROLADOR */
+    display: none;
+}
+.boxBtnCtaCli_v2,
+.boxBtnCtaCli_v2 form {
+    width: 100%; /* EL TAMAÑO DEL WIDTH ES IGUAL AL DE LA TABLA */
+/*    width: 1060px;  EL TAMAÑO DEL WIDTH ES IGUAL AL DE LA TABLA */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.boxBtnCtaCli_v2 input[type = "text"],
+.boxBtnCtaCli_v2 form input[type = "text"] { /* OCULTO LOS CAMPOS DE TEXTO QUE UTILIZO PARA PASAR AL CONTROLADOR */
+    display: none;
+}
+
+
+
+
+
+
+/*
+    PAGINA: pagFactura_CargarProd -----------------------------------------------
+*/
+/*
+    CAMPOS DE TEXTO QUE USO PARA CARGAR LA TABLA CON LAS LISTA DE LOS PRODUCTOS QUE VOY A PASAR AL DETALLE 
+*/
+.boxFCP {
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.boxFCP .boxFCP1 {
+    width: 90vw;
+    /*border: 1px solid blue;*/
+    display: flex;
+    flex-direction: row;
+    margin-top: .5rem;
+}
+.boxFCP .panelBtn { /* panel de los dos botones ("Cargar Producto a la Lista" y "Limpiar") */
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+}
+.boxFCP .boxFCP1 .div1 { /* etiquetas */
+    /*border: 1px solid yellow;*/
+    width: 150px;
+    max-height: 40px;
+}
+.boxFCP .boxFCP1 .div1fci p, /* etiquetas */
+.boxFCP .boxFCP1 .div1 p { /* etiquetas */
+    /*border: 1px solid red;*/
+    margin-left: .5rem;
+    font-size: 13pt;
+    text-align: right;
+    padding-right: .5rem;
+    padding-top: .5rem;
+}
+.boxFCP .boxFCP1 .div1fci { /* etiquetas */ /* factura cargar cliente */
+    /*border: 1px solid blue;*/
+    width: 250px;
+    max-height: 40px;
+    margin-bottom: 1rem; 
+}
+.boxFCP .boxFCP1 .div2 { /* campos de texto */
+    /*border: 1px solid green;*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.boxFCP .boxFCP1 .div2 input[type = "text"] { /* campos de texto */
+    width: 200px;
+    max-width: 200px;
+}
+.boxFCP .boxFCP1 .div2 .txtProDesc { /* campos de texto de descripcion del producto */
+    width: 415px;
+    max-width: 415px;
+    min-width: 250px;
+}
+.boxFCP .boxFCP1 .div2 .cbxIva { /* combo box de iva */
+    width: 200px;
+    max-width: 200px;
+    height: 40px;
+}
+.boxFCP .boxFCP1 .div2 .disNone { /* clase para ocultar campos de textos / idproducto */
+    display: none;
+}
+.boxFCP .boxFCP1 .div2 .btnANP { /* boton de add producto */
+    margin-left: .5rem;
+}
+
+/*
+    TABLA DONDE CARGO LOS PRODUCTOS QUE VOY A PASAR AL DETALLE 
+*/
+.boxFCP .boxFCP1 .tableFCP {
+    width: 1025px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    /*border: 1px solid green;*/
+    border: none;
+    
+    display: block;
+    position: relative;
+    height: 210px;
+    max-height: 210px;
+    overflow: auto;
+    /*overflow-y: auto;*/
+}
+.boxFCP .boxFCP1 .tableFCP thead, 
+.boxFCP .boxFCP1 .tableFCP tbody {
+    display: block;
+}
+.boxFCP .boxFCP1 .tableFCP thead {
+    position: sticky;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.1);
+}
+.boxFCP .boxFCP1 .tableFCP thead tr td {
+    padding: .5rem 0;
+    font-weight: 700;
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr td {
+    border: 1px solid #5D5D5D;
+    padding: .4rem 0;
+    font-size: 1rem;
+    color: #222;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr td input[type="text"] {
+    display: none;
+}
+/* 
+    COLUMNAS ---------- 
+*/
+.FCPCI { /* factura cargar producto columna item */
+    text-align: center;
+    width: 80px;
+    max-width: 80px;
+    min-width: 80px;
+}
+.boxFCP .boxFCP1 .tableFCP thead tr .FCPCP { /* factura cargar producto columna producto (descripcion) */
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr .FCPCP { /* factura cargar producto columna producto (descripcion) */
+    padding-left: .5rem;
+    text-align: left;
+}
+.FCPCP { /* factura cargar producto columna producto (descripcion) */
+    width: 220px;
+    max-width: 220px;
+    min-width: 220px;
+}
+.boxFCP .boxFCP1 .tableFCP thead tr .FCPCM { /* factura cargar producto columna marca (descripcion) */
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr .FCPCM { /* factura cargar producto columna marca (descripcion) */
+    padding-left: .5rem;
+    text-align: left;
+}
+.FCPCM { /* factura cargar producto columna marca (descripcion) */
+    width: 140px;
+    max-width: 140px;
+    min-width: 140px;
+}
+.FCPCC { /* factura cargar producto columna cantidad */
+    text-align: center;
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+}
+.FCPCIV { /* factura cargar producto columna iva */
+    text-align: center;
+    width: 90px;
+    max-width: 90px;
+    min-width: 90px;
+}
+.boxFCP .boxFCP1 .tableFCP thead tr .FCPCMO { /* factura cargar producto columna monto */
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr .FCPCMO { /* factura cargar producto columna monto */
+    padding-right: .5rem;
+    text-align: right;
+}
+.FCPCMO { /* factura cargar producto columna monto */
+    width: 130px;
+    max-width: 130px;
+    min-width: 130px;
+}
+.boxFCP .boxFCP1 .tableFCP thead tr .FCPCST { /* factura cargar producto columna subtotal */
+    text-align: center;
+}
+.boxFCP .boxFCP1 .tableFCP tbody tr .FCPCST { /* factura cargar producto columna subtotal */
+    padding-right: .5rem;
+    text-align: right;
+}
+.FCPCST { /* factura cargar producto columna subtotal */
+    width: 130px;
+    max-width: 130px;
+    min-width: 130px;
+}
+.FCPCE { /* factura cargar producto columna eliminar (boton) */
+    text-align: center;
+    width: 120px;
+    max-width: 120px;
+    min-width: 120px;
+}
+
+
+
+@media only screen and (max-width: 880px) {
+    
+    .box {
+        padding: .5rem;
+    }
+    
+    .box .box1 .box2 {
+        /*border: 1px solid red;*/
+        display: flex;
+        flex-direction: column;
+    }
+    
+/*    .box .box1 .box2 div {
+        border: 1px solid blue;
+        display: flex;
+        flex-direction: row;
+    }*/
+    .box .box1 .box2 div box3l { /* LABELS  / RAZON SOCIAL */
+        width: auto;
+    }
+    .box .box1 .box2 div .box3t1 { /* TEXT FIELDS   / RAZON SOCIAL */
+        width: auto;
+    }
+    
+    
+    
+    /*
+        FACTURA ADD INTERES DET
+    */
+    .boxBtnCtaCli_v2,
+    .boxBtnCtaCli_v2 form {
+        /*border: 1px solid green;*/
+        width: 90vw;
+    }
+    .boxBtnCtaCli,
+    .boxBtnCtaCli form {
+        /*border: 1px solid green;*/
+        width: 90vw;
+    }
+    
+    
+    /*
+        ETIQUETA DE LA PAGINA PARA AÑADIR INTERES A LA FACTURA 
+    */
+    .boxFCP .boxFCP1 .div1fci { /* etiquetas */ /* factura cargar cliente */
+        /*border: 1px solid green;*/
+        margin-bottom: 1.5rem;
+    }
+    .boxFCP .boxFCP1 .div2 .txtProDesc { /* campos de texto de descripcion del producto */
+        /*border: 1px solid yellow;*/
+        margin-top: .5rem;
+    }
+    
+}

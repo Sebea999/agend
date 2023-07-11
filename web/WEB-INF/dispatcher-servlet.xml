@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+            http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-4.3.xsd
+            http://www.springframework.org/schema/tx 
+            http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    
+    
+<!--    <http>
+        <session-management>
+            <concurrency-control max-sessions="1"/>
+        </session-management>
+    </http>-->
+    
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="index.htm">indexController</prop>
+                <!-- LOGEO -->
+                <!--<prop key="inicio_sesion.htm">inicioSesionController</prop>-->
+                <prop key="inicio_sesion.htm">controllerInicioSesion</prop>
+                <prop key="registrar.htm">controllerInicioSesion</prop>
+                <prop key="recover_pass.htm">controllerInicioSesion</prop>
+
+                <!-- MENU PRINCIPAL  -->
+                <prop key="menu.htm">controllerMenuPrincipal</prop>
+
+                <!-- REFERENCIALES  -->
+                <prop key="referenciales.htm">controllerReferenciales</prop> <!-- OBSERVACION: PODRIA AGREGAR LAS PAGINAS EN EL MISMO CONTROLADOR DE "REFERENCIALES" PERO PARA MANTENER MAS ORDENADO CADA PAGINA (Y SUS ACCIONES) Y NO TENER VARIAS PAGINAS DENTRO DE UN CONTROLADOR HICE POR SEPARADO -->
+                    <!-- CLINICA -->
+                    <prop key="ref_clinica.htm">controllerRef_Clinica</prop>
+                        <prop key="datos_clinica.htm">controllerRef_Clinica</prop>
+                    <!-- SERVICIOS -->
+                    <prop key="ref_servicios.htm">controllerRef_Servicio</prop>
+                        <prop key="datos_servicio.htm">controllerRef_Servicio</prop>
+                    <!-- ESPECIALIDAD -->
+                    <prop key="ref_esp.htm">controllerRef_Especialidad</prop>
+                        <prop key="datos_ref_esp.htm">controllerRef_Especialidad</prop>
+                    <!-- CIUDAD -->
+                    <prop key="ref_ciudad.htm">controllerRef_Ciudad</prop>
+                        <prop key="datos_ciudad.htm">controllerRef_Ciudad</prop>
+
+                <!-- CLIENTE -->
+                <prop key="paciente.htm">controllerPaciente</prop>
+                <prop key="add_paciente.htm">controllerPaciente</prop>
+                <prop key="edit_paciente.htm">controllerPaciente</prop>
+                <prop key="ver_paciente.htm">controllerPaciente</prop>
+                <prop key="pac_updpass.htm">controllerPaciente</prop>
+
+                <!-- MEDICO -->
+                <prop key="medico.htm">controllerMedico</prop>
+                <prop key="add_medico.htm">controllerMedico</prop>
+                <prop key="edit_medico.htm">controllerMedico</prop>
+
+                <!-- SECRETARIO -->
+                <prop key="secret.htm">controllerSecretario</prop>
+                <prop key="add_secret.htm">controllerSecretario</prop>
+                <prop key="edit_secret.htm">controllerSecretario</prop>
+
+                <!-- PLAN DE HORARIO -->
+                <prop key="plan_hor.htm">controllerPlanHorario</prop>
+                <prop key="add_ph.htm">controllerPlanHorario</prop>
+                <prop key="add_phd.htm">controllerPlanHorario</prop>
+                <prop key="edit_ph.htm">controllerPlanHorario</prop>
+                <prop key="edit_phd.htm">controllerPlanHorario</prop>
+                <prop key="ph_ver.htm">controllerPlanHorario</prop>
+
+                <!-- AGENDAMIENTO -->
+                <prop key="agend.htm">controllerAgendamiento</prop>
+                <prop key="ver_agend.htm">controllerAgendamiento</prop>
+                <prop key="ver_agen.htm">controllerAgendamiento</prop> <!-- VER AGENDAMIENTO DEL REGISTRO QUE SE QUIERE ANULAR -->
+                <prop key="add_agend.htm">controllerAgendamiento</prop>
+                <prop key="add_agend_fph.htm">controllerAgendamiento</prop>
+
+                <!-- ATENCION / FICHA DEL PACIENTE -->
+                <prop key="atencion.htm">controllerFichaAtencionPacNutri</prop>
+                <prop key="ver_atencion.htm">controllerFichaAtencionPacNutri</prop>
+                <prop key="add_atencion.htm">controllerFichaAtencionPacNutri</prop>
+                <prop key="add_atencion_af.htm">controllerFichaAtencionPacNutri</prop> <!-- PAGINA PARA ADJUNTAR FILES A LA FICHA -->
+<!--                <prop key="atencion.htm">controllerAtencionFichaPac</prop>
+                <prop key="ver_atencion.htm">controllerAtencionFichaPac</prop>
+                <prop key="add_atencion.htm">controllerAtencionFichaPac</prop>-->
+
+                <!-- FACTURA -->
+                <prop key="factura.htm">controllerFactura</prop> <!-- LISTADO DE FACTURAS -->
+                    <prop key="crear_factura.htm">controllerFactura</prop> <!-- CABECERA DE LA FACTURA -->
+                    <prop key="crear_factura_cta.htm">controllerFactura</prop> <!-- VENTANA DONDE VA A ELEGIR LA CUENTA DEL CLIENTE QUE DESEA FACTURAR  -->
+                    <prop key="crear_factura_pro.htm">controllerFactura</prop> <!-- VENTANA DONDE VA A ELEGIR EL/LOS PRODUCTO/S QUE DESEA FACTURAR   -->
+                    <prop key="crear_factura_serv.htm">controllerFactura</prop> <!-- VENTANA DONDE VA A ELEGIR EL/LOS SERVICIO/S QUE DESEA FACTURAR   -->
+                    <prop key="crear_factura_det.htm">controllerFactura</prop> <!-- DETALLE DE LA FACTURA  -->
+                    <prop key="factura_add_int.htm">controllerFactura</prop> <!-- VENTANA DONDE AMBAS VENTANAS (CUENTA CLIENTE Y PRODUCTO) VAN A PODER CARGAR UN INTERES AL DETALLE  -->
+                    <prop key="factura_add_desc.htm">controllerFactura</prop> <!-- VENTANA DONDE EL USUARIO VA A PODER CARGAR UN DESCUENTO AL DETALLE  -->
+                    <prop key="ver_factura.htm">controllerFactura</prop> <!-- REGISTRO GUARDADO DE UNA FACTURA  -->
+
+                <!-- REPORTES -->
+                <prop key="reportes.htm">controllerReportes</prop> <!-- OBSERVACION: PODRIA HACER AL IGUAL QUE HICE CON LOS REFERENCIALES Y CREARLES UN CONTROLADOR A CADA SUBPAGINA DE REPORTES, PERO NO LE VEO NECESARIO YA QUE CADA SUBPAGINA DE REPORTES NO VA A TENER TANTAS "ACCIONES" COMO EN LAS PAGINAS DE REFERENCIALES, SOLO IMPRIMIRIAN Y PARA ESO UTILIZARIA OTRO SERVLET  -->
+                    <prop key="rpt_paciente.htm">controllerReportes</prop><!-- REPORTE PACIENTE -->
+                    <prop key="rpt_cta_paciente.htm">controllerReportes</prop><!-- REPORTE CUENTA CLIENTE -->
+                    <prop key="rpt_factura.htm">controllerReportes</prop><!-- REPORTE FACTURA -->
+                    <prop key="rpt_mis_agen.htm">controllerReportes</prop><!-- REPORTE MIS AGENDAMIENTOS -->
+                    <prop key="rpt_est.htm">controllerReportes</prop><!-- REPORTE ESTADISTICA -->
+                    <prop key="rpt_ver_est.htm">controllerReportes</prop><!-- REPORTE ESTADISTICA -->
+                    <prop key="ver_his_fic.htm">controllerReportes</prop><!-- REPORTE HISTORICO FICHAS DE ATENCION NUTRI -->
+                    <prop key="rptexcel.htm">controllerReportes</prop><!-- pagina jsp que uso para cargar el archivo excel que se descarga -->
+                    <prop key="ver_his_fic_det.htm">controllerReportes</prop><!-- REPORTE HISTORICO FICHAS DE ATENCION NUTRI - DETALLE / PARA VER LOS ARCHIVOS ADJUNTOS -->
+
+
+                <!-- CUENTA CLIENTE -->
+                <prop key="cuenta_cliente.htm">controllerCuentaCliente</prop>
+                    <prop key="cuenta_cliente_ver.htm">controllerCuentaCliente</prop>
+
+                <!-- PERFIL DEL PACIENTE -->
+                <prop key="perfil_pac.htm">controllerPerfilPaciente</prop>
+                    <prop key="perfil_pac_ver.htm">controllerPerfilPaciente</prop> <!-- VER SI UTILIZO OSINO ELIMINAR O EDITAR -->
+                
+                <!-- PANEL DE CONTROL -->
+                <prop key="panel_control.htm">controllerPanelControl</prop>
+                    <prop key="config_agend.htm">controllerPanelControl</prop><!-- CONFIGURACION DE AGENDAMIENTO -->
+                    <prop key="config_agend_add.htm">controllerPanelControl</prop><!-- CONFIGURACION DE AGENDAMIENTO -->
+                    <prop key="anular_agend.htm">controllerPanelControl</prop><!-- ANULAR AGENDAMIENTOS -->
+                    <prop key="anular_fact.htm">controllerPanelControl</prop><!-- ANULAR FACTURAS -->
+                    
+                <!-- USUARIO -->
+                <prop key="usuario.htm">controllerUsuario</prop>
+                    <prop key="add_usuario.htm">controllerUsuario</prop>
+                    <prop key="edit_usuario.htm">controllerUsuario</prop>
+                
+                <prop key="manualUsuario.htm">manualUsuarioController</prop><!-- A - A -->
+                    
+            </props>
+        </property>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+    <!--
+    The index controller.
+    -->
+    <bean name="indexController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="index" />
+    
+    <bean p:viewName="pagGuia" name="manualUsuarioController" class="org.springframework.web.servlet.mvc.ParameterizableViewController" />
+    
+    <!-- ............. CONTROLADORES EXISTENTES ............. -->
+    <bean name="controllerInicioSesion" class="com.agend.controlador.ControllerInicioSesion" /> <!-- name de como lo tenia antes: inicioSesionController (que lo cambie para evitar un error de ambiguedad del metodo o direccion url) -->
+    <bean name="controllerMenuPrincipal" class="com.agend.controlador.ControllerMenuPrincipal" />
+    <bean name="controllerPaciente" class="com.agend.controlador.ControllerPaciente" />
+    <bean name="controllerMedico" class="com.agend.controlador.ControllerMedico" />
+    <bean name="controllerSecretario" class="com.agend.controlador.ControllerSecretario" />
+    <bean name="controllerAgendamiento" class="com.agend.controlador.ControllerAgendamiento" />
+    <bean name="controllerPlanHorario" class="com.agend.controlador.ControllerPlanHorario" />
+    <bean name="controllerUsuario" class="com.agend.controlador.ControllerUsuario" />
+    <bean name="controllerReportes" class="com.agend.controlador.ControllerReportes" />
+    <bean name="controllerFactura" class="com.agend.controlador.ControllerFactura" />
+    <bean name="controllerCuentaCliente" class="com.agend.controlador.ControllerCuentaCliente" />
+    <bean name="controllerReferenciales" class="com.agend.controlador.ControllerReferenciales" />
+    <bean name="controllerRef_Clinica" class="com.agend.controlador.ControllerRef_Clinica" />
+    <bean name="controllerRef_Servicio" class="com.agend.controlador.ControllerRef_Servicio" />
+    <bean name="controllerRef_Especialidad" class="com.agend.controlador.ControllerRef_Especialidad" />
+    <bean name="controllerRef_Ciudad" class="com.agend.controlador.ControllerRef_Ciudad" />
+    <!--<bean name="controllerAtencionFichaPac" class="com.agend.controlador.ControllerFichaAtencionPac" />-->
+    <bean name="controllerFichaAtencionPacNutri" class="com.agend.controlador.ControllerFichaAtencionPacNutri" /> <!-- name de como lo tenia antes: controllerAtencionFichaPacNutri -->
+    <bean name="controllerPerfilPaciente" class="com.agend.controlador.ControllerPerfilPaciente" /> <!-- name de como lo tenia antes: controllerPerfilPac -->
+    <bean name="controllerPanelControl" class="com.agend.controlador.ControllerPanelControl" />
+    
+    
+    <!-- Enable Spring MVC annotations -->
+    <mvc:annotation-driven/>
+    
+    <!-- Ubicación de los recursos estaticos de la app -->
+    <mvc:resources mapping="/recursos/static/**" location="/recursos/static/" />
+    <mvc:resources mapping="/recursos/download/**" location="/recursos/download/" />
+    <mvc:resources mapping="/recursos/**" location="/recursos/" />
+    <!--<mvc:resources mapping="/recursos/static/**" location="/recursos/static/" />-->
+    <mvc:resources mapping="/recursos/static/**" location="file:[C:\sys\web\recursos\static\]" />
+    <mvc:resources mapping="/recursos/download/**" location="file:[C:\sys\web\recursos\download\]" />
+    <mvc:resources mapping="/recursos/**" location="file:C:\sys\web\recursos\" />
+<!--    <mvc:resources mapping="/recursos/static/**" location="file:C:/sys//web/recursos/static/" />
+    <mvc:resources mapping="/recursos/download/**" location="file:C:/sys/web/recursos/download/" />
+    <mvc:resources mapping="/recursos/**" location="file:C:/sys/web/recursos/" />-->
+    
+    <context:component-scan base-package="com.agend.controlador" />
+    
+    <!--[OBS] 1:Trate de cargar el archivo de propiedades para poder leer los datos desde las clases pero no me recupera los valores del archivo properties, probe otra manera de lectura del archivo properties pero igual seguia viendo los valores null en las variables que recuperaban un dato del archivo properties, por eso es que comente ambas opciones.. queria utilizar estas variables del archivo properties para poder cargar los datos para la conexion a la base de datos.--> 
+    <!--[OBS] 2:cargo el archivo de propiedades-->
+    <!--Modo#1-->
+<!--    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>/configuration.properties</value> #OBS:este-me-funciona
+            <value>classpath:configuration.properties</value>
+        </property>
+        <property name="ignoreResourceNotFound" value="false"/>
+    </bean>-->
+    <!--Modo#2-->
+    <!--<context:property-placeholder location="/configuration.properties"/>#OBS:este-me-funciona-->
+    <!--<context:property-placeholder location="classpath:/configuration.properties"/>-->
+    
+</beans>

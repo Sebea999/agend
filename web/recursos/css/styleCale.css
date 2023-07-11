@@ -1,0 +1,366 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26-ene-2022, 10:37:42
+    Author     : RYUU
+*/
+
+:root {
+    --dark-body: #4d4c5a;
+    --dark-main: #141529;
+    --dark-second: #79788c;
+    --dark-hover: #323048;
+    --dark-hoverv2: #BCBCBC;
+    --dark-text: #f8fbff;
+    
+    --light-body: #f3f8fe;
+    --light-main: #fdfdfd;
+    --light-second: #c3c2c8;
+    --light-hover: #edef0f5;
+    --light-text: #151426;
+    
+    --light-green-back: #00B900;
+    --dark-green-back: #056405;
+    
+    --blue: #81F7FF;
+    /*--blue: #0000ff;*/
+    --white: #fff;
+    
+    --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    
+    --font-family: cursive;
+}
+
+
+.dark {
+    --bg-body: var(--dark-body);
+    --bg-main: var(--dark-main);
+    --bg-second: var(--dark-second);
+    --color-hover: var(--dark-hover);
+    --color-txt: var(--dark-text);
+}
+
+
+.light {
+    --bg-body: var(--light-body);
+    --bg-main: var(--light-main);
+    --bg-second: var(--light-second);
+    --color-hover: var(--light-hover);
+    --color-txt: var(--light-text);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+html, 
+body {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-family);
+    background-color: var(--bg-body);
+}
+
+
+.calendar {
+    /*border: 2px solid red;*/
+    height: 430px;
+    /*height: max-content;*/
+    width: 460px;
+    /*width: max-content;*/
+    background-color: var(--bg-main);
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.light .calendar {
+    box-shadow: var(--shadow);
+}
+
+.calendar-header{
+/*    border: 1px solid red;*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    /*font-size: 25px;*/
+    font-weight: 500;
+    /*font-weight: 600;*/
+    color: var(--color-txt);
+    /*padding: 10px;*/
+}
+
+.calendar-body {
+    /*border: 1px solid blue;*/
+    /*padding: 10px;*/
+}
+
+.calendar-week-day {
+    /*border: 1px solid green;*/
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: 500;
+    /*font-weight: 600;*/
+    height: 40px;
+    /*height: 50px;*/
+}
+
+.calendar-week-day div {
+    display: grid;
+    place-items: center;
+    color: var(--bg-second);
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    /*gap: 2px;*/
+    color: var(--color-txt);
+}
+
+
+.calendar-days div {
+    /*border: 1px solid red;*/
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+    animation: to-top 1s forwards;
+}
+
+
+.month-picker {
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.month-picker:hover {
+    background-color: var(--dark-hoverv2);
+    /*background-color: var(--color-hover);*/
+}
+
+.year-picker {
+    display: flex;
+    align-items: center;
+}
+
+.year-change {
+    border: 1px solid rgba(0, 0, 0, .5);
+    height: 30px;
+    /*height: 40px;*/
+    width: 30px;
+    /*width: 40px;*/
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 10px;
+    padding-top: 14px;
+    background-color: rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+.year-change:hover {
+    /*background-color: var(--dark-hoverv2);*/
+    background-color: var(--color-hover);
+}
+
+
+
+.calendar-footer {
+    /*padding: 10px;*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.toggle {
+    display: flex;
+}
+
+.toggle span {
+    margin-right: 10px;
+    color: var(--color-txt);
+}
+
+
+
+.dark-mode-switch {
+    position: relative;
+    height: 25px;
+    width: 48px;
+    border-radius: 14px;
+    background-color: var(--bg-second);
+    cursor: pointer;
+}
+
+.dark-mode-switch-ident {
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: var(--bg-main);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.2s ease-in-out;
+}
+
+.dark .dark-mode-switch .dark-mode-switch-ident {
+    top: 2px;
+    left: calc(2px + 50%);
+}
+
+
+
+
+.calendar-days div span {
+    position: absolute;
+}
+
+.calendar-days div:hover span {
+    transition: with 0.2s ease-int-out, height 0.2s ease-int-out;
+}
+
+.calendar-days div span:nth-child(1), 
+.calendar-days div span:nth-child(3) {
+    width: 2px;
+    height: 0;
+    background-color: var(--color-txt);
+}
+
+.calendar-days div:hover span:nth-child(1), 
+.calendar-days div:hover span:nth-child(3) {
+    height: 100%;
+}
+
+
+.calendar-days div span:nth-child(1) {
+    botom: 0;
+    left: 0;
+}
+
+.calendar-days div span:nth-child(3) {
+    top: 0;
+    right: 0;
+}
+
+
+.calendar-days div span:nth-child(2), 
+.calendar-days div span:nth-child(4) {
+    width: 0;
+    height: 2px;
+    background-color: var(--color-txt);
+}
+
+.calendar-days div:hover span:nth-child(2), 
+.calendar-days div:hover span:nth-child(4) {
+    width: 100%;
+}
+
+.calendar-days div:hover span:nth-child(2) {
+    top: 0;
+    left: 0;
+}
+
+.calendar-days div:hover span:nth-child(4) {
+    bottom: 0;
+    right: 0;
+}
+
+.calendar-days div:hover span:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.calendar-days div:hover span:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+.calendar-days div:hover span:nth-child(4) {
+    transition-delay: 0.6s;
+}
+
+
+.calendar-days div.curr-date {
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: 50%;
+}
+
+.calendar-days div.curr-date span {
+    display: none;
+}
+
+.month-list {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 105;
+    margin-top: 15px;
+    /*background-color: var(--dark-green-back);*/
+    background-color: var(--light-body);
+/*    background-color: var(--bg-main);*/
+    padding: 20px;
+    color: var(--color-txt);
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 5px; 
+    transform: scale(1.5);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.month-list.show {
+    transform: scale(1);
+    visibility: visible;
+    pointer-events: visible;
+    transition: all 0.2s ease-int-out;
+}
+
+.month-list > div {
+    display: grid;
+    place-items: center;
+}
+
+.month-list > div > div {
+    width: 100%;
+    padding: 25px 20px;
+    color: #000;
+    /*color: #fff;*/
+    /*padding: 5px 20px;*/
+    border-radius: 10px;
+    border: 1px solid var(--light-green-back);
+    text-align: center;
+    cursor: pointer;
+}
+
+.month-list > div > div:hover {
+    background-color: var(--color-hover)
+}
+
+@keyframes to-top {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

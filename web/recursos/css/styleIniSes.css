@@ -1,0 +1,106 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-may-2021, 12:07:39
+    Author     : RYUU
+*/
+
+body {
+    background: #75FF59;
+    background: linear-gradient(to right, #57CF3F, #51FF6E);
+/*                background: #ffe259;
+                background: linear-gradient(to right, #ffa751, #ffe259);*/
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    /*background: #34495e;*/
+}
+
+.bg {
+    background-image: url('../img/random.jpg');
+    background-position: center center;
+    background-size: cover;
+}
+
+body.backIS {
+    /*background-image: url('../img/806443.jpg');*/
+    background-image: url('../img/lbjQ4c.jpg');
+    /*background:url(../img/fondoInicioSesion.jpg) no-repeat center center fixed;*/
+    /*background: blue;*/
+    /*background-size: cover;*/
+}
+
+.box {
+    width: 30%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0, 0, 0, .4);
+    /*background: #191919;*/
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.box .obj-group {
+    width: 100%;
+}
+
+.box .obj-group h1 {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.box .obj-group input[type = "text"], 
+.box .obj-group input[type = "password"] {
+    /*width: 200px;*/
+    width: 70%;
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #fff;
+    padding: 14px 10px;
+    outline: none;
+    color: #fff;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.box .obj-group input[type = "text"]:focus,
+.box .obj-group input[type = "password"]:focus {
+    width: 90%;
+    /*width: 280px;*/
+    border-color: #fff;
+    /*border-color: #2ecc71;*/
+}
+
+.box .obj-group input[type = "submit"] {
+    width: 40%;
+    display: block;
+    margin: 12px auto;
+    padding: 14px 20px;
+    color: #fff;
+    background: none;
+    border: 0;
+    border: 2px solid #007bff;
+    border-radius: 24px;
+    text-align: center;
+    outline: none;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.box .obj-group input[type = "submit"]:hover {
+    background: #007bff;
+/*    background: #2ecc71;*/
+}

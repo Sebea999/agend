@@ -1,0 +1,99 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23-sep-2021, 13:30:00
+    Author     : USER
+    LINK       : https://www.youtube.com/watch?v=yiIi82xVjqo
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif, "Open Sans";
+    color: #fff;
+}
+
+section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+/*    background: url("./bg.jpg");
+    background-size: center center;*/
+}
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));
+    width: 380px;
+    padding: 50px 30px;
+    border-radius: 10px;
+    box-shadow: 7px 7px 60px #000;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.ctrlMiddle { /* agregue esta clase para simplemente darle un margin top */
+    margin-top: 1rem;
+}
+
+.control input{
+    width: 100%;
+    display: block;
+    padding: 10px;
+    color: #222;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    /*margin: 1em 0;*/
+}
+
+.control input[type="submit"] {
+    background: crimson;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1em;
+    opacity: .7;
+    transition: opacity .3s ease;
+    margin: 2em 0 0 0;
+}
+
+.control input[type="submit"]:hover {
+    opacity: 1;
+}
+
+.link {
+    text-align: center;
+}
+
+.link a {
+    text-decoration: none;
+    color: #fff;
+    opacity: .6;
+    transition: opacity .3s ease;
+}
+
+.link a:hover {
+    opacity: 1;
+}
+
+
+
+
+
+
