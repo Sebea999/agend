@@ -3893,6 +3893,79 @@ public class ModelFichaAtencionPacNutri implements CRUD {
     
     
     
+    // METODO QUE UTILIZO PARA RECUPERAR LOS DATOS DE LA PRIMERA FICHA DEL PACIENTE AL QUE SE LE ESTE CARGANDO SU FICHA.-
+    public BeanFichaAtePaciente getDatosPrimeraFicha(String PARAM_IDFICHAPAC) {
+        BeanFichaAtePaciente datos = new BeanFichaAtePaciente();
+//        List<BeanFichaAtePaciente> firstList = new ArrayList<>();
+        try {
+            String sql = "SELECT ofpn.IDFICHAPAC, ofpn.IDPACIENTE, ofpn.MOTIVO_DE_LA_CONSULTA, ofpn.ALIMENTOS_DE_PREFERENCIA, ofpn.ALI_QUE_SUELE_COMER_GRL, ofpn.ALIMENTOS_QUE_NO_TOLERA, ofpn.ALERGIAS_A_ALGO, ofpn.PADECE_ALGUNA_ENFERMEDAD, ofpn.CIRUGIAS, ofpn.MEDICAMENTE_Q_E_CONSUMIENDO, ofpn.OTROS_DATOS_A_TENER_EN_CUENTA, ofpn.CONSUMO_ALCOHOL, ofpn.CONSUMO_CIGARRILLO, \n" +
+                "ofpn.REALIZA_ACTIVIDAD_FISICA, ofpn.TIPO_DE_ACTIVIDAD_FISICA, ofpn.FRECUENCIA_ACT_FISICA_SEM, ofpn.DBLCR, ofpn.LGSLCM, ofpn.TBDALN, ofpn.DPALN, ofpn.DDCCF, ofpn.ESTRENHIMIENTO, ofpn.TDEDBU, ofpn.CANSANCIO_FATIGA, ofpn.HICHAZON_ABDOMINAL, ofpn.INSOMNIO, ofpn.MUCOSIDAD_Y_CATARRO, ofpn.CALAMBRES_Y_HORMIGUEOS, ofpn.ZUMBIDOS_EN_EL_OIDO, ofpn.CAIDA_DE_CABELLO, \n" +
+                "ofpn.UNHAS_QUEBRADIZAS, ofpn.PIEL_SECA, ofpn.TIPO_DE_METABOLISMO  \n" +
+                "FROM ope_ficha_pac_nutri ofpn \n" +
+                "WHERE ofpn.IDPACIENTE = '"+PARAM_IDFICHAPAC+"' \n" +
+                "AND ofpn.ESTADO = 'A' \n" +
+                "ORDER BY ofpn.IDFICHAPAC ASC \n" +
+                "LIMIT 1 \n";
+            System.out.println("-----------------MODEL_FICHA_ATENCION_PAC-NUTRI--------------------");
+            System.out.println("-- ---getDatosPrimeraFicha()-------    "+sql);
+            System.out.println("-------------------------------------------------------------------");
+            // CARGO LA VARIABLE GLOBAL DE RESULTADO CON EL METODO QUE HARA LA CONSULTA Y DEVOLVERA ESE RESULTADO 
+            MFAP_RESULTADO = consultaBD(sql);
+            while(MFAP_RESULTADO.next()) {
+//                BeanFichaAtePaciente datos = new BeanFichaAtePaciente();
+                    datos.setOFPN_IDFICHAPAC(MFAP_RESULTADO.getString("IDFICHAPAC"));
+                    datos.setOFPN_MOTIVO_DE_LA_CONSULTA(MFAP_RESULTADO.getString("MOTIVO_DE_LA_CONSULTA"));
+                    datos.setOFPN_ALIMENTOS_DE_PREFERENCIA(MFAP_RESULTADO.getString("ALIMENTOS_DE_PREFERENCIA"));
+                    datos.setOFPN_ALIMENTOS_QUE_NO_TOLERA(MFAP_RESULTADO.getString("ALIMENTOS_QUE_NO_TOLERA"));
+                    datos.setOFPN_ALI_QUE_SUELE_COMER_GRL(MFAP_RESULTADO.getString("ALI_QUE_SUELE_COMER_GRL"));
+                    datos.setOFPN_CONSUMO_ALCOHOL(MFAP_RESULTADO.getString("CONSUMO_ALCOHOL"));
+                    datos.setOFPN_CONSUMO_CIGARRILLO(MFAP_RESULTADO.getString("CONSUMO_CIGARRILLO"));
+                    datos.setOFPN_ALERGIAS_A_ALGO(MFAP_RESULTADO.getString("ALERGIAS_A_ALGO"));
+                    datos.setOFPN_CIRUGIAS(MFAP_RESULTADO.getString("CIRUGIAS"));
+                    datos.setOFPN_PADECE_ALGUNA_ENFERMEDAD(MFAP_RESULTADO.getString("PADECE_ALGUNA_ENFERMEDAD"));
+                    datos.setOFPN_MEDICAMENTE_Q_E_CONSUMIENDO(MFAP_RESULTADO.getString("MEDICAMENTE_Q_E_CONSUMIENDO"));
+                    datos.setOFPN_OTROS_DATOS_A_TENER_EN_CUENTA(MFAP_RESULTADO.getString("OTROS_DATOS_A_TENER_EN_CUENTA").replaceAll("<br/>","\r\n"));
+                    datos.setOFPN_REALIZA_ACTIVIDAD_FISICA(MFAP_RESULTADO.getString("REALIZA_ACTIVIDAD_FISICA"));
+                    datos.setOFPN_TIPO_DE_ACTIVIDAD_FISICA(MFAP_RESULTADO.getString("TIPO_DE_ACTIVIDAD_FISICA"));
+                    datos.setOFPN_FRECUENCIA_ACT_FISICA_SEM(MFAP_RESULTADO.getString("FRECUENCIA_ACT_FISICA_SEM"));
+                    datos.setOFPN_DBLCR(MFAP_RESULTADO.getString("DBLCR"));
+                    datos.setOFPN_LGSLCM(MFAP_RESULTADO.getString("LGSLCM"));
+                    datos.setOFPN_TBDALN(MFAP_RESULTADO.getString("TBDALN"));
+                    datos.setOFPN_DPALN(MFAP_RESULTADO.getString("DPALN"));
+                    datos.setOFPN_DDCCF(MFAP_RESULTADO.getString("DDCCF"));
+                    datos.setOFPN_ESTRENHIMIENTO(MFAP_RESULTADO.getString("ESTRENHIMIENTO"));
+                    datos.setOFPN_TDEDBU(MFAP_RESULTADO.getString("TDEDBU"));
+                    datos.setOFPN_CANSANCIO_FATIGA(MFAP_RESULTADO.getString("CANSANCIO_FATIGA"));
+                    datos.setOFPN_HICHAZON_ABDOMINAL(MFAP_RESULTADO.getString("HICHAZON_ABDOMINAL"));
+                    datos.setOFPN_INSOMNIO(MFAP_RESULTADO.getString("INSOMNIO"));
+                    datos.setOFPN_MUCOSIDAD_Y_CATARRO(MFAP_RESULTADO.getString("MUCOSIDAD_Y_CATARRO"));
+                    datos.setOFPN_CALAMBRES_Y_HORMIGUEOS(MFAP_RESULTADO.getString("CALAMBRES_Y_HORMIGUEOS"));
+                    datos.setOFPN_ZUMBIDOS_EN_EL_OIDO(MFAP_RESULTADO.getString("ZUMBIDOS_EN_EL_OIDO"));
+                    datos.setOFPN_CAIDA_DE_CABELLO(MFAP_RESULTADO.getString("CAIDA_DE_CABELLO"));
+                    datos.setOFPN_UNHAS_QUEBRADIZAS(MFAP_RESULTADO.getString("UNHAS_QUEBRADIZAS"));
+                    datos.setOFPN_PIEL_SECA(MFAP_RESULTADO.getString("PIEL_SECA"));
+                    datos.setOFPN_TIPO_DE_METABOLISMO(MFAP_RESULTADO.getString("TIPO_DE_METABOLISMO"));
+                    //
+                    datos.setOFPND_IDFICHAPAC(MFAP_RESULTADO.getString("IDFICHAPAC"));
+//                    datos.setOFPND_ITEM(MFAP_RESULTADO.getString("ITEM"));
+//                    datos.setOFPND_ESTADO(MFAP_RESULTADO.getString("ESTADO_DET"));
+//                    datos.setOFPND_USU_ALTA(MFAP_RESULTADO.getString("USU_ALTA"));
+//                    datos.setOFPND_FEC_ALTA(MFAP_RESULTADO.getString("FEC_ALTA"));
+//                    datos.setOFPND_USU_MODI(MFAP_RESULTADO.getString("USU_MODI"));
+//                    datos.setOFPND_FEC_MODI(MFAP_RESULTADO.getString("FEC_MODI"));
+//                    datos.setOFPND_DIR_ARCHIVO(MFAP_RESULTADO.getString("DIR_ARCHIVO").replace("*","\\"));
+//                    datos.setOFPND_NAME_ARCHIVO(MFAP_RESULTADO.getString("NAME_ARCHIVO"));
+//                firstList.add(datos);
+            }
+            cerrarConexiones();
+        } catch (SQLException e) {
+            Logger.getLogger(ModelFichaAtencionPacNutri.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return datos;
+    }
+    
+    
+    
     
     
 } // END CLASS 

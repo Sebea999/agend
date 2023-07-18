@@ -641,6 +641,22 @@ public class ControllerFichaAtencionPacNutri extends HttpServlet {
                     String IDPACIENTE = (String) request.getParameter("tIP");
                     System.out.println("_   __ID_PACIENTE:       :"+IDPACIENTE);
 //                    List<BeanFichaAtePaciente> LISTA_SERVICIOS = new ArrayList<>();
+                    
+//                    List<BeanFichaAtePaciente> listaDatosPrimeraFicha = new ArrayList<>();
+//                    listaDatosPrimeraFicha = metodosNutri.getDatosPrimeraFicha(IDPACIENTE);
+                    BeanFichaAtePaciente datosFirstFicha = new BeanFichaAtePaciente();
+                    datosFirstFicha = metodosNutri.getDatosPrimeraFicha(IDPACIENTE);
+                    String idFirstFicha = "";
+                    if (datosFirstFicha.getOFPN_IDFICHAPAC()==null || datosFirstFicha.getOFPN_IDFICHAPAC().isEmpty()==true) {
+//                    if (listaDatosPrimeraFicha.isEmpty() == true || listaDatosPrimeraFicha.size() <= 0) {
+                        System.out.println("[-] la lista con los datos de la primera ficha esta null");
+                    } else {
+//                        System.out.println("[+] la lista esta cargada ["+listaDatosPrimeraFicha.size()+"]");
+//                        datosFirstFicha = listaDatosPrimeraFicha.get(0);
+                        System.out.println("[+] id de la primera ficha: "+datosFirstFicha.getOFPN_IDFICHAPAC());
+                        idFirstFicha = datosFirstFicha.getOFPN_IDFICHAPAC();
+                    }
+                    
                     // DATOS DEL PACIENTE 
                     List<String> datosPac = metodosNutri.getDatosPaciente(IDPACIENTE);
 //                    // DATOS DEL PACIENTE 
@@ -667,20 +683,39 @@ public class ControllerFichaAtencionPacNutri extends HttpServlet {
 //                        datosPac.add(TXT_PAC_CIUDAD);
 //                        datosPac.add(TXT_PAC_CORREO);
                     List<String> datosFichaCab01 = new ArrayList<>();
-                        datosFichaCab01.add(FECHA_DE_HOY); // FECHA 
-                        datosFichaCab01.add(HOUR_THIS_MOMENT); // HORA 
-                        datosFichaCab01.add("");
-                        datosFichaCab01.add("");
-                        datosFichaCab01.add("");
-                        datosFichaCab01.add("");
-                        datosFichaCab01.add("");
-                        datosFichaCab01.add("");
-                        datosFichaCab01.add("");
-                        datosFichaCab01.add("");
-                        datosFichaCab01.add("");
-                        datosFichaCab01.add("");
-                        datosFichaCab01.add("");
+                    datosFichaCab01.add(FECHA_DE_HOY); // FECHA 
+                    datosFichaCab01.add(HOUR_THIS_MOMENT); // HORA 
+                    // CONTROLO SI ES QUE LA PRIMERA FICHA TIENE DATOS PARA ASI CARGAR A LA LISTA
+                    if (idFirstFicha == null || idFirstFicha.isEmpty()) {
+                        System.out.println("[-] if -------_01_------- ficha null.-");
+                        datosFichaCab01.add("");// MOTIVO-CONSULTA
+                        datosFichaCab01.add("");// ALIMENTOS-PREFERENCIA
+                        datosFichaCab01.add("");// ALIMENTOS-COMES-GRL
+                        datosFichaCab01.add("");// ALIMENTOS-NO-TOLERA
+                        datosFichaCab01.add("");// ALERGIAS
+                        datosFichaCab01.add("");// ENFERMEDAD 
+                        datosFichaCab01.add("");// CIRUGIAS 
+                        datosFichaCab01.add("");// MEDICAMENTO
+                        datosFichaCab01.add("");// OTROS-DATOS 
+                        datosFichaCab01.add("");// CONSUMO-ALCOHOL 
+                        datosFichaCab01.add("");// CONSUMO-CIGARRILLO
+                    } else { // si no esta vacio el idFirstFicha entonces eso quiere decir que puedo usar la variable "listaDatosPrimeraFicha" para recuperar los demas datos sin problemas de que me salte una excepcion de nullPointer 
+                        System.out.println("[+] else -----_01_--------- ficha load.-");
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_MOTIVO_DE_LA_CONSULTA());// MOTIVO-CONSULTA
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_ALIMENTOS_DE_PREFERENCIA());// ALIMENTOS-PREFERENCIA
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_ALI_QUE_SUELE_COMER_GRL());// ALIMENTOS-COMES-GRL
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_ALIMENTOS_QUE_NO_TOLERA());// ALIMENTOS-NO-TOLERA
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_ALERGIAS_A_ALGO());// ALERGIAS
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_PADECE_ALGUNA_ENFERMEDAD());// ENFERMEDAD 
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_CIRUGIAS());// CIRUGIAS 
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_MEDICAMENTE_Q_E_CONSUMIENDO());// MEDICAMENTO
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_OTROS_DATOS_A_TENER_EN_CUENTA());// OTROS-DATOS 
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_CONSUMO_ALCOHOL());// CONSUMO-ALCOHOL 
+                        datosFichaCab01.add(datosFirstFicha.getOFPN_CONSUMO_CIGARRILLO());// CONSUMO-CIGARRILLO
+                    }
                     List<String> datosFichaCab02 = new ArrayList<>();
+                    if (idFirstFicha == null || idFirstFicha.isEmpty()) {
+                        System.out.println("[-] if -------_02_------- ficha null.-");
                         datosFichaCab02.add("");
                         datosFichaCab02.add("");
                         datosFichaCab02.add("");
@@ -701,6 +736,29 @@ public class ControllerFichaAtencionPacNutri extends HttpServlet {
                         datosFichaCab02.add("");
                         datosFichaCab02.add("");
                         datosFichaCab02.add("");
+                    } else {
+                        System.out.println("[+] else -----_02_--------- ficha load.-");
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_REALIZA_ACTIVIDAD_FISICA());// REALIZA ACTIVIDAD FISICA
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_TIPO_DE_ACTIVIDAD_FISICA());// TIPO EJERCICIO
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_FRECUENCIA_ACT_FISICA_SEM());// FRECUENCIA DE EJERCICIO
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_DBLCR());// DIGIERE CARNES ROJAS
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_ESTRENHIMIENTO());// ESTRENHIMIENTO
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_CALAMBRES_Y_HORMIGUEOS());// CALAMBRES O HORMIGUEOS
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_LGSLCM());// GRASAS SATURADAS
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_CANSANCIO_FATIGA());// CANSANCIO FATIGA
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_ZUMBIDOS_EN_EL_OIDO());// ZUMBIDOS EN LOS OIDOS
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_TBDALN());// BUENA DIGESTION
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_HICHAZON_ABDOMINAL());// HINCHAZON ABDOMINAL
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_CAIDA_DE_CABELLO());// CAIDA DEL CABELLO
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_DPALN());// DUERME PROFUNDAMENTE
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_INSOMNIO());// INSOMNIO
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_UNHAS_QUEBRADIZAS());// UNHAS QUEBRADIZAS
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_DDCCF());// DOLORES DE CABEZA
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_MUCOSIDAD_Y_CATARRO());// MUCOSIDAD/CATARRO
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_PIEL_SECA());// PIEL SECA
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_TIPO_DE_METABOLISMO());// TIPO DE METABOLISMO
+                        datosFichaCab02.add(datosFirstFicha.getOFPN_TDEDBU());// ESCALA BRISTOL
+                    }
                     List<String> datosFichaCab03 = new ArrayList<>();
                         datosFichaCab03.add("");
                         datosFichaCab03.add("");
