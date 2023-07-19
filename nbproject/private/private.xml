@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1292">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1293">
         <file>
             <url>web/recursos/css/styleAtencion123.css</url>
             <bookmark id="498">
@@ -840,6 +840,14 @@
             <bookmark id="930">
                 <name/>
                 <line>585</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>src/java/com/agend/modelo/ModelFichaAtencionPacNutri.java</url>
+            <bookmark id="1293">
+                <name/>
+                <line>3896</line>
                 <key/>
             </bookmark>
         </file>
@@ -4436,7 +4444,6 @@
             <file>file:/C:/OdontoAppWeb/web/WEB-INF/jsp/pagFichaAtencionPac_Datos_nutri.jsp</file>
             <file>file:/C:/OdontoAppWeb/web/WEB-INF/dispatcher-servlet.xml</file>
             <file>file:/C:/OdontoAppWeb/src/java/com/agend/modelo/ModelFichaAtencionPacNutri.java</file>
-            <file>file:/C:/OdontoAppWeb/web/WEB-INF/jsp/pagPacienteVer.jsp</file>
             <file>file:/C:/OdontoAppWeb/src/java/com/agend/controlador/ControllerFichaAtencionPacNutri.java</file>
         </group>
     </open-files>
