@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 C:*OdontoAppWeb*web*recursos*static*
+=======
+C:*AgendApp*web*recursos*static*
+>>>>>>> a69cd3997cb0f02b21f36519564fa1fd7875edac

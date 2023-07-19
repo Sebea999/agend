@@ -17,7 +17,6 @@
             http://www.springframework.org/schema/mvc
             http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     
-    
 <!--    <http>
         <session-management>
             <concurrency-control max-sessions="1"/>
@@ -196,10 +195,9 @@
     <mvc:resources mapping="/recursos/static/**" location="file:[C:/sys/web/recursos/static/]" />
     <mvc:resources mapping="/recursos/download/**" location="file:[C:/sys/web/recursos/download/]" />
     <mvc:resources mapping="/recursos/**" location="file:[C:/sys/web/recursos/]" />
-    
-    <mvc:resources mapping="/recursos/static/**" location="file:[C:/OdontoAppWeb/web/recursos/static/]" />
-    <mvc:resources mapping="/recursos/download/**" location="file:[C:/OdontoAppWeb/web/recursos/download/]" />
-    <mvc:resources mapping="/recursos/**" location="file:[C:/OdontoAppWeb/web/recursos/]" />
+<!--    <mvc:resources mapping="/recursos/static/**" location="file:C:/sys/web/recursos/static/" />
+    <mvc:resources mapping="/recursos/download/**" location="file:C:/sys/web/recursos/download/" />
+    <mvc:resources mapping="/recursos/**" location="file:C:/sys/web/recursos/" />-->
     
     <context:component-scan base-package="com.agend.controlador" />
     

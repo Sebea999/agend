@@ -200,6 +200,14 @@ public class ModelFichaAtencionPacNutri implements CRUD {
         System.out.println("[+]___     ___________cargar_grilla_paginacion()___________     ___");
         System.out.println("[*]_   _   __PARAM_NRO_PAG_MOSTRAR:   :"+PARAM_NRO_PAG_MOSTRAR);
         System.out.println("[*]_   _   __PARAM_NRO_REG_MOSTRAR:   :"+PARAM_NRO_REG_MOSTRAR);
+        System.out.println(".");
+        System.out.println(".");
+        System.out.println(".");
+        System.out.println(".");
+//        PARAM_NRO_REG_MOSTRAR = "1";
+        System.out.println("___     ___________cargar_grilla_paginacion()___________     ___");
+        System.out.println("_   _   __PARAM_NRO_PAG_MOSTRAR:   :"+PARAM_NRO_PAG_MOSTRAR);
+        System.out.println("_   _   __PARAM_NRO_REG_MOSTRAR:   :"+PARAM_NRO_REG_MOSTRAR);
         List<BeanAgendamiento> lista_mostrar = new ArrayList<>();
         ModelInicioSesion metodosIniSes = new ModelInicioSesion();
         
@@ -3906,9 +3914,9 @@ public class ModelFichaAtencionPacNutri implements CRUD {
                 "AND ofpn.ESTADO = 'A' \n" +
                 "ORDER BY ofpn.IDFICHAPAC ASC \n" +
                 "LIMIT 1 \n";
-            System.out.println("-----------------MODEL_FICHA_ATENCION_PAC-NUTRI--------------------");
-            System.out.println("-- ---getDatosPrimeraFicha()-------    "+sql);
-            System.out.println("-------------------------------------------------------------------");
+            System.out.println("[*]-----------------MODEL_FICHA_ATENCION_PAC-NUTRI--------------------");
+            System.out.println("[*]-- ---getDatosPrimeraFicha()-------    "+sql);
+            System.out.println("[*]-------------------------------------------------------------------");
             // CARGO LA VARIABLE GLOBAL DE RESULTADO CON EL METODO QUE HARA LA CONSULTA Y DEVOLVERA ESE RESULTADO 
             MFAP_RESULTADO = consultaBD(sql);
             while(MFAP_RESULTADO.next()) {

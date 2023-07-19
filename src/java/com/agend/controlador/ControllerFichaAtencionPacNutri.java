@@ -958,7 +958,8 @@ public class ControllerFichaAtencionPacNutri extends HttpServlet {
                     // VARIABLES PARA COPIAR EL FILE.-
                     String PATH_FILE = "", NAME_FILE = "";
                     String file_separador =  File.separator;
-                    String path_destino = modeloIniSes.getPathFileLocation();
+                    String path_destino = request.getServletContext().getRealPath("//recursos//download//");
+//                    String path_destino = modeloIniSes.getPathFileLocation();
                     
                     // VARIABLE QUE UTILIZO PARA SABER A DONDE TENDRA QUE RETORNAR YA QUE PUEDE SER REDIRECCIONADO DESDE "VER PACIENTE" 
                     String return_pag;
@@ -1413,7 +1414,8 @@ public class ControllerFichaAtencionPacNutri extends HttpServlet {
                     System.out.println("__ID_CLINICA :   :"+ID_CLINICA);
                     ID_PACIENTE_EXP = IDPACIENTE;
                     String file_separador =  File.separator;
-                    String path_destino = modeloIniSes.getPathFileLocation();
+                    String path_destino = request.getServletContext().getRealPath("//recursos//download//");
+//                    String path_destino = modeloIniSes.getPathFileLocation();
                     
                     // VARIABLE QUE UTILIZO PARA SABER A DONDE TENDRA QUE RETORNAR YA QUE PUEDE SER REDIRECCIONADO DESDE "VER PACIENTE" 
                     String return_pag;
