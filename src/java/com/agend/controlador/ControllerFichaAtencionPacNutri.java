@@ -632,14 +632,14 @@ public class ControllerFichaAtencionPacNutri extends HttpServlet {
                     sesionDatosUsuario.setAttribute("CR_RFAN_BTN_VOLVER_ATRAS", "FICHA_ATENCION_PAC_NUTRI");
                     
                 } else if (accion.equalsIgnoreCase("Cargar Atencion") || accion.equalsIgnoreCase("Cargar Atención")) {
-                    System.out.println("---------------------__CARGAR_ATENCION__--------------------------");
+                    System.out.println("[*]---------------------__CARGAR_ATENCION__--------------------------");
                     limpiarVarsSession(sesionDatosUsuario);
                     String IDAGENDAMIENTO = (String) request.getParameter("tIA");
-                    System.out.println("_   __ID_AGENDAMIENTO:   :"+IDAGENDAMIENTO);
+                    System.out.println("[*]_   __ID_AGENDAMIENTO:   :"+IDAGENDAMIENTO);
                     String ITEM_AGEN_DET = (String) request.getParameter("tAID");
-                    System.out.println("_   __ITEM_AGEN_DET:     :"+ITEM_AGEN_DET);
+                    System.out.println("[*]_   __ITEM_AGEN_DET:     :"+ITEM_AGEN_DET);
                     String IDPACIENTE = (String) request.getParameter("tIP");
-                    System.out.println("_   __ID_PACIENTE:       :"+IDPACIENTE);
+                    System.out.println("[*]_   __ID_PACIENTE:       :"+IDPACIENTE);
 //                    List<BeanFichaAtePaciente> LISTA_SERVICIOS = new ArrayList<>();
                     
 //                    List<BeanFichaAtePaciente> listaDatosPrimeraFicha = new ArrayList<>();

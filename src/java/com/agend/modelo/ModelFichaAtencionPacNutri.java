@@ -192,14 +192,14 @@ public class ModelFichaAtencionPacNutri implements CRUD {
             String PARAM_NRO_PAG_MOSTRAR, // PARAMETRO PARA SABER EL NRO DEL BTN DE LA LISTA A MOSTRAR EN LA PAGINA 
             String PARAM_NRO_REG_MOSTRAR // PARAMETRO PARA SABER LA CANTIDAD DE REGISTROS QUE SE VAN A SEPARA PARA SABER LA CANTIDAD DE BOTONES DE PAGINAS QUE VOY A TENER 
             ) {
-        System.out.println(".");
-        System.out.println(".");
-        System.out.println(".");
-        System.out.println(".");
+        System.out.println("[.]");
+        System.out.println("[.]");
+        System.out.println("[.]");
+        System.out.println("[.]");
 //        PARAM_NRO_REG_MOSTRAR = "1";
-        System.out.println("___     ___________cargar_grilla_paginacion()___________     ___");
-        System.out.println("_   _   __PARAM_NRO_PAG_MOSTRAR:   :"+PARAM_NRO_PAG_MOSTRAR);
-        System.out.println("_   _   __PARAM_NRO_REG_MOSTRAR:   :"+PARAM_NRO_REG_MOSTRAR);
+        System.out.println("[+]___     ___________cargar_grilla_paginacion()___________     ___");
+        System.out.println("[*]_   _   __PARAM_NRO_PAG_MOSTRAR:   :"+PARAM_NRO_PAG_MOSTRAR);
+        System.out.println("[*]_   _   __PARAM_NRO_REG_MOSTRAR:   :"+PARAM_NRO_REG_MOSTRAR);
         List<BeanAgendamiento> lista_mostrar = new ArrayList<>();
         ModelInicioSesion metodosIniSes = new ModelInicioSesion();
         

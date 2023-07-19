@@ -36,6 +36,9 @@
         <%@include file="menu_jsp.jsp" %> <% // INCLUYO EL MENU %>
             <main>
                 <%
+                System.out.println("-----------------------------------------------");
+                System.out.println("[+] JSP pagFichaAtencionPac_Datos_n-u-t-r-i-.-");
+                System.out.println("-----------------------------------------------");
                 String displayMsn = "none";
                 String mensaje = (String) request.getAttribute("CFAP_MENSAJE"); // CONTROLLER FICHA ATENCION PACIENTE MENSAJE 
                 String tipoMensaje = (String) request.getAttribute("CFAP_TIPO_MENSAJE"); // CONTROLLER FICHA ATENCION PACIENTE TIPO MENSAJE 
