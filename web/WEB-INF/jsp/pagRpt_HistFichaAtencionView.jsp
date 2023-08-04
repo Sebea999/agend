@@ -204,7 +204,7 @@
 //                                            NRO_PAG = (String) sesionDatosUsuario.getAttribute("PAG_RPT_HIST_FAN_LISTA_ACTUAL");
 //                                        }
 //                                        System.out.println("_   _JSP____NRO_PAG_ACTUAL:     :"+NRO_PAG);
-
+                                        
                                         List<BeanFichaAtePaciente> listaDatos = null;
                                         if (((List<BeanFichaAtePaciente>)request.getAttribute("CR_RFAN_LISTA_HISTORICO_PAC")) != null) { // si se hace el filtro entonces en la lista se debe almacenar del resultado que le pasamos 
                                             listaDatos = (List<BeanFichaAtePaciente>) request.getAttribute("CR_RFAN_LISTA_HISTORICO_PAC");
@@ -225,7 +225,7 @@
                                         while(iterDatos.hasNext()) {
                                             datosBean = iterDatos.next();
                                             String DET_NAME_ARCHIVO = "DET: "+datosBean.getOFPN_IDFICHAPAC();
-
+                                            
                                             // TRAER DATOS DEL MEDICO 
     //                                        BeanPersona datosBPersona = new BeanPersona();
     //                                        datosBPersona = metodosPersona.datosBasicosPersona(datosBPersona, datosBean.getOA_IDMEDICO());

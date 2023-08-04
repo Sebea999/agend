@@ -16,6 +16,10 @@ public class BeanFichaAtePaciente extends BeanFichaAtePacienteDet {
     String OFPN_IDAGENDAMIENTO;
     String OFPN_ITEM_AGEND_DET;
     String OFPN_IDPACIENTE;
+        // OBS: CAMPOS AUXILIARES QUE UTILIZO PARA GUARDAR LOS DATOS MINIMOS DEL PACIENTE, PARA EVITAR VOLVER A HACER UN SELECT PARA RECUPERAR ESTOS DATOS.-
+        String OFPN_PAC_NOMBRE;
+        String OFPN_PAC_APELLIDO;
+        String OFPN_PAC_NROCI;
     
     // DATOS REFERENTES A LA CONSULTA 
     String OFPN_FECHA_FICHA_ATE;
@@ -594,6 +598,29 @@ public class BeanFichaAtePaciente extends BeanFichaAtePacienteDet {
     public void setOFPN_FEC_AGEN_AUX(String OFPN_FEC_AGEN_AUX) {
         this.OFPN_FEC_AGEN_AUX = OFPN_FEC_AGEN_AUX;
     }
-   
+
+    public String getOFPN_PAC_NOMBRE() {
+        return OFPN_PAC_NOMBRE;
+    }
+
+    public void setOFPN_PAC_NOMBRE(String OFPN_PAC_NOMBRE) {
+        this.OFPN_PAC_NOMBRE = OFPN_PAC_NOMBRE;
+    }
+
+    public String getOFPN_PAC_APELLIDO() {
+        return OFPN_PAC_APELLIDO;
+    }
+
+    public void setOFPN_PAC_APELLIDO(String OFPN_PAC_APELLIDO) {
+        this.OFPN_PAC_APELLIDO = OFPN_PAC_APELLIDO;
+    }
+
+    public String getOFPN_PAC_NROCI() {
+        return OFPN_PAC_NROCI;
+    }
+
+    public void setOFPN_PAC_NROCI(String OFPN_PAC_NROCI) {
+        this.OFPN_PAC_NROCI = OFPN_PAC_NROCI;
+    }
     
 }

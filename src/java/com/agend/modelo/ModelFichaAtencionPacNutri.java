@@ -3453,7 +3453,7 @@ public class ModelFichaAtencionPacNutri implements CRUD {
     ) { // METODO PARA LA PAGINA DE "HISTORICO DE FICHA DE ATENCION" (NO CARGA EL METODO DEL HISTORICO DE FICHAS PARA EL REPORTE DE ESTADISTICA) 
         List<BeanFichaAtePaciente> listado_de_fichas = new ArrayList<>();
         
-        String sqlWhere = "WHERE ofpn.IDPACIENTE = '"+PARAM_IDPACIENTE+"' \n";
+        String sqlWhere = "WHERE ofpn.ESTADO = '"+PARAM_CBX_ESTADO+"' \n";
         
         // SI SE ENCUENTRA VACIO EL CAMPO DE TEXTO ENTONCES NO AÑADIRIA NADA AL WHERE 
         if (PARAM_TXT_BUSCAR == null || PARAM_TXT_BUSCAR.isEmpty() || PARAM_TXT_BUSCAR.equals(" ")) {
@@ -3466,11 +3466,19 @@ public class ModelFichaAtencionPacNutri implements CRUD {
                 ")";
         }
         
-        if (PARAM_CBX_ESTADO == null || PARAM_CBX_ESTADO.isEmpty() || PARAM_CBX_ESTADO.equals(" ")) {
-            sqlWhere = sqlWhere + "";
+        // control del combo de paciente.
+        if (PARAM_IDPACIENTE == null || PARAM_IDPACIENTE.isEmpty() || PARAM_IDPACIENTE.equals(" ")) {
+//            sqlWhere = sqlWhere + "";
         } else {
-            sqlWhere = sqlWhere + "AND ofpn.ESTADO = '"+PARAM_CBX_ESTADO+"' \n";
+            sqlWhere = sqlWhere + "AND ofpn.IDPACIENTE = '"+PARAM_IDPACIENTE+"' \n";
         }
+        
+//        // control del combo de estado de la ficha.
+//        if (PARAM_CBX_ESTADO == null || PARAM_CBX_ESTADO.isEmpty() || PARAM_CBX_ESTADO.equals(" ")) {
+////            sqlWhere = sqlWhere + "";
+//        } else {
+//            sqlWhere = sqlWhere + "AND ofpn.ESTADO = '"+PARAM_CBX_ESTADO+"' \n";
+//        }
         
         // CONTROLO SI ES QUE SE ENCUENTRAN CARGADAS LAS FECHAS PARA ASI AGREGUEGAR AL WHERE EL FILTRO POR LAS FECHAS / SI UNA SOLA FECHA ESTA CARGADA, ENTONCES VOY A HACER EL FILTRO POR ESA FECHA 
         if (PARAM_TXT_FEC_INI.equals("") && PARAM_TXT_FEC_FIN.equals("")) {
@@ -3505,16 +3513,29 @@ public class ModelFichaAtencionPacNutri implements CRUD {
         }
         
         try {
-            String sql = "SELECT ofpn.IDFICHAPAC, ofpn.IDCLINICA, oc.DESC_CLINICA, ofpn.IDAGENDAMIENTO, ofpn.ITEM_AGEND_DET, ofpn.IDPACIENTE, \n" +
+            String sql = "SELECT ofpn.IDFICHAPAC, ofpn.IDPACIENTE, ofpn.IDCLINICA, oc.DESC_CLINICA, ofpn.IDAGENDAMIENTO, ofpn.ITEM_AGEND_DET, ofpn.IDPACIENTE, \n" +
                 "DATE_FORMAT(ofpn.FECHA_FICHA_ATE, '%d/%m/%Y') AS FECHA_FICHA_ATE, DATE_FORMAT(ofpn.FECHA_FICHA_ATE, '%H:%i') AS HORA_FICHA, ofpn.ESTADO, \n" +
                 "ofpn.MOTIVO_DE_LA_CONSULTA, ofpn.ESTATURA, ofpn.PESO, ofpn.IMC, ofpn.PORC_GRASA, ofpn.PORC_MUSCULO, ofpn.VISCERAL, ofpn.EDAD_METABOLICA, ofpn.RM, ofpn.TIPO_DE_BALANZA \n" +
                 ", (CASE WHEN((SELECT ('*') FROM rh_persona ssrh JOIN ope_ficha_pac_nutri ssofpn ON ssofpn.IDPACIENTE = ssrh.IDPERSONA JOIN ope_ficha_pac_nutri_det ssofpnd ON ssofpnd.IDFICHAPAC = ssofpn.IDFICHAPAC WHERE ssofpn.IDFICHAPAC = ofpn.IDFICHAPAC AND ssofpn.ESTADO='A' AND ssofpnd.ESTADO='A' LIMIT 1)) IS NULL THEN '0' \n" +
                 "	WHEN((SELECT ('*') FROM rh_persona ssrh JOIN ope_ficha_pac_nutri ssofpn ON ssofpn.IDPACIENTE = ssrh.IDPERSONA JOIN ope_ficha_pac_nutri_det ssofpnd ON ssofpnd.IDFICHAPAC = ssofpn.IDFICHAPAC WHERE ssofpn.IDFICHAPAC = ofpn.IDFICHAPAC AND ssofpn.ESTADO='A' AND ssofpnd.ESTADO='A' LIMIT 1)) = '*' THEN '1' \n" +
                 "	END) AS EXISTS_DET \n" +
+                ", rp.NOMBRE, rp.APELLIDO, rp.CINRO \n" +
                 "FROM ope_ficha_pac_nutri ofpn \n" +
                 "JOIN ope_clinica oc ON oc.IDCLINICA = ofpn.IDCLINICA \n" +
+                "JOIN rh_persona rp ON ofpn.IDPACIENTE = rp.IDPERSONA \n" +
                 ""+sqlWhere+" \n" +
                 "ORDER BY ofpn.IDFICHAPAC DESC \n";
+//            String sql = "SELECT ofpn.IDFICHAPAC, ofpn.IDCLINICA, oc.DESC_CLINICA, ofpn.IDAGENDAMIENTO, ofpn.ITEM_AGEND_DET, ofpn.IDPACIENTE, \n" +
+//                "DATE_FORMAT(ofpn.FECHA_FICHA_ATE, '%d/%m/%Y') AS FECHA_FICHA_ATE, DATE_FORMAT(ofpn.FECHA_FICHA_ATE, '%H:%i') AS HORA_FICHA, ofpn.ESTADO, \n" +
+//                "ofpn.MOTIVO_DE_LA_CONSULTA, ofpn.ESTATURA, ofpn.PESO, ofpn.IMC, ofpn.PORC_GRASA, ofpn.PORC_MUSCULO, ofpn.VISCERAL, ofpn.EDAD_METABOLICA, ofpn.RM, ofpn.TIPO_DE_BALANZA \n" +
+//                ", (CASE WHEN((SELECT ('*') FROM rh_persona ssrh JOIN ope_ficha_pac_nutri ssofpn ON ssofpn.IDPACIENTE = ssrh.IDPERSONA JOIN ope_ficha_pac_nutri_det ssofpnd ON ssofpnd.IDFICHAPAC = ssofpn.IDFICHAPAC WHERE ssofpn.IDFICHAPAC = ofpn.IDFICHAPAC AND ssofpn.ESTADO='A' AND ssofpnd.ESTADO='A' LIMIT 1)) IS NULL THEN '0' \n" +
+//                "	WHEN((SELECT ('*') FROM rh_persona ssrh JOIN ope_ficha_pac_nutri ssofpn ON ssofpn.IDPACIENTE = ssrh.IDPERSONA JOIN ope_ficha_pac_nutri_det ssofpnd ON ssofpnd.IDFICHAPAC = ssofpn.IDFICHAPAC WHERE ssofpn.IDFICHAPAC = ofpn.IDFICHAPAC AND ssofpn.ESTADO='A' AND ssofpnd.ESTADO='A' LIMIT 1)) = '*' THEN '1' \n" +
+//                "	END) AS EXISTS_DET \n" +
+//                "FROM ope_ficha_pac_nutri ofpn \n" +
+//                "JOIN ope_clinica oc ON oc.IDCLINICA = ofpn.IDCLINICA \n" +
+//                ""+sqlWhere+" \n" +
+//                "ORDER BY ofpn.IDFICHAPAC DESC \n";
+            
             
 //            String sql = "SELECT ofpn.IDFICHAPAC, ofpn.IDCLINICA, oc.DESC_CLINICA, ofpn.IDAGENDAMIENTO, ofpn.ITEM_AGEND_DET, ofpn.IDPACIENTE, \n" +
 //                "DATE_FORMAT(ofpn.FECHA_FICHA_ATE, '%d/%m/%Y') AS FECHA_FICHA_ATE, DATE_FORMAT(ofpn.FECHA_FICHA_ATE, '%H:%i') AS HORA_FICHA, ofpn.ESTADO, \n" +
@@ -3539,6 +3560,9 @@ public class ModelFichaAtencionPacNutri implements CRUD {
                     datos.setOFPN_IDAGENDAMIENTO(MFAP_RESULTADO.getString("IDAGENDAMIENTO"));
                     datos.setOFPN_ITEM_AGEND_DET(MFAP_RESULTADO.getString("ITEM_AGEND_DET"));
                     datos.setOFPN_IDPACIENTE(MFAP_RESULTADO.getString("IDPACIENTE"));
+                        datos.setOFPN_PAC_NOMBRE(MFAP_RESULTADO.getString("NOMBRE"));
+                        datos.setOFPN_PAC_APELLIDO(MFAP_RESULTADO.getString("APELLIDO"));
+                        datos.setOFPN_PAC_NROCI(MFAP_RESULTADO.getString("CINRO"));
                     datos.setOFPN_FECHA_FICHA_ATE(MFAP_RESULTADO.getString("FECHA_FICHA_ATE")+" "+MFAP_RESULTADO.getString("HORA_FICHA"));
                     // DATOS REFERENTES A LA CONSULTA 
                     datos.setOFPN_MOTIVO_DE_LA_CONSULTA(MFAP_RESULTADO.getString("MOTIVO_DE_LA_CONSULTA"));

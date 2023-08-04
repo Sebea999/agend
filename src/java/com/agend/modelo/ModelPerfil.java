@@ -846,4 +846,21 @@ public class ModelPerfil implements CRUD {
         }
     }
     
+    // METODO PARA CONTROLAR QUE PERFIL TIENE HABILITADO INGRESAR A LA PAGINA DE REPORTE DE FICHA ATENCION DEL PACIENTE (NUTRI).-
+    public boolean isReporteFichaAteNutri(String PARAM_IDPERFIL) {
+        if (PARAM_IDPERFIL.equals("1")) { // 1 = IDPERFIL ADMINISTRADOR 
+            return true;
+        } else if (PARAM_IDPERFIL.equals("2")) { // 2 = IDPERFIL FUNCIONARIO 
+            return true;
+        } else if (PARAM_IDPERFIL.equals("3")) { // 3 = IDPERFIL SECRETARIO 
+            return true;
+//        } else if (PARAM_IDPERFIL.equals("4")) { // 4 = IDPERFIL PACIENTE 
+//            return true;
+//        } else if (PARAM_IDPERFIL.equals("5")) { // 5 = IDPERFIL MEDICO 
+//            return true;
+        } else {
+            return false;
+        }
+    }
+    
 } // end class 

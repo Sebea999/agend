@@ -42,5 +42,10 @@
         var x = document.getElementById("cbxAddNewClinica").value;
         document.getElementById("tAcbxAddNewClinica").value = x;
     }
+
+    function functCbxEst() {
+        var x = document.getElementById("cE").value;
+        document.getElementById("tAcE").value = x;
+    }
     
     

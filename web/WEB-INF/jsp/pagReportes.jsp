@@ -142,6 +142,23 @@
                 }
                 %>
                 <%
+                if(metodosPerfil.isReporteFichaAteNutri(idPerfil) == true) {
+                %>
+                    <div class="card-single">
+                        <a href="<%= urlReporteFichas %>">
+                            <div>
+                                <h1>Reporte de Fichas</h1>
+                                <%//<!--<span>......</span>-->%>
+                            </div>
+                            <div>
+                                <span class="las la-comment"></span>
+                            </div>
+                        </a>
+                    </div>
+                <%
+                }
+                %>
+                <%
 //                    <div class="card-single">
 //                        <a href="<%= urlReportes >">
 //                            <div>

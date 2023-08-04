@@ -96,6 +96,7 @@
             String urlReporteEmpenho = "rpt_empenho.htm";
             String urlReporteCuentaCliente = "rpt_cta_paciente.htm";
             String urlReporteFactura = "rpt_factura.htm";
+            String urlReporteFichas = "rpt_ficha.htm";
             String urlReporteMisAgend = "rpt_mis_agen.htm";
             String urlReporteEstadistica = "rpt_est.htm";
             

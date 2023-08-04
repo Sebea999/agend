@@ -17,7 +17,11 @@
         - cleanup
 
         -->
+<<<<<<< HEAD
 <project xmlns:webproject1="http://www.netbeans.org/ns/web-project/1" xmlns:webproject2="http://www.netbeans.org/ns/web-project/2" xmlns:webproject3="http://www.netbeans.org/ns/web-project/3" basedir=".." default="default" name="OdontoAppWeb-impl">
+=======
+<project xmlns:webproject1="http://www.netbeans.org/ns/web-project/1" xmlns:webproject2="http://www.netbeans.org/ns/web-project/2" xmlns:webproject3="http://www.netbeans.org/ns/web-project/3" basedir=".." default="default" name="AgendApp-impl">
+>>>>>>> a69cd3997cb0f02b21f36519564fa1fd7875edac
     <import file="ant-deploy.xml"/>
     <fail message="Please build using Ant 1.7.1 or higher.">
         <condition>
@@ -470,7 +474,11 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
                     </fileset>
                 </union>
                 <taskdef classname="org.testng.TestNGAntTask" classpath="${run.test.classpath}" name="testng"/>
+<<<<<<< HEAD
                 <testng classfilesetref="test.set" failureProperty="tests.failed" listeners="org.testng.reporters.VerboseReporter" methods="${testng.methods.arg}" mode="${testng.mode}" outputdir="${build.test.results.dir}" suitename="OdontoAppWeb" testname="TestNG tests" workingDir="${basedir}">
+=======
+                <testng classfilesetref="test.set" failureProperty="tests.failed" listeners="org.testng.reporters.VerboseReporter" methods="${testng.methods.arg}" mode="${testng.mode}" outputdir="${build.test.results.dir}" suitename="AgendApp" testname="TestNG tests" workingDir="${basedir}">
+>>>>>>> a69cd3997cb0f02b21f36519564fa1fd7875edac
                     <xmlfileset dir="${build.test.classes.dir}" includes="@{testincludes}"/>
                     <propertyset>
                         <propertyref prefix="test-sys-prop."/>
@@ -618,7 +626,11 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
                 <condition else="-testclass @{testClass}" property="test.class.or.method" value="-methods @{testClass}.@{testMethod}">
                     <isset property="test.method"/>
                 </condition>
+<<<<<<< HEAD
                 <condition else="-suitename OdontoAppWeb -testname @{testClass} ${test.class.or.method}" property="testng.cmd.args" value="@{testClass}">
+=======
+                <condition else="-suitename AgendApp -testname @{testClass} ${test.class.or.method}" property="testng.cmd.args" value="@{testClass}">
+>>>>>>> a69cd3997cb0f02b21f36519564fa1fd7875edac
                     <matches pattern=".*\.xml" string="@{testClass}"/>
                 </condition>
                 <delete dir="${build.test.results.dir}" quiet="true"/>

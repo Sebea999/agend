@@ -2249,6 +2249,24 @@ public class ModelInicioSesion {
     } // end method 
     
     
+    /*
+    METODO QUE UTILIZO PARA EL COMBO DE METABOLISMO QUE UTILIZO EN LA PAGINA DE: REPORTE FICHA DE ATENCIN NUTRI 
+    */
+    public String getDescMetabolismo(String PARAM_VALUE) {
+        if (PARAM_VALUE == null || PARAM_VALUE.isEmpty() || PARAM_VALUE.equalsIgnoreCase("")) { // SI SE ENCUENTRA VACIO ENTONCES SUPONDRIA QUE QUIERE CREAR UN REGISTRO Y NO QUE ESTA RECUPERANDO UNO 
+            return "Acelerado";
+        } else { // EN CASO DE QUE NO SE ENCUENTRE VACIO ENTONCES PREGUNTARIA POR SU VALOR PARA SABER CUAL CARGO PRIMERO 
+            if (PARAM_VALUE.equalsIgnoreCase("0") || PARAM_VALUE.equalsIgnoreCase("A") || PARAM_VALUE.equalsIgnoreCase("ACELERADO")) {
+                return "Acelerado";
+            } else if (PARAM_VALUE.equalsIgnoreCase("1") || PARAM_VALUE.equalsIgnoreCase("T") || PARAM_VALUE.equalsIgnoreCase("TRANQUILO")) {
+                return "Tranquilo";
+            } else {
+                return "Acelerado";
+            }
+        }
+    } // end method 
+    
+    
     
     /*
     METODO QUE UTILIZO PARA EL COMBO DE METABOLISMO QUE UTILIZO EN LA PAGINA DE: FICHA DE ATENCIN NUTRI 
@@ -2316,6 +2334,32 @@ public class ModelInicioSesion {
             }
         }
         return lista;
+    } // end method 
+    
+    
+    /*
+    METODO QUE UTILIZO PARA DEVOLVER LA DESCRIPCION DEL COMBO DE METABOLISMO QUE UTILIZO EN LA PAGINA DE: REPORTE FICHA DE ATENCIN NUTRI 
+    */
+    public String getDescEscalaBristol(String PARAM_VALUE) {
+        if (PARAM_VALUE == null || PARAM_VALUE.isEmpty() || PARAM_VALUE.equalsIgnoreCase("")) { // SI SE ENCUENTRA VACIO ENTONCES SUPONDRIA QUE QUIERE CREAR UN REGISTRO Y NO QUE ESTA RECUPERANDO UNO 
+            return "Tipo 1";
+        } else { // EN CASO DE QUE NO SE ENCUENTRE VACIO ENTONCES PREGUNTARIA POR SU VALOR PARA SABER CUAL CARGO PRIMERO 
+            if (PARAM_VALUE.equalsIgnoreCase("1") || PARAM_VALUE.equalsIgnoreCase("Tipo 1")) {
+                return "Tipo 1";
+            } else if (PARAM_VALUE.equalsIgnoreCase("2") || PARAM_VALUE.equalsIgnoreCase("Tipo 2")) {
+                return "Tipo 2";
+            } else if (PARAM_VALUE.equalsIgnoreCase("3") || PARAM_VALUE.equalsIgnoreCase("Tipo 3")) {
+                return "Tipo 3";
+            } else if (PARAM_VALUE.equalsIgnoreCase("4") || PARAM_VALUE.equalsIgnoreCase("Tipo 4")) {
+                return "Tipo 4";
+            } else if (PARAM_VALUE.equalsIgnoreCase("5") || PARAM_VALUE.equalsIgnoreCase("Tipo 5")) {
+                return "Tipo 5";
+            } else if (PARAM_VALUE.equalsIgnoreCase("6") || PARAM_VALUE.equalsIgnoreCase("Tipo 6")) {
+                return "Tipo 6";
+            } else {
+                return "Tipo 1";
+            }
+        }
     } // end method 
     
     

@@ -119,6 +119,7 @@
                     <prop key="ver_his_fic.htm">controllerReportes</prop><!-- REPORTE HISTORICO FICHAS DE ATENCION NUTRI -->
                     <prop key="rptexcel.htm">controllerReportes</prop><!-- pagina jsp que uso para cargar el archivo excel que se descarga -->
                     <prop key="ver_his_fic_det.htm">controllerReportes</prop><!-- REPORTE HISTORICO FICHAS DE ATENCION NUTRI - DETALLE / PARA VER LOS ARCHIVOS ADJUNTOS -->
+                    <prop key="rpt_ficha.htm">controllerReportes</prop><!-- REPORTE DE FICHAS DE ATENCION - (NUTRI) -->
 
 
                 <!-- CUENTA CLIENTE -->

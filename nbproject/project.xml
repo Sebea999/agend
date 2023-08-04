@@ -3,11 +3,7 @@
     <type>org.netbeans.modules.web.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
-<<<<<<< HEAD
             <name>OdontoAppWeb</name>
-=======
-            <name>AgendApp</name>
->>>>>>> a69cd3997cb0f02b21f36519564fa1fd7875edac
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">

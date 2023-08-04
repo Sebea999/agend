@@ -3846,6 +3846,115 @@ CLASES QUE UTILIZO PARA LA PRIMERA COLUMNA QUE SERIA EL ID PARA CARGAR EL COLOR 
 
 
 
+/*
+    COLUMNAS DE LA TABLA - REPORTE DE FICHAS DE ATENCION DEL PACIENTE (nutri) ----- 
+*/
+.tableFilterListFic thead tr .RFAPN_CP,
+.tableFilterListFic tbody tr .RFAPN_CP { /* RFAPN_CP :  reporte ficha atencion paciente nutri - codigo paciente  */
+    text-align: center;
+    width: 110px;
+    min-width: 110px;
+    max-width: 110px;
+}
+.tableFilterListFic tbody tr .RFAPN_CP { /* RFAPN_CP :  reporte ficha atencion paciente nutri - codigo paciente  */
+    font-weight: bold;
+    font-size: 12pt;
+}
+.tableFilterListFic thead tr .RFAPN_CPNA { /* RFAPN_CPNA : reporte ficha atencion paciente nutri - columna paciente nombre apellido  */
+    text-align: center;
+}
+.tableFilterListFic tbody tr .RFAPN_CPNA { /* RFAPN_CPNA : reporte ficha atencion paciente nutri - columna paciente nombre apellido  */
+    text-align: left;
+}
+.tableFilterListFic thead tr .RFAPN_CPNA, 
+.tableFilterListFic tbody tr .RFAPN_CPNA { /* RFAPN_CPNA : reporte ficha atencion paciente nutri - columna paciente nombre apellido  */
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+}
+.tableFilterListFic thead tr .RFAPN_CPCI,
+.tableFilterListFic tbody tr .RFAPN_CPCI { /* RFAPN_CPCI : reporte ficha atencion paciente nutri - columna paciente ci  */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.tableFilterListFic thead tr .RFAPN_CF,
+.tableFilterListFic tbody tr .RFAPN_CF { /* RFAPN_CF : reporte ficha atencion paciente nutri - codigo ficha  */
+    text-align: center;
+    width: 110px;
+    min-width: 110px;
+    max-width: 110px;
+}
+.tableFilterListFic tbody tr .RFAPN_CF { /* RFAPN_CF : reporte ficha atencion paciente nutri - codigo ficha  */
+    font-weight: bold;
+    font-size: 12pt;
+}
+.tableFilterListFic thead tr .RFAPN_CC,
+.tableFilterListFic tbody tr .RFAPN_CC { /* RFAPN_CC : reporte ficha atencion paciente nutri - columna clinica  */
+    text-align: center;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+.tableFilterListFic thead tr .RFAPN_CFH,
+.tableFilterListFic tbody tr .RFAPN_CFH { /* RFAPN_CFH : reporte ficha atencion paciente nutri - columna fecha hora  */
+    text-align: center;
+    width: 190px;
+    min-width: 190px;
+    max-width: 190px;
+}
+.tableFilterListFic thead tr .RFAPN_CMCF { /* RFAPN_CMCF : reporte ficha atencion paciente nutri - columna motivo consulta ficha  */
+    text-align: center;
+}
+.tableFilterListFic tbody tr .RFAPN_CMCF { /* RFAPN_CMCF : reporte ficha atencion paciente nutri - columna motivo consulta ficha  */
+    text-align: left;
+}
+.tableFilterListFic thead tr .RFAPN_CMCF,
+.tableFilterListFic tbody tr .RFAPN_CMCF { /* RFAPN_CMCF : reporte ficha atencion paciente nutri - columna motivo consulta ficha  */
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+}
+.tableFilterListFic thead tr .RFAPN_CPP,
+.tableFilterListFic tbody tr .RFAPN_CPP { /* RFAPN_CPG : reporte ficha atencion paciente nutri - columna peso paciente  */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.tableFilterListFic thead tr .RFAPN_CPG,
+.tableFilterListFic tbody tr .RFAPN_CPG { /* RFAPN_CPG : reporte ficha atencion paciente nutri - columna porc grasa  */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.tableFilterListFic thead tr .RFAPN_CPM,
+.tableFilterListFic tbody tr .RFAPN_CPM { /* RFAPN_CPM : reporte ficha atencion paciente nutri - columna porc musculo  */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.tableFilterListFic thead tr .RFAPN_CFE,
+.tableFilterListFic tbody tr .RFAPN_CFE { /* RFAPN_CFE : reporte ficha atencion paciente nutri - columna ficha estado  */
+    text-align: center;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+.tableFilterListFic thead tr .RFAPN_CIP,
+.tableFilterListFic tbody tr .RFAPN_CIP { /* RFAPN_CIP : reporte ficha atencion paciente nutri - columna imprimir pdf  */
+    text-align: center;
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+}
+
+
+
+
 
 
 

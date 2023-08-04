@@ -404,6 +404,37 @@ public class ControllerReportes extends HttpServlet {
     }
     
     
+    @RequestMapping("/rpt_ficha") 
+    public ModelAndView rpt_ficha_ate_nutri(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        // UTILIZO LA SESION PARA PASAR DATOS COMO EL ID 
+        HttpSession sesionDatosUsuario = request.getSession(); // SESION ACTIVA PARA RECUPERAR LOS DATOS DEL USER 
+        System.out.println("-----__9__---------CONTROLLER__REPORTES-------___REPORTE_FICHA-DE-ATENCION-_(NUTRI)_-___-------MODEL_AND_VIEW-------");
+        String SESION_IDUSER = (String) sesionDatosUsuario.getAttribute("IDPERSONA");
+        System.out.println(".   _9_CR__ID_USUARIO_PERSONA:     "+SESION_IDUSER);
+        String IDPERFIL_USER = (String) sesionDatosUsuario.getAttribute("IDPERFIL");
+        System.out.println(".   _9_CR__ID_PERFIL_USER:        :"+IDPERFIL_USER);
+        String paginaMav = "menu_principal";
+        if (modeloPerfil.isReporteFichaAteNutri(IDPERFIL_USER)==true) { // 4 : PACIENTE 
+//        if (modeloPerfil.isPerfilPaciente(IDPERFIL_USER)) { // 4 : PACIENTE 
+//            paginaMav = modeloIniSes.controlValidaciones(SESION_IDUSER, "", request);
+////            sesionDatosUsuario.setAttribute("JSP_MOSTRAR_BARRA_MENU", "1"); // CARGO UNO PARA NO MOSTRARLE O PARA MANTENER CERRADA LA BARRA LATERAL DEL MENU EN EL JSP AL USUARIO 
+//        } else if (modeloPerfil.isPerfilAdmin(IDPERFIL_USER) || modeloPerfil.isPerfilSecre(IDPERFIL_USER)) { //  1 : ADMIN  -  3 : SECRETARIO 
+            paginaMav = modeloIniSes.controlValidaciones(SESION_IDUSER, "pagRpt_FichaAtencion", request);
+//            sesionDatosUsuario.setAttribute("JSP_MOSTRAR_BARRA_MENU", "0"); // CARGO CERO PARA MOSTRARLE ABIERTA LA BARRA LATERAL DEL MENU EN EL JSP AL USUARIO 
+        }
+        System.out.println("pagina_mav:     "+paginaMav);
+        
+        // CARGO LOS DATOS A LA SESION PARA RECUPERAR DESDE EL JSP 
+        sesionDatosUsuario.setAttribute("IDPERSONA", SESION_IDUSER);
+        sesionDatosUsuario.setAttribute("JSP_MOSTRAR_BARRA_MENU", "0"); // CARGO CERO PARA MOSTRARLE ABIERTA LA BARRA LATERAL DEL MENU EN EL JSP AL USUARIO 
+        request.setAttribute("CR_RFAPN_CHECK_FILTRAR_CLIE", "ON"); // VARIABLE QUE UTILIZO PARA QUE AL ENTRAR A LA PAGINA, LE MARQUE EL CHECK DE "TODOS" DEL FILTRO DE CLIENTE Y NO LO DEJE DESMARCADO PORQUE ESTA VARIABLE SE INICIALIZARA CON NULL SI NO LE CARGO SU VALOR ACA  // OBS_2: PASO POR REQUEST PORQUE QUIERO PASARLE AL PRINCIPIO NOMAS Y QUE LA SESION NO TENGA MANTENIENDO EL DATO EN MEMORIA  
+        
+        mav.setViewName(paginaMav);
+        return mav;
+    }
+    
+    
     // PAGINA QUE USO COMO EXPORTADOR PARA EXCEL CAMBIANDO LA RESPUESTA DE PAGINA JSP A UN ARCHIVO EXCEL POR ESO ADENTRO DEL MAV NO TIENE PARAMETROS, NO LO UTILIZO PORQUE ESTOY UTILIZANDO UN EVENTO EN EL CONTROLADOR PARA CREAR EL ARCHIVO EXCEL.-
     @RequestMapping("/rptexcel") 
     public ModelAndView rptexcel(HttpServletRequest request) {
@@ -464,28 +495,198 @@ public class ControllerReportes extends HttpServlet {
         String accionRptMisAgen = request.getParameter("accionRptMisAgend"); // ACCIONES DEL REPORTE DE MIS AGENDAMIENTOS 
         String accionRptEst = request.getParameter("accionRptEst"); // ACCIONES DEL REPORTE DE ESTADISTICAS 
         String accionRptHisFAN = request.getParameter("accionRptHFAN"); // ACCIONES DEL REPORTE / HISTORICO FICHA ATENCION NUTRI
+        String accionRptFichaNutri = request.getParameter("accionRptFichaAPN"); // ACCIONES DEL REPORTE / FICHA DE ATENCION DEL PACIENTE (NUTRI) 
         String idPersona;
         
         try {
-            System.out.println(".");
-            System.out.println(".");
-            System.out.println(".");
-            System.out.println(".");
-            System.out.println(".      ___________________CONTROLADOR DE EVENTOS DE LOS REPORTES____________________");
-            System.out.println(".");
-            System.out.println(".");
-            System.out.println("__ACCION_RPT_PAC:   "+accionRptPac);
-            System.out.println("__ACCION_RPT_CTA_PAC:   "+accionRptCtaPac);
-            System.out.println("__ACCION_RPT_AJU_STOCK: "+accionRptAjuStock);
-            System.out.println("__ACCION_RPT_MIS_AGEND: "+accionRptMisAgen);
-            System.out.println("__ACCION_RPT_ESTADISTICA:  "+accionRptEst);
-            System.out.println("__ACCION_RPT_HIST_FIC_ATE: "+accionRptHisFAN);
+            System.out.println("[*].");
+            System.out.println("[*].");
+            System.out.println("[*].");
+            System.out.println("[*].");
+            System.out.println("[*].      ___________________CONTROLADOR DE EVENTOS DE LOS REPORTES____________________");
+            System.out.println("[*].");
+            System.out.println("[*].");
+            System.out.println("[*]__ACCION_RPT_PAC:   "+accionRptPac);
+            System.out.println("[*]__ACCION_RPT_CTA_PAC:   "+accionRptCtaPac);
+            System.out.println("[*]__ACCION_RPT_AJU_STOCK: "+accionRptAjuStock);
+            System.out.println("[*]__ACCION_RPT_MIS_AGEND: "+accionRptMisAgen);
+            System.out.println("[*]__ACCION_RPT_ESTADISTICA:  "+accionRptEst);
+            System.out.println("[*]__ACCION_RPT_HIST_FIC_ATE: "+accionRptHisFAN);
+            System.out.println("[*]__ACCION_RPT_FICHAS_PAC_N: "+accionRptFichaNutri);
             // COMO EN CADA ACCION UTILIZO EL IDPERSONA, ENTONCES LA RECUPERO ACA NOMAS PARA NO IR RECUPERANDO EN CADA IF 
             idPersona = (String) sesionDatosUsuario.getAttribute("IDPERSONA");
-            System.out.println("_   _   _doPost___ID_PERSONA:  "+idPersona);
+            System.out.println("[*]___doPost___ID_PERSONA:  :"+idPersona);
             
             
             // CONTROLO PRIMERAMENTE CUAL ACCION SE ACTIVO, DE QUE PAGINA, Y LUEGO VERIA EL BOTON QUE SE HAYA ACTIVADO DE ESA PAGINA 
+            // --------     REPORTE DE FICHAS DE ATENCION DEL PACIENTE (NUTRI)     -------------
+            if (accionRptFichaNutri != null) {
+                System.out.println("[*].");System.out.println("[*].");System.out.println("[*].");
+                System.out.println("[*]---------______ACCION__REPORTE__FICHAS-DE-ATENCION-DEL-PACIENTE-NUTRI_______---------");
+                System.out.println("[*].");System.out.println("[*].");
+                acceso = "rpt_ficha.htm";
+                if (accionRptFichaNutri.equalsIgnoreCase("")) {
+//                    var_redireccionar = 1;
+//                    acceso = goVerHistoricoFichasPaciente(request, metodosFichaAtencionPacNutri);
+//                    // variable que uso en el controlador de la ficha para saber a que pagina redireccionar cuando se presione el boton para volver atras 
+//                    sesionDatosUsuario.setAttribute("CR_RFAN_BTN_VOLVER_ATRAS", "REPORTE_PACIENTE"); // OBS.: NO LE COLOCO DENTRO DEL METODO PORQUE FICHA PUEDE LLAMAR A ESTE METODO Y EN ESE CASO TENDRIA QUE VOLVER ATRAS EN FICHA O EN EXPEDIENTE Y NO EN EL REPORTE DE PACIENTE 
+                    
+                } else if (accionRptFichaNutri.equalsIgnoreCase("Filtrar")) {
+                    System.out.println("[*]---------------------__FILTRAR__--------------------------");
+//                    String idFicha = (String) request.getParameter("tRFPNIF");
+//                    System.out.println("[+] id_ficha: "+idFicha);
+//                    String idPaciente = (String) request.getParameter("tRFPNIP");
+//                    System.out.println("[+] id_paciente: "+idPaciente);
+                    
+                    // recupero el valor de las variables.-
+                    String cbxMostrar = (String) request.getParameter("cM"); // cM: combo Mostrar 
+                    if (cbxMostrar == null) { cbxMostrar = ""; }
+                    String txtBuscar = (String) request.getParameter("txB"); // txB: txt Buscar 
+                    if (txtBuscar == null) { txtBuscar = ""; }
+                    String txtFechaIni = (String) request.getParameter("tFFI");
+                    if (txtFechaIni == null || txtFechaIni.isEmpty()) { txtFechaIni = ""; }
+                    String txtFechaFin = (String) request.getParameter("tFFF");
+                    if (txtFechaFin == null || txtFechaFin.isEmpty()) { txtFechaFin = ""; }
+                    String txtCbxEstado = (String) request.getParameter("cE"); // ESTADO  
+                    if (txtCbxEstado == null || txtCbxEstado.isEmpty()) { txtCbxEstado = ""; }
+                    String checkPacienteFiltro = (String) request.getParameter("check_cli"); // CHECK QUE ME INDICA SI DEBO DE FILTRAR POR EL CLIENTE QUE SE ENCUENTRA EN EL COMBO O NO 
+                    String txtPacienteId = (String) request.getParameter("cbxAddNewCli"); // cliente id 
+                    if (txtPacienteId == null || txtPacienteId.isEmpty()) {
+                        txtPacienteId = "";
+                    }
+                    // IMPRESIONES.-
+                    System.out.println("[*]---------------__VAR_FILTRAR__----------------");
+                    System.out.println("[*]_  _CBX_MOSTRAR:   "+cbxMostrar);
+                    System.out.println("[*]_  _BUSCAR_TXT :   "+txtBuscar);
+                    System.out.println("[*]_  _FECHA_INI  :   "+txtFechaIni);
+                    System.out.println("[*]_  _FECHA_FIN  :   "+txtFechaFin);
+                    System.out.println("[*]_  _ESTADO     :   "+txtCbxEstado);
+                    System.out.println("[*]_  _CHECK_PAC  :   "+checkPacienteFiltro);
+                    System.out.println("[*]_  _ID_PACIENTE:   "+txtPacienteId);
+                    System.out.println("[*]----------------------------------------------");
+                    
+                    // CONTROLO SI ES QUE SE SELECCIONO EL CHECK PARA FILTRAR POR CLIENTE, SI SE SELECCIONO, ENTONCES LIMPIARIA LOS TXT DE CLIENTE PARA PASARLOS VACIO Y QUE EL METODO DETECTE QUE NO SE ESTA FILTRANDO POR CLIENTE 
+                    if (checkPacienteFiltro == null || checkPacienteFiltro.equalsIgnoreCase("OFF")) { // SI EL CHECK SE ENCUENTRA DESMARCADO ENTONCES RECUPERO LOS DATOS DEL CLIENTE Y LE DEJO SU VALOR EN LA VARIBLE PARA QUE EL METODO FILTRE POR ESE IDCLIENTE 
+                        checkPacienteFiltro = "OFF";
+                    } else if (checkPacienteFiltro.equalsIgnoreCase("ON")) { // SI EL CHECK SE ENCUENTRA MARCADO ENTONCES 
+                        txtPacienteId = "";
+                    }
+                    
+                    // CARGAR UNA LISTA LLAMANDO AL METODO QUE VA A FILTRAR 
+                    List<BeanFichaAtePaciente> listaFiltro = new ArrayList<>();
+                    listaFiltro = metodosFichaAtencionPacNutri.filtrarFichasAtePac(sesionDatosUsuario, txtPacienteId, cbxMostrar, txtBuscar, txtFechaIni, txtFechaFin, txtCbxEstado);
+                    
+                    // PASAR LA LISTA Y LOS DATOS AL JSP 
+                    acceso = "rpt_ficha.htm";
+                    var_redireccionar = 1;
+                    request.setAttribute("CR_RFAPN_CBX_MOSTRAR", cbxMostrar);
+                    request.setAttribute("CR_RFAPN_TXT_BUSCAR", txtBuscar);
+                    request.setAttribute("CR_RFAPN_TXT_FILTRAR_FEC_INI", txtFechaIni);
+                    request.setAttribute("CR_RFAPN_TXT_FILTRAR_FEC_FIN", txtFechaFin);
+                    request.setAttribute("CR_RFAPN_TXT_FILTRAR_ESTADO", txtCbxEstado);
+                    request.setAttribute("CR_RFAPN_LISTA_DE_FICHAS", listaFiltro);
+                    request.setAttribute("CR_RFAPN_CHECK_FILTRAR_CLIE_01", checkPacienteFiltro);
+                    request.setAttribute("CR_RFAPN_TXT_FILTRAR_CLIE_ID", txtPacienteId);
+//                    sesionDatosUsuario.setAttribute("VAR_PAGI_BAND_FILTRO", "1"); // VARIABLE QUE USO COMO BANDERA PARA PODER IDENTIFICAR CUANDO REDIRECCIONAR AL METODO DE FILTRAR DESDE LA PAGINACION 
+//                    
+//                } else if (isNumber(accionRptHisFAN) || accionRptHisFAN.equalsIgnoreCase("<<") || accionRptHisFAN.equalsIgnoreCase(">>")) {
+//                    acceso = "rpt_his_fic.htm";
+//                    var_redireccionar = 1;
+//                    acceso = paginacion("PAG_RPT_HIST_FAN", request, response, sesionDatosUsuario, acceso, accionRptHisFAN, 5, metodosPersona, metodosAgendamiento, metodosCuentaCliente, metodosFactura, metodosFichaAtencionPacNutri);
+                    
+                /*
+                 * OBSERVACION: COMO NECESITO LIMPIAR LAS VARIABLES DE LA PAGINACION AL REFRESCAR LA PAGINA 
+                    Y NO PUEDO LIMPIAR LAS VARIABLES DESDE EL CONTROLADOR, ENTONCES POR ESO LE CREO 
+                    UN METODO AL EVENTO DE LIMPIAR QUE SE ENCUENTRA EN LA PAGINA PRINCIPAL 
+                */
+                } else if (accionRptFichaNutri.equalsIgnoreCase("Limpiar")) {
+                    System.out.println("------------------------__LIMPIAR_PAGINA_PRINCIPAL__------------------------------");
+                    var_redireccionar = 1;
+                    acceso = goVerHistoricoFichasPaciente(request, metodosFichaAtencionPacNutri);
+//                    acceso = "ver_his_fic.htm";
+//                    sesionDatosUsuario.setAttribute("PAG_RPT_HIST_FAN_CANT_BTN_DERE_CLIC", "1");
+//                    sesionDatosUsuario.setAttribute("PAG_RPT_HIST_FAN_LISTA_ACTUAL", "1");
+//                    sesionDatosUsuario.setAttribute("VAR_PAGI_BAND_FILTRO", "0"); // VARIABLE QUE USO COMO BANDERA PARA PODER IDENTIFICAR CUANDO REDIRECCIONAR AL METODO DE FILTRAR DESDE LA PAGINACION 
+                    
+                } else if (accionRptFichaNutri.equalsIgnoreCase("Volver Atras")) {
+                    System.out.println("[*]------------------------__VOLVER_ATRAS__------------------------------");
+                    var_redireccionar = 0;
+                    String varVolverAtras = (String) sesionDatosUsuario.getAttribute("CR_RFAN_BTN_VOLVER_ATRAS");
+                    System.out.println("[*]__VAR-VOLVER-ATRAS:   :"+varVolverAtras);
+                    if (varVolverAtras.equals("REPORTE_PACIENTE")) {
+                        acceso = "rpt_paciente.htm";
+                    } else if (varVolverAtras.equals("FICHA_ATENCION_PAC_NUTRI")) {
+                        acceso = "add_atencion.htm";
+                        String IDFICHA = (String) sesionDatosUsuario.getAttribute("ID_ATENCION_PAC");
+                        System.out.println("_   _CR___ID_FICHA_ATENCION:  :"+IDFICHA);
+                        if (IDFICHA.isEmpty()) {
+                            String IDPACIENTE = (String) sesionDatosUsuario.getAttribute("CFAP_IDPACIENTE");
+                            if (sesionDatosUsuario.getAttribute("CFAP_LAST_FICHA_VALUES") == null) { // SI LA LISTA ESTA VACIA ENTONCES LE VUELVO A CARGAR.- 
+                                List<BeanFichaAtePaciente> datosUltFichaPac = metodosFichaAtencionPacNutri.getUltimaFicha(IDPACIENTE);
+                                sesionDatosUsuario.setAttribute("CFAP_LAST_FICHA_VALUES", datosUltFichaPac);
+                            }
+                        }
+                        List<String> datosPac = (List) sesionDatosUsuario.getAttribute("CFAP_PAC_DATOS");
+                        System.out.println(".");
+                        System.out.println(".");
+                        System.out.println(".");
+                        if (datosPac == null) {
+                            System.out.println("___IS_NULL____");
+                        } else {
+                            System.out.println("___IS_NOT_NULL___");
+                        }
+                        System.out.println(".");
+                        System.out.println(".");
+                        System.out.println(".");
+                            List<String> datosFichaCab01 = (List) sesionDatosUsuario.getAttribute("CFAP_FICHA_CAB_01");
+                            List<String> datosFichaCab02 = (List) sesionDatosUsuario.getAttribute("CFAP_FICHA_CAB_02");
+                            List<String> datosFichaCab03 = (List) sesionDatosUsuario.getAttribute("CFAP_FICHA_CAB_03");
+                            List<String> datosFichaCab04 = (List) sesionDatosUsuario.getAttribute("CFAP_FICHA_CAB_04");
+                            request.setAttribute("CFAP_PAC_DATOS", datosPac);
+                            request.setAttribute("CFAP_FICHA_CAB_01", datosFichaCab01);
+                            request.setAttribute("CFAP_FICHA_CAB_02", datosFichaCab02);
+                            request.setAttribute("CFAP_FICHA_CAB_03", datosFichaCab03);
+                            request.setAttribute("CFAP_FICHA_CAB_04", datosFichaCab04);
+                            
+                    } else if (varVolverAtras.equals("VER_PACIENTE")) {
+                        acceso = "ver_paciente.htm"; // [OBS] AL FINAL DEL CONTROLADOR LE CARGO LOS DATOS NECESARIOS PARA VER EL EXPEDIENTE DEL PACIENTE COMO LO HAGO EN EL CONTROLADOR DE FICHA DE ATENCION PACIENTE (NUTRI).-
+                    } else if (varVolverAtras.equals("HISTORICO_FICHA")) {
+                        var_redireccionar = 1;
+                        acceso = goVerHistoricoFichasPaciente(request, metodosFichaAtencionPacNutri);
+                        String volverAtrasAuxValue = (String) sesionDatosUsuario.getAttribute("CR_RFAN_BTN_VOLVER_ATRAS_AUX");
+                        System.out.println("_____VOLVER_ATRAS_AUX:   :"+volverAtrasAuxValue);
+                        sesionDatosUsuario.setAttribute("CR_RFAN_BTN_VOLVER_ATRAS",volverAtrasAuxValue); // OBS.: LE VUELVO A CARGAR LA VARIABLE DE VOLVER ATRAS Y ES PARA QUE SI UTILIZA EL BOTON DE "VOLVER ATRAS" DEL HISTORICO DE FICHAS, ENTONCES LE DEVUELVA A LA PAGINA QUE CORRESPONDA.-
+                    } else {
+                        acceso = "rpt_paciente.htm";
+                    }
+                    
+//                } else if (accionRptFichaNutri.equalsIgnoreCase("VerArchivosAdj")) {
+//                    System.out.println("------------------------__VER_ARCHIVOS_ADJUNTOS__------------------------------");
+//                    acceso = "ver_his_fic_det.htm";
+//                    var_redireccionar = 1;
+//                    String ID_FICHA = (String) request.getParameter("tI");
+//                    System.out.println("-   _VAR____ID_FICHA:  :"+ID_FICHA);
+//                    String txtIdPac = (String) request.getParameter("tIP");
+//                    String NAME_PACIENTE = (String) request.getParameter("tCRPNC");
+//                    System.out.println("_  ___ID_PACIENTE:     :"+txtIdPac);
+//                    System.out.println("_  ___PACIENTE_NAME:   :"+NAME_PACIENTE);
+//                    
+//                    // cargo la lista 
+//                    List<BeanFichaAtePaciente> LISTA_DET_FICHAS = new ArrayList<>();
+//                    LISTA_DET_FICHAS = metodosFichaAtencionPacNutri.getDatosFichasDet(ID_FICHA);
+//                    
+//                    request.setAttribute("CR_RFAN_TXT_IDFICHA", ID_FICHA);
+//                    request.setAttribute("CR_RFAN_TXT_IDPACIENTE", txtIdPac);
+//                    request.setAttribute("CR_RFAN_TXT_NAME_PACIENTE", NAME_PACIENTE);
+//                    request.setAttribute("CR_RFAN_LISTA_HISTORICO_DET_FICHA_AA", LISTA_DET_FICHAS);
+//                    String volverAtrasValue = String.valueOf(sesionDatosUsuario.getAttribute("CR_RFAN_BTN_VOLVER_ATRAS"));
+//                    System.out.println("_   _VAA____VOLVER_ATRAS:   :"+volverAtrasValue);
+//                    sesionDatosUsuario.setAttribute("CR_RFAN_BTN_VOLVER_ATRAS_AUX", volverAtrasValue); // CARGO EN UNA VARIABLE AUXILIAR EL DATO QUE TENIA SOBRE LA VARIABLE DE "VOLVER ATRAS" PARA DESPUES AL VOLVER ATRAS AL HISTORICO DE FICHA Y VUELVA ATRAS ENTONCES USE ESTA VARIABLE AUXILIAR PARA SABER A QUE PAGINA TENGO QUE VOLVER ATRAS 
+//                    sesionDatosUsuario.setAttribute("CR_RFAN_BTN_VOLVER_ATRAS", "HISTORICO_FICHA"); // VARIABLE QUE UTILIZO PARA EL EVENTO DE VOLVER ATRAS 
+                }
+                
+                
+            } else 
             // --------     REPORTE HISTORICO DE FICHAS DE ATENCION (NUTRI)     -------------
             if (accionRptHisFAN != null) {
                 System.out.println(".");System.out.println(".");System.out.println(".");
@@ -1136,10 +1337,10 @@ public class ControllerReportes extends HttpServlet {
                 
             // --------     REPORTE FACTURA     -------------
             } else if(accionRptFact != null) {
-                System.out.println("---------______ACCION__REPORTE_FACTURA_______---------");
+                System.out.println("[*]---------______ACCION__REPORTE_FACTURA_______---------");
                 acceso = "rpt_factura.htm";
                 if (accionRptFact.equalsIgnoreCase("Filtrar")) {
-                    System.out.println("-----------------------__FILTRAR__---------------------------");
+                    System.out.println("[*]-----------------------__FILTRAR__---------------------------");
                     String filtro_cbxMostrar = (String) request.getParameter("cM"); // cM: combo Mostrar 
                     System.out.println("_   FILTRO_CBX_MOSTRAR:     "+filtro_cbxMostrar);
                     String filtro_txtBuscar = (String) request.getParameter("txB"); // txB: txt Buscar 
@@ -1158,14 +1359,14 @@ public class ControllerReportes extends HttpServlet {
                     if (txtClienteId == null || txtClienteId.isEmpty()) {
                         txtClienteId = "";
                     }
-                    System.out.println("------------__VAR_FILTRAR__-----------");
-                    System.out.println("_  _CBX_MOSTRAR    :   "+filtro_cbxMostrar);
-                    System.out.println("_  _BUSCAR_NRO_FACT:   "+filtro_txtBuscar);
-                    System.out.println("_  _FECHA_INICIO :   "+txtFechaIni);
-                    System.out.println("_  _FECHA_FIN    :   "+txtFechaFin);
-                    System.out.println("_  _CHECK_CLIENTE:   "+checkClienteFiltro);
-                    System.out.println("_  _CLIENTE_ID   :   "+txtClienteId);
-                    System.out.println("--------------------------------------");
+                    System.out.println("[*]------------__VAR_FILTRAR__-----------");
+                    System.out.println("[*]_  _CBX_MOSTRAR    :  "+filtro_cbxMostrar);
+                    System.out.println("[*]_  _BUSCAR_NRO_FACT:  "+filtro_txtBuscar);
+                    System.out.println("[*]_  _FECHA_INICIO :    "+txtFechaIni);
+                    System.out.println("[*]_  _FECHA_FIN    :    "+txtFechaFin);
+                    System.out.println("[*]_  _CHECK_CLIENTE:    "+checkClienteFiltro);
+                    System.out.println("[*]_  _CLIENTE_ID   :    "+txtClienteId);
+                    System.out.println("[*]--------------------------------------");
                     
                     // CONTROLO SI ES QUE SE SELECCIONO EL CHECK PARA FILTRAR POR CLIENTE, SI SE SELECCIONO, ENTONCES LIMPIARIA LOS TXT DE CLIENTE PARA PASARLOS VACIO Y QUE EL METODO DETECTE QUE NO SE ESTA FILTRANDO POR CLIENTE 
                     if (checkClienteFiltro == null || checkClienteFiltro.equalsIgnoreCase("OFF")) { // SI EL CHECK SE ENCUENTRA DESMARCADO ENTONCES RECUPERO LOS DATOS DEL CLIENTE Y LE DEJO SU VALOR EN LA VARIBLE PARA QUE EL METODO FILTRE POR ESE IDCLIENTE 
