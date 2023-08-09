@@ -1456,15 +1456,19 @@ public class ModelFactura implements CRUD {
         System.out.println("___     ___________filtrar_paginacion_agend()___________     ___");
         List<BeanFacturaCab> listaFiltro = new ArrayList<>();
         ModelInicioSesion metodosIniSes = new ModelInicioSesion();
-        
-//        if (PARAM_CBX_MOSTRAR.equals("10")) { // BORRAR 
-//            System.out.println("_IF_CAMBIO_DE_VALOR_____");
-//            PARAM_CBX_MOSTRAR = "1";
-//        } else if(PARAM_CBX_MOSTRAR.equals("20")) {
-//            System.out.println("_ELSE_IF_CAMBIO_DE_VALOR_____");
-//            PARAM_CBX_MOSTRAR = "2";
-//        }
-        
+        System.out.println(".-");
+        System.out.println(".-");
+        System.out.println(".-");
+        if (PARAM_CBX_MOSTRAR.equals("10")) { // BORRAR 
+            System.out.println("_IF_CAMBIO_DE_VALOR_____");
+            PARAM_CBX_MOSTRAR = "1";
+        } else if(PARAM_CBX_MOSTRAR.equals("20")) {
+            System.out.println("_ELSE_IF_CAMBIO_DE_VALOR_____");
+            PARAM_CBX_MOSTRAR = "2";
+        }
+        System.out.println(".-");
+        System.out.println(".-");
+        System.out.println(".-");
         // OBTENGO EL NUMERO DE PAGINA ACTUAL QUE LA GRILLA VA A MOSTRAR 
         String NRO_PAG_ACTUAL_MOSTRAR = "1"; // OBSERVACION: NO OBTENGO DE LA SESION PORQUE AL FILTRAR SE SUPONE QUE LOS DATOS SE REFRESCAN Y POR ESA RAZON DEBERIA DE MOSTRARLE AL USUARIO DESDE LA PRIMERA PAGINA 
         if (sesionDatos.getAttribute("PAG_FACT_LISTA_ACTUAL") == null || String.valueOf(sesionDatos.getAttribute("PAG_FACT_LISTA_ACTUAL")).isEmpty()) {

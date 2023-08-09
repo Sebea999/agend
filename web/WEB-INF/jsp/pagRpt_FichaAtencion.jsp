@@ -257,7 +257,7 @@
                                     } else {
                                         NRO_PAG = (String) sesionDatosUsuario.getAttribute("PAG_RPT_FICHA_APN_LISTA_ACTUAL");
                                     }
-                                    System.out.println("_   _JSP____NRO_PAG_ACTUAL:     :"+NRO_PAG);
+                                    System.out.println("[+]___JSP____NRO_PAG_ACTUAL:     :"+NRO_PAG);
                                     
                                     List<BeanFichaAtePaciente> listaDatos = null;
                                     Iterator<BeanFichaAtePaciente> iterDatos=null;
@@ -269,6 +269,7 @@
 //                                        sesionDatosUsuario.setAttribute("VAR_PAGI_BAND_FILTRO", "0"); // CON ESTO RESETEO LA BANDERA QUE UTILIZO PARA LA PAGINACION 
 //                                    }
                                         iterDatos = listaDatos.iterator(); // agrego el iterador dentro del if para evitar que salte la excepcion NullPointer por no recuperar datos de la lista.-
+                                        sesionDatosUsuario.setAttribute("VAR_PAGI_BAND_FILTRO", "1"); // CON ESTO RESETEO LA BANDERA QUE UTILIZO PARA LA PAGINACION 
                                     }
 //                                    Iterator<BeanFichaAtePaciente> iterDatos = listaDatos.iterator();
                                     BeanFichaAtePaciente datosFicha = null;

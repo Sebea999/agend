@@ -3451,7 +3451,77 @@ public class ModelFichaAtencionPacNutri implements CRUD {
             String PARAM_TXT_FEC_FIN, 
             String PARAM_CBX_ESTADO 
     ) { // METODO PARA LA PAGINA DE "HISTORICO DE FICHA DE ATENCION" (NO CARGA EL METODO DEL HISTORICO DE FICHAS PARA EL REPORTE DE ESTADISTICA) 
+        System.out.println("[.]");
+        System.out.println("[.]");
+        System.out.println("[.]");
+        System.out.println("[.]");
+        System.out.println("[+]___     ___________filtrar_paginacion_agend()___________     ___");
         List<BeanFichaAtePaciente> listado_de_fichas = new ArrayList<>();
+        ModelInicioSesion metodosIniSes = new ModelInicioSesion();
+        
+//        System.out.println("[.]");System.out.println("[.]");
+//        System.out.println("[.]");
+//        if (PARAM_CBX_MOSTRAR.equals("10")) { // BORRAR 
+//            System.out.println("[*]_IF_CAMBIO_DE_VALOR_____");
+//            PARAM_CBX_MOSTRAR = "1";
+//        } else if(PARAM_CBX_MOSTRAR.equals("20")) {
+//            System.out.println("[*]_ELSE_IF_CAMBIO_DE_VALOR_____");
+//            PARAM_CBX_MOSTRAR = "2";
+//        }
+//        System.out.println("[.]");
+//        System.out.println("[.]");System.out.println("[.]");
+        
+        // OBTENGO EL NUMERO DE PAGINA ACTUAL QUE LA GRILLA VA A MOSTRAR 
+        String NRO_PAG_ACTUAL_MOSTRAR = "1"; // OBSERVACION: NO OBTENGO DE LA SESION PORQUE AL FILTRAR SE SUPONE QUE LOS DATOS SE REFRESCAN Y POR ESA RAZON DEBERIA DE MOSTRARLE AL USUARIO DESDE LA PRIMERA PAGINA 
+        if (PARAM_SESION.getAttribute("PAG_RPT_FICHA_APN_LISTA_ACTUAL") == null || String.valueOf(PARAM_SESION.getAttribute("PAG_RPT_FICHA_APN_LISTA_ACTUAL")).isEmpty()) {
+            NRO_PAG_ACTUAL_MOSTRAR = "1";
+        } else {
+            NRO_PAG_ACTUAL_MOSTRAR = (String) PARAM_SESION.getAttribute("PAG_RPT_FICHA_APN_LISTA_ACTUAL");
+        }
+        System.out.println("[+]__NRO_PAG_ACTUAL:     :"+NRO_PAG_ACTUAL_MOSTRAR);
+        
+        // VARIABLE QUE REPRESENTARIA LA CANTIDAD DE CLICS DERECHO QUE SE TIENE, DEACUERDO A ESTO YO SÉ LOS TRES BOTONES QUE POSIBLEMENTE SE VISUALICEN EN LA PAGINA (SI NO SE LLEGA A COMPLETAR CON FILAS UN BOTON PUES NO SE VE) Y DENTRO DE ESTOS TRES BOTONES SE ENCUENTRA EL BOTON DE LA PAGINA ACTUAL QUE SE ESTARA VISUALIZANDO 
+        int CANT_CLICS_DERECHO = 1;
+        if (PARAM_SESION.getAttribute("PAG_RPT_FICHA_APN_CANT_BTN_DERE_CLIC") == null || String.valueOf(PARAM_SESION.getAttribute("PAG_RPT_FICHA_APN_CANT_BTN_DERE_CLIC")).isEmpty()) {
+            CANT_CLICS_DERECHO = 1;
+        } else {
+            CANT_CLICS_DERECHO = Integer.parseInt(String.valueOf(PARAM_SESION.getAttribute("PAG_RPT_FICHA_APN_CANT_BTN_DERE_CLIC")));
+        }
+        System.out.println("[+]__CANT_CLIC_DERECHO:     :"+CANT_CLICS_DERECHO);
+        
+        // CANTIDAD MINIMA DE RESULTADO QUE SE SOLICITA MOSTRAR EN LA GRILLA DE LA PAGINA 
+        String cant_min_fija = PARAM_CBX_MOSTRAR;
+        String cant_inicial_anterior = (String) PARAM_SESION.getAttribute("PAG_RPT_FICHA_APN_CANT_ROWS_MOSTRAR"); // ESTA ES LA CANTIDAD DE LA ANTERIOR SELECCION DE CANTIDAD DE FILAS A MOSTRAR EN LA GRILLA, UTILIZO ESTA VARIABLE PARA COMPARARLA CON LA DE AHORA PARA SABER SI QUIERE CAMBIAR LA CANTIDAD DE FILAS A MOSTRAR O QUIERE CAMBIAR DE PAGINA NOMAS O ACTUALIZAR EL FILTRO 
+        // [OBS] :IF PARA ESTABLECER EL VALOR INICIAL DE LA CANTIDAD DE FILAS ANTERIOR YA QUE EL RPT DE FICHA NO CUENTA CON UN CARGA_GRILLA, DONDE SE ESTABLECE EL VALOR INICIAL EN LA SESION Y POR ESO UTILIZO ESTE IF PARA EVITAR UN STOP-ERROR.-
+        if (cant_inicial_anterior == null || cant_inicial_anterior.isEmpty()) {
+            System.out.println("[-] cant_inicial_anterior is null.");
+            cant_inicial_anterior = metodosIniSes.minNroCbxCantFil(); // NRO DE REGISTROS A MOSTRAR EN LA GRILLA QUE MUESTRA EL COMBO POR DEFECTO 
+            System.out.println("[+] the new value of the cant_inicial_anterior is ["+cant_inicial_anterior+"] because the old one was is null.");
+        } else {
+            System.out.println("[+] cant_inicial_anterior is not null, is value is: "+cant_inicial_anterior);
+        }
+//        System.out.println("_   _CANTIDAD_INICIAL_ANTERIOR_DE_REGISTROS:    :"+cant_inicial_anterior);
+        // CONTROLO SI LA CANTIDAD MINIMA INCIAL DE LINEAS DE REGISTRO ES IGUAL A LA CANTIDAD DE REGISTROS A MOSTRAR, SI SON IGUALES, ENTONCES NO SE CAMBIO Y SOLO QUIERE VER LOS DATOS DE OTRA PAGINA, PERO SI ES DIFERENTE, ENTONCES ES PORQUE SE CAMBIO LA CANTIDAD DE REGISTROS A MOSTRAR Y VOLVERIA A MOSTRAR DESDE LA PAGINA 1 Y NO DESDE LA QUE ESTA PORQUE LA CANTIDAD DE BOTONES VAN A CAMBIAR PORQUE SE VAN A VOLVER A CALCULAR 
+        if (!(cant_inicial_anterior.equals(cant_min_fija))) { // SI NO SON IGUALES ENTONCES LE REINICIO LA PAGINA ACTUAL A MOSTRAR 
+//            System.out.println("_   (*)__CANTIDAD_DE_REGISTROS_DISTINTA__");
+            NRO_PAG_ACTUAL_MOSTRAR = "1";
+            CANT_CLICS_DERECHO = 1;
+        } else { // NO REINICIARIA LA PAGINA ACTUAL A MOSTRAR SI SON IGUALES LA CANTIDAD DE REGISTROS A MOSTRAR, ENTONCES LE CARGO ESA PAGINA YA QUE ESTARIA MUDANDO DE PAGINA Y NO REORDENANDO LOS REGISTROS POR PAGINA 
+//            System.out.println("_   (*)___ELSE____CANTIDAD_DE_REGISTROS_IGUALES________");
+        }
+        
+        // LE ESTABLESCO OTRA VARIABLE QUE UTILIZARE PARA IR ESTABLECIENDO EL LIMITE DE MANERA ASCENDENTE SUMANDO LA CANTIDAD MINIMA DE RESULTADO QUE SE PIDE 
+        String cant_min = cant_min_fija;
+//        System.out.println("_   __CANTIDAD_MIN_MOSTRAR:     :"+cant_min);
+        
+        // VARIABLE QUE ME VA A SERVIR PARA SABER LA CANTIDAD DE FILAS QUE DEVUELVE EL SELECT 
+        String cant_resultado="1";
+        
+        // CANTIDAD DE BOTONES INICIAL DE LA LISTA 
+        int cant_btn_lista = 1; // OBSERVACION: PARA OBTENER LA CANTIDAD DE BOTONES DE PAGINAS QUE VOY A TENER PODIA OBTENER LA CANTIDAD DE LINEAS DE REGISTROS QUE ME DEVUELVE O ME VA A DEVOLVER (CON UN COUNT) EL SELECT Y DIVIDIRLO POR LA CANTIDAD DE REGISTROS QUE QUIERO QUE SE MUESTRE EN CADA PAGINA PERO HACERLO DE ESTA FORMA UTILIZANDO EL WHILE CREO QUE TAMPOCO ESTA TAN MAL YA QUE AMBOS TIENEN SUS PROS Y CONTRAS (EN UNO QUE LLAMARIA A LA BASE OTRA VEZ PARA EL COUNT Y DE ESTA FORMA QUE RECORRE TODOS PARA CONTABILIZAR LAS LINEAS Y DIVIDIRLAS)
+//        System.out.println("_   __CANTIDAD_INI_DE_LISTA:    :"+cant_btn_lista);
+        // LE CREO ESTA NUEVA VARIABLE PARA NO UTILIZAR LA OTRA (cant_btn_lista), Y QUE LA OTRA ME SIRVA PARA GUIARME EN EL WHILE NOMAS Y ESTA PARA OTRA VALIDACION Y GUARDAR LA CANTIDAD DE BTNS FINAL 
+        int cant_btn_lista_final = 1;
         
         String sqlWhere = "WHERE ofpn.ESTADO = '"+PARAM_CBX_ESTADO+"' \n";
         
@@ -3544,6 +3614,15 @@ public class ModelFichaAtencionPacNutri implements CRUD {
 //                "JOIN ope_clinica oc ON oc.IDCLINICA = ofpn.IDCLINICA \n" +
 //                ""+sqlWhere+" \n" +
 //                "ORDER BY ofpn.IDFICHAPAC DESC \n";
+            
+            String SELECT_COUNT = "SELECT COUNT(ofpn.IDFICHAPAC) AS CANTIDAD_FILA \n" + // EL NOMBRE "CANTIDAD_FILA" ES NECESARIO PORQUE DESDE EL METODO SE RECUPERA ASI 
+                "FROM ope_ficha_pac_nutri ofpn \n" + // DESDE ACA YA DEBE DE SER IGUAL AL SELECT DE ARRIBA QUE RECUPERA LAS FILAS QUE VAN A LA GRILLA 
+                "JOIN ope_clinica oc ON oc.IDCLINICA = ofpn.IDCLINICA \n" +
+                "JOIN rh_persona rp ON ofpn.IDPACIENTE = rp.IDPERSONA \n" +
+                ""+sqlWhere+" \n" +
+                "ORDER BY ofpn.IDFICHAPAC DESC \n"; // ES EL MISMO SELECT QUE SE USA PARA RECUPERAR LAS FILAS PERO CON UN COUNT 
+            cant_resultado = metodosIniSes.cantidad_resultado(SELECT_COUNT);
+            
             System.out.println("-----------------MODEL_FICHA_ATENCION_PAC--------------------");
             System.out.println("-- ---filtrarFichasAtePac()-------    "+sql);
             System.out.println("-------------------------------------------------------------");
@@ -3551,84 +3630,224 @@ public class ModelFichaAtencionPacNutri implements CRUD {
             // CARGO LA VARIABLE GLOBAL DE RESULTADO CON EL METODO QUE HARA LA CONSULTA Y DEVOLVERA ESE RESULTADO 
             MFAP_RESULTADO = consultaBD(sql);
             
-            while(MFAP_RESULTADO.next()) {
-                BeanFichaAtePaciente datos = new BeanFichaAtePaciente();
-                    // CABECERA --
-                    datos.setOFPN_IDFICHAPAC(MFAP_RESULTADO.getString("IDFICHAPAC"));
-                    datos.setOFPN_IDCLINICA(MFAP_RESULTADO.getString("IDCLINICA"));
-                    datos.setOFPN_DESC_CLINICA(MFAP_RESULTADO.getString("DESC_CLINICA"));
-                    datos.setOFPN_IDAGENDAMIENTO(MFAP_RESULTADO.getString("IDAGENDAMIENTO"));
-                    datos.setOFPN_ITEM_AGEND_DET(MFAP_RESULTADO.getString("ITEM_AGEND_DET"));
-                    datos.setOFPN_IDPACIENTE(MFAP_RESULTADO.getString("IDPACIENTE"));
-                        datos.setOFPN_PAC_NOMBRE(MFAP_RESULTADO.getString("NOMBRE"));
-                        datos.setOFPN_PAC_APELLIDO(MFAP_RESULTADO.getString("APELLIDO"));
-                        datos.setOFPN_PAC_NROCI(MFAP_RESULTADO.getString("CINRO"));
-                    datos.setOFPN_FECHA_FICHA_ATE(MFAP_RESULTADO.getString("FECHA_FICHA_ATE")+" "+MFAP_RESULTADO.getString("HORA_FICHA"));
-                    // DATOS REFERENTES A LA CONSULTA 
-                    datos.setOFPN_MOTIVO_DE_LA_CONSULTA(MFAP_RESULTADO.getString("MOTIVO_DE_LA_CONSULTA"));
-//                    datos.setOFPN_ALIMENTOS_DE_PREFERENCIA(MFAP_RESULTADO.getString("ALIMENTOS_DE_PREFERENCIA"));
-//                    datos.setOFPN_ALIMENTOS_QUE_NO_TOLERA(MFAP_RESULTADO.getString("ALIMENTOS_QUE_NO_TOLERA"));
-//                    datos.setOFPN_ALI_QUE_SUELE_COMER_GRL(MFAP_RESULTADO.getString("ALI_QUE_SUELE_COMER_GRL"));
-//                    datos.setOFPN_CONSUMO_ALCOHOL(MFAP_RESULTADO.getString("CONSUMO_ALCOHOL"));
-//                    datos.setOFPN_CONSUMO_CIGARRILLO(MFAP_RESULTADO.getString("CONSUMO_CIGARRILLO"));
-//                    datos.setOFPN_ALERGIAS_A_ALGO(MFAP_RESULTADO.getString("ALERGIAS_A_ALGO"));
-//                    datos.setOFPN_CIRUGIAS(MFAP_RESULTADO.getString("CIRUGIAS"));
-//                    datos.setOFPN_PADECE_ALGUNA_ENFERMEDAD(MFAP_RESULTADO.getString("PADECE_ALGUNA_ENFERMEDAD"));
-//                    datos.setOFPN_MEDICAMENTE_Q_E_CONSUMIENDO(MFAP_RESULTADO.getString("MEDICAMENTE_Q_E_CONSUMIENDO"));
-//                    datos.setOFPN_OTROS_DATOS_A_TENER_EN_CUENTA(MFAP_RESULTADO.getString("OTROS_DATOS_A_TENER_EN_CUENTA").replaceAll("<br/>","\r\n"));
-                    // bloque de combos.-
-//                    datos.setOFPN_REALIZA_ACTIVIDAD_FISICA(MFAP_RESULTADO.getString("REALIZA_ACTIVIDAD_FISICA"));
-//                    datos.setOFPN_TIPO_DE_ACTIVIDAD_FISICA(MFAP_RESULTADO.getString("TIPO_DE_ACTIVIDAD_FISICA"));
-//                    datos.setOFPN_FRECUENCIA_ACT_FISICA_SEM(MFAP_RESULTADO.getString("FRECUENCIA_ACT_FISICA_SEM"));
-//                    datos.setOFPN_DBLCR(MFAP_RESULTADO.getString("DBLCR"));
-//                    datos.setOFPN_LGSLCM(MFAP_RESULTADO.getString("LGSLCM"));
-//                    datos.setOFPN_TBDALN(MFAP_RESULTADO.getString("TBDALN"));
-//                    datos.setOFPN_DPALN(MFAP_RESULTADO.getString("DPALN"));
-//                    datos.setOFPN_DDCCF(MFAP_RESULTADO.getString("DDCCF"));
-//                    datos.setOFPN_ESTRENHIMIENTO(MFAP_RESULTADO.getString("ESTRENHIMIENTO"));
-//                    datos.setOFPN_TDEDBU(MFAP_RESULTADO.getString("TDEDBU"));
-//                    datos.setOFPN_CANSANCIO_FATIGA(MFAP_RESULTADO.getString("CANSANCIO_FATIGA"));
-//                    datos.setOFPN_HICHAZON_ABDOMINAL(MFAP_RESULTADO.getString("HICHAZON_ABDOMINAL"));
-//                    datos.setOFPN_INSOMNIO(MFAP_RESULTADO.getString("INSOMNIO"));
-//                    datos.setOFPN_MUCOSIDAD_Y_CATARRO(MFAP_RESULTADO.getString("MUCOSIDAD_Y_CATARRO"));
-//                    datos.setOFPN_CALAMBRES_Y_HORMIGUEOS(MFAP_RESULTADO.getString("CALAMBRES_Y_HORMIGUEOS"));
-//                    datos.setOFPN_ZUMBIDOS_EN_EL_OIDO(MFAP_RESULTADO.getString("ZUMBIDOS_EN_EL_OIDO"));
-//                    datos.setOFPN_CAIDA_DE_CABELLO(MFAP_RESULTADO.getString("CAIDA_DE_CABELLO"));
-//                    datos.setOFPN_UNHAS_QUEBRADIZAS(MFAP_RESULTADO.getString("UNHAS_QUEBRADIZAS"));
-//                    datos.setOFPN_PIEL_SECA(MFAP_RESULTADO.getString("PIEL_SECA"));
-//                    datos.setOFPN_TIPO_DE_METABOLISMO(MFAP_RESULTADO.getString("TIPO_DE_METABOLISMO"));
-                    // bloque de mediciones.-
-                    datos.setOFPN_ESTATURA(MFAP_RESULTADO.getString("ESTATURA"));
-                    datos.setOFPN_PESO(MFAP_RESULTADO.getString("PESO"));
-                    datos.setOFPN_IMC(MFAP_RESULTADO.getString("IMC"));
-                    datos.setOFPN_PORC_GRASA(MFAP_RESULTADO.getString("PORC_GRASA"));
-                    datos.setOFPN_PORC_MUSCULO(MFAP_RESULTADO.getString("PORC_MUSCULO"));
-                    datos.setOFPN_VISCERAL(MFAP_RESULTADO.getString("VISCERAL"));
-                    datos.setOFPN_EDAD_METABOLICA(MFAP_RESULTADO.getString("EDAD_METABOLICA"));
-                    datos.setOFPN_RM(MFAP_RESULTADO.getString("RM"));
-                    datos.setOFPN_TIPO_DE_BALANZA(MFAP_RESULTADO.getString("TIPO_DE_BALANZA"));
-                    // bloque final.-
-//                    datos.setOFPN_RESULTADOS_TEST_BIORESONANCIA(MFAP_RESULTADO.getString("RESULTADOS_TEST_BIORESONANCIA"));
-//                    datos.setOFPN_SUPLEMENTACION_RECETADA(MFAP_RESULTADO.getString("SUPLEMENTACION_RECETADA"));
-//                    datos.setOFPN_LABORATORIO(MFAP_RESULTADO.getString("LABORATORIO"));
-//                    datos.setOFPN_COMENTARIOS_GENERALES(MFAP_RESULTADO.getString("COMENTARIOS_GENERALES"));
-//                    datos.setOFPN_USU_ALTA(MFAP_RESULTADO.getString("USU_ALTA"));
-//                    datos.setOFPN_FEC_ALTA(MFAP_RESULTADO.getString("FEC_ALTA"));
-                    datos.setOFPN_ESTADO(MFAP_RESULTADO.getString("ESTADO"));
-//                    datos.setOFPN_USU_MODI(MFAP_RESULTADO.getString("USU_MODI"));
-//                    datos.setOFPN_FEC_MODI(MFAP_RESULTADO.getString("PESO"));
-                    // USO LA VARIABLE DE "EXISTS_DET" PARA SABER SI LA FICHA CUENTA CON UN DETALLE QUE VENDRIAN SIENDO LOS ARCHIVOS ADJUNTOS 
-                    if (MFAP_RESULTADO.getString("EXISTS_DET").equals("1")) {
-                        datos.setOFPND_IDFICHAPAC(MFAP_RESULTADO.getString("IDFICHAPAC"));
+            // --------------------------------------------------------------------------------------------------------
+            // CONTROLO PRIMERAMENTE SI SE QUIERE MOSTRAR TODOS LOS REGISTROS, SI FUERA ASI NO TENDRIA QUE CALCULAR LA CANTIDAD DE BOTONES YA QUE SERIA UNO SOLO PORQUE TODOS LOS REGISTROS SE MOSTRARIAN EN UNA SOLA PAGINA 
+            if (PARAM_CBX_MOSTRAR.equalsIgnoreCase("TODOS")) {
+                cant_btn_lista_final = 1;
+                NRO_PAG_ACTUAL_MOSTRAR = "1"; // SI SE MUESTRAN TODAS LAS FILAS ENTONCES LA PAGINA VA A SER UNA NOMAS 
+            } else {
+                // OBSERVACION: (LEER COMPLETO PARA ENTENDER EL BLOQUE DE CODIGO)---------------------------------------------------------------------------------------------------------------------------
+                // CALCULO LA CANTIDAD DE BOTONES DE LISTA QUE VOY A TENER DIVIDIENDO LA CANTIDAD DE RESULTADOS DEL SELECT POR LA CANTIDAD DE NROS DE REGISTROS A MOSTRAR QUE LE PASO POR PARAMETRO Y SI EL RESULTADO ES EXACTO, ENTONCES SALDRA UN NUMERO ENTERO (Ej.: 30/10=3[botones]) AHORA SI LA CANTIDAD DE FILAS RESULTADO DEL SELECT ES DISPAREJA A LA CANTIDAD DE REGISTROS A MOSTRAR, ENTONCES SALDRA UN DECIMAL COMO RESULTADO (Ej.: 24/10=2,4[botones]) COSA QUE EL DECIMAL VENDRIA SIENDO UN BOTON MAS CON UNOS REGISTROS A MOSTRAR PERO QUE SIMPLEMENTE NO ALCANZA A REDONDEAR LA CANTIDAD DE REGISTROS ESTABLECIDAS A MOSTRAR, DE AHI QUE REALIZO LA DIVISION EN EL FLOAT Y CONTROLO SI CUENTA CON EL PUNTO Y ME DIRIA SI ES DECIMAL O NO, Y SI LO FUERA ENTONCES LE SUMARIA UNO AL RESULTADO ENTERO QUE VENDRIA A SIENDO POR LA CANTIDAD DE REGISTROS DEL DECIMAL, (OBS.: NO VALE REDONDEAR POR QUE SE REDONDEA A PARTIR DE 5 PARA ARRIBA, PERO PUEDE PRESENTARSE CASOS COMO EL EJEMPLO DONDE EL DECIMAL SERIA MENOR A 5 Y NO LO REDONDEARIA PARA ARRIBA EVITANDO MOSTRAR ESTOS REGISTROS)  
+                cant_btn_lista_final = Integer.parseInt(cant_resultado) / Integer.parseInt(PARAM_CBX_MOSTRAR);
+    //            System.out.println("_   _final__CANT_BTN_LISTA_FINAL:  :"+cant_btn_lista_final);
+                // AL DIVIDIR, Y AL SER NUMEROS ENTEROS, CUANDO LA CANTIDAD DE RESULTADOS ES MENOR A LA CANTIDAD DE NRO DE REGISTROS A MOSTRAR, EL RESULTADO DA UN DECIMAL COMO RESPUESTA, QUE YA EQUIVALDRIA A UN BOTON DE PAGINA MAS DONDE MOSTRAR ESTOS DATOS QUE NO REDONDEAN LA CANTIDAD DE NRO DE REGISTROS A MOSTRAR 
+                float divi = (float) Integer.parseInt(cant_resultado) / Integer.parseInt(PARAM_CBX_MOSTRAR);
+    //            System.out.println("_   _NUEVA_DIVISION:    :"+divi);
+                boolean resul_redondeo_btn = String.valueOf(divi).contains("."); // si da un resultado decimal, va a mostrar un punto 
+    //            System.out.println("_   _BOOLEAN__RESULT_DECIMAL_BTN_LISTA_CANT_1:  :"+resul_redondeo_btn);
+                if (resul_redondeo_btn == true) {
+                    String divi1 = String.valueOf(divi).replace(".", ","); // sustitulo el punto por la coma para que la sentencia split reconozca y la divida 
+                    String[] resul_btn = divi1.split(","); // INGRESO EL RESULTADO DENTRO DE UN ARRAY Y DIVIDO SUS PARTES POR EL PUNTO PARA PODER CONTROLAR EL NUMERO DE LA PARTE DERECHA DEL PUNTO 
+    //                for (String rb : resul_btn) {
+    //                    System.out.println("_   _partes_for:   :"+rb);
+    //                }
+                    // CONTROLO SI EL NUMERO QUE LE SIGUE AL PUNTO, ES IGUAL A CERO, SI FUERA ASI, ES PORQUE EL RESULTADO ES REDONDO, Y SI NO, ES PORQUE COMO ACLARE EN EL COMENTARIO, HAY UN BLOQUE DE RESULTADO QUE NO ALCANZO LA CANTIDAD PARA CONSIDERARLO OTRO BOTON 
+                    if (Integer.parseInt(resul_btn[1]) == 0) {
+                        //
                     } else {
-                        datos.setOFPND_IDFICHAPAC("");
+                        cant_btn_lista_final = cant_btn_lista_final + 1;
                     }
-                listado_de_fichas.add(datos);
+    //                System.out.println("_   _final__CANT_BTN_LISTA_FINAL_2:  :"+cant_btn_lista_final);
+                }
+                // ---------------------------------------------------------------------------------------------------------------------------------------------------
+                System.out.println("_   _NRO_PAG_ACTUAL_MOSTRAR: ("+NRO_PAG_ACTUAL_MOSTRAR+")  >  cant_btn_lista_final: ("+cant_btn_lista_final+") ____");
+                // CONTROLO SI ES QUE EL NRO ACTUAL DE PAGINA A MOSTRAR ES IGUAL O MENOR A LA CANTIDAD DE BOTONES QUE VA A TENER LA PAGINA, Y SI FUERA ASI ENTONCES LE DEJARIA QUE LE MUESTRE ESE RESULTADO PERO SI FUERA MAYOR ENTONCES QUIERE DECIR QUE LA PAGINA ANTERIOR YA NO EXISTE DENTRO DE LA CANTIDAD DE BOTONES A DEVOLVER, POR MOTIVO DE REESTRUCTURACION DE CANTIDAD DE REGISTROS A MOSTRAR O POR QUE LA CANTIDAD DE FILAS QUE DEVUELVE EL SELECT SEA MENOR POR LA ACTIVACION DE ALGUN FILTRO 
+                if (Integer.parseInt(NRO_PAG_ACTUAL_MOSTRAR) > cant_btn_lista_final) {
+                    System.out.println(".");
+                    System.out.println(".");
+                    System.out.println("_   ___IF___NRO_PAG_NO_EXISTE_EN_EL_NUEVO_TOTAL_CANT_BTNS______");
+                    NRO_PAG_ACTUAL_MOSTRAR = "1";
+                    CANT_CLICS_DERECHO = 1;
+                } else {
+                    System.out.println("_   ___ELSE____NRO_PAG_EXISTE_DENTRO_DEL_TOTAL_DE_CANT_DE_BTNS_____");
+                }
             }
+            // --------------------------------------------------------------------------------------------------------
+            
+            // --------------------------------------------------------------------------------------------------------
+            // OBSERVACION: YA QUE LA NUMERACION DE LA PAGINA DONDE SE ENCONTRABA EL USUARIO NO SE ENCUENTRA EN EXISTENCIA EN LA NUEVA CANTIDAD DE BOTONES, ENTONCES LA CANTIDAD DE CLICS DERECHOS DEBO DE RESETEAR 
+            // VALIDACION PARA REESTABLECER LA CANTIDAD DE CLICS DERECHOS, PARA QUE SI POR EJEMPLO ESTABA EN EL BOTON NRO 4 Y REORDENA LA CANTIDAD DE REGISTROS A VISUALIZAR O AÑADE UN NUEVO FILTRO Y EL BOTON TOTAL SEA 2, COMO NO EXISTE MAS EL 4 EN ESA CLASIFICACION, ENTONCES LE DEVUELVA A LA PRIMERA PAGINA Y EL CLIC DERECHO VOLVERIA A SER 1 
+            System.out.println(".");
+            System.out.println(".");
+            System.out.println(".");
+            System.out.println("_  ____CONTROL_DE_CLICS_DERECHO_____  _");
+            System.out.println(".");
+            System.out.println(".");
+            System.out.println(".");
+            // OBSERVACION_01: EMPEZARIA CON LA VALIDACION DEL CLIC DERECHO EN CASO NO SE CUMPLA UNA DE ESTAS DOS DECLARACIONES, SI EL NRO DE PAGINA ACTUAL ES MENOR O IGUAL A TRES Y LA CANTIDAD DE CLICS DERECHO ES IGUAL A UNO ENTONCES SE DEVOLVERA TRUE, PERO SI UNO DE LOS DOS NO SE CUMPLIERA ENTONCES DEVOLVERA FALSE Y AHI ENTRARIA A VALIDAR PORQUE OSINO ENTRARIA A CALCULAR ALGO QUE POR LOGIA YA SÉ  
+            // OBSERVACION_02: EN LAS ANTERIORES VALIDACIONES YA SE RESETEA ESTOS VALORES O SE PUEDEN LLEGAR A SER MODIFICADAS, POR ESO EMPIEZO CON ESTA CONDICION, YA QUE DESDE ANTES YA PODRIA SER ARREGLADA 
+            if((Integer.parseInt(NRO_PAG_ACTUAL_MOSTRAR)<=3 && CANT_CLICS_DERECHO==1) == false) {
+                System.out.println("_     ____IF_____UNA_DE_LAS_DOS_CONDICIONES_NO_SE_CUMPLE____");
+                if (Integer.parseInt(NRO_PAG_ACTUAL_MOSTRAR) <= 3 ) { // SI ES MAYOR O IGUAL A 3, ENTONCES LA CANTIDAD DE CLICS ES DE 1, YA QUE SERIA LAS PRIMERA PAGINAS 
+                    System.out.println("_       __IF__VALOR_DENTRO_DE_LO_CALCULADO_______");
+                    CANT_CLICS_DERECHO = 1;
+                } else { // SI EL NUMERO DE PAGINA A DEVOLVER ES DISTINTO A LAS PRIMERA TRES PAGINAS, ENTONCES AHI SI TENDRIA QUE HAYAR LA UBICACION DEL NRO DE PAGINA ACTUAL MIENTRAS HAGO UN CONTEO DE CLICS A TRAVES DE UN FOR POR LA CANTIDAD FINAL (TOTAL) DE BOTONES DE LA PAGINA 
+                    System.out.println("_       __ELSE________IF_ELSE________");
+                    int ctrl_cant_adecuada = CANT_CLICS_DERECHO * 3;
+                    System.out.println("_         _CTRL_CANT_ADECUADA_/ _BTN_03:  :"+(ctrl_cant_adecuada));
+                    System.out.println("_         _CTRL_CANT_ADECUADA_/ _BTN_02:  :"+(ctrl_cant_adecuada-1));
+                    System.out.println("_         _CTRL_CANT_ADECUADA_/ _BTN_01:  :"+(ctrl_cant_adecuada-2));
+                    if ((Integer.parseInt(NRO_PAG_ACTUAL_MOSTRAR) <= ctrl_cant_adecuada) 
+                        || (Integer.parseInt(NRO_PAG_ACTUAL_MOSTRAR) <= (ctrl_cant_adecuada-1)) 
+                        || (Integer.parseInt(NRO_PAG_ACTUAL_MOSTRAR) <= (ctrl_cant_adecuada-2)) 
+                    ) { // SI EL BOTON DEL NRO DE PAG ACTUAL A MOSTRAR ES IGUAL A UNO DE LOS TRES BOTONES QUE SE ESTARIAN MOSTRANDO EN EL BLOQUE DE 3 BOTONES DE LA PAGINA, ENTONCES LA CANTIDAD DEL CLIC DERECHO ESTA BIEN, SI FUERA MENOR O MAYOR, ENTONCES LA CANTIDAD DE CLIC DERECHO NO ESTA CORRECTO Y TENDRIA QUE CALCULARLO 
+                        System.out.println("_          _IF___CANTIDAD_CLICS_DERECHO_CORRECTA___BTNS_DENTRO_DEL_CALCULO___");
+                    } else {
+                        System.out.println("_          _ELSE__CALCULAR_CLIC_DERECHO_______");
+                        System.out.println("_           _CANTIDAD_BTN_LISTA_FINAL:  :"+cant_btn_lista_final);
+                        int band_cant_clic_derechos = 1;
+                        int cant_botones_mostrar = 3; // EL VALOR ES 3 PORQUE 3 BOTONES ES LA CANTIDAD MAXIMA A MOSTRAR POR PAGINA 
+                        for (int i = 1; i <= cant_btn_lista_final; i++) {
+                            System.out.println(".");
+                            System.out.println(".");
+                            System.out.println("_       _____FOR_____   _"+i+"__");
+                            System.out.println("_       _PRIMER_BOTON_DEL_SIGUIEN_BLOQUE_DE_BOTONES:   :"+(cant_botones_mostrar+1));
+                            if (i == (cant_botones_mostrar+1)) {
+                                System.out.println("_       ___IF___SUM_BANDERA_CLIC_DERECHO_AND_CANT_BLOQUE_BTNS___");
+                                band_cant_clic_derechos = band_cant_clic_derechos + 1; // LE SUMO UNO A LA CANTIDAD DE CLICS EN CASO DE QUE SEA IGUAL AL PRIMER BOTON DE LA SIGUIENTE FORMACION DE LOS 3 BOTONES PORQUE SE ENTENDERIA COMO UN CLIC MAS HACIA LA DERECHA 
+                                cant_botones_mostrar = cant_botones_mostrar + 3; // LE SUMO 3 A LA CANTIDAD DE BOTONES QUE SE MUESTRAN PARA REPRESENTAR AL LIMITE DEL SIGUIEN CLIC DERECHO, EJEMPLO: PRIMERO SERIAN 3 Y SI FUERA 4, ENTONCES LE SUMO UN CLIC DERECHO Y 3 A ESTA VARIABLE Y EL PROXIMO LIMITE DE 3 BOTONES VISUALES SERIAN 6 Y AHI SI SERIA 7 ENTONCES VOLVERIA A SUMAR OTRO A LOS CLIC DERECHO Y 3 A LA CANTIDAD DE BOTONES, Y ASI HASTA LLEGAR A LA CANTIDAD FINAL DE BOTONES QUE HAY 
+                            }
+                            if (i == Integer.parseInt(NRO_PAG_ACTUAL_MOSTRAR)) { // CORTARIA EL FOR CUANDO LLEGUE A RECORRER AL BOTON ACTUAL A MOSTRAR, YA QUE NO QUIERO CALCULAR TODAS LAS CANTIDADES DE LOS BOTONES DERECHOS SINO LA CANTIDAD DE BOTONES DERECHOS QUE SE DIO PARA MOSTRAR AL BOTON ACTUAL 
+                                System.out.println("_       ____BREAK_FOR____");
+                                CANT_CLICS_DERECHO = band_cant_clic_derechos;
+                                System.out.println("_       _-CANTIDAD_DE_CLICS_DERECHO_ENCONTRADA:    :"+CANT_CLICS_DERECHO);
+                                break;
+                            }
+                        } // END FOR 
+                    }
+                } // END ELSE 
+            } else {
+                System.out.println("_     ____ELSE_____LAS_DOS_CONDICIONES__SE_CUMPLEN____");
+            }
+            // --------------------------------------------------------------------------------------------------------
+            
+            int i = 1;
+            while(MFAP_RESULTADO.next()) {
+                // SI LA CANTIDAD DE LISTA ACTUAL ES IGUAL A 1 ENTONCES CARGO A UNA LISTA PARA MOSTRARLA Y RETORNARLA PARA QUE MUESTRE EN CASO DE QUE ENTRE POR PRIMERA VEZ EN LA PAGINA DE PACIENTE 
+                if (String.valueOf(cant_btn_lista).equals(NRO_PAG_ACTUAL_MOSTRAR)) {
+                    BeanFichaAtePaciente datos = new BeanFichaAtePaciente();
+                        // CABECERA --
+                        datos.setOFPN_IDFICHAPAC(MFAP_RESULTADO.getString("IDFICHAPAC"));
+                        datos.setOFPN_IDCLINICA(MFAP_RESULTADO.getString("IDCLINICA"));
+                        datos.setOFPN_DESC_CLINICA(MFAP_RESULTADO.getString("DESC_CLINICA"));
+                        datos.setOFPN_IDAGENDAMIENTO(MFAP_RESULTADO.getString("IDAGENDAMIENTO"));
+                        datos.setOFPN_ITEM_AGEND_DET(MFAP_RESULTADO.getString("ITEM_AGEND_DET"));
+                        datos.setOFPN_IDPACIENTE(MFAP_RESULTADO.getString("IDPACIENTE"));
+                            datos.setOFPN_PAC_NOMBRE(MFAP_RESULTADO.getString("NOMBRE"));
+                            datos.setOFPN_PAC_APELLIDO(MFAP_RESULTADO.getString("APELLIDO"));
+                            datos.setOFPN_PAC_NROCI(MFAP_RESULTADO.getString("CINRO"));
+                        datos.setOFPN_FECHA_FICHA_ATE(MFAP_RESULTADO.getString("FECHA_FICHA_ATE")+" "+MFAP_RESULTADO.getString("HORA_FICHA"));
+                        // DATOS REFERENTES A LA CONSULTA 
+                        datos.setOFPN_MOTIVO_DE_LA_CONSULTA(MFAP_RESULTADO.getString("MOTIVO_DE_LA_CONSULTA"));
+    //                    datos.setOFPN_ALIMENTOS_DE_PREFERENCIA(MFAP_RESULTADO.getString("ALIMENTOS_DE_PREFERENCIA"));
+    //                    datos.setOFPN_ALIMENTOS_QUE_NO_TOLERA(MFAP_RESULTADO.getString("ALIMENTOS_QUE_NO_TOLERA"));
+    //                    datos.setOFPN_ALI_QUE_SUELE_COMER_GRL(MFAP_RESULTADO.getString("ALI_QUE_SUELE_COMER_GRL"));
+    //                    datos.setOFPN_CONSUMO_ALCOHOL(MFAP_RESULTADO.getString("CONSUMO_ALCOHOL"));
+    //                    datos.setOFPN_CONSUMO_CIGARRILLO(MFAP_RESULTADO.getString("CONSUMO_CIGARRILLO"));
+    //                    datos.setOFPN_ALERGIAS_A_ALGO(MFAP_RESULTADO.getString("ALERGIAS_A_ALGO"));
+    //                    datos.setOFPN_CIRUGIAS(MFAP_RESULTADO.getString("CIRUGIAS"));
+    //                    datos.setOFPN_PADECE_ALGUNA_ENFERMEDAD(MFAP_RESULTADO.getString("PADECE_ALGUNA_ENFERMEDAD"));
+    //                    datos.setOFPN_MEDICAMENTE_Q_E_CONSUMIENDO(MFAP_RESULTADO.getString("MEDICAMENTE_Q_E_CONSUMIENDO"));
+    //                    datos.setOFPN_OTROS_DATOS_A_TENER_EN_CUENTA(MFAP_RESULTADO.getString("OTROS_DATOS_A_TENER_EN_CUENTA").replaceAll("<br/>","\r\n"));
+                        // bloque de combos.-
+    //                    datos.setOFPN_REALIZA_ACTIVIDAD_FISICA(MFAP_RESULTADO.getString("REALIZA_ACTIVIDAD_FISICA"));
+    //                    datos.setOFPN_TIPO_DE_ACTIVIDAD_FISICA(MFAP_RESULTADO.getString("TIPO_DE_ACTIVIDAD_FISICA"));
+    //                    datos.setOFPN_FRECUENCIA_ACT_FISICA_SEM(MFAP_RESULTADO.getString("FRECUENCIA_ACT_FISICA_SEM"));
+    //                    datos.setOFPN_DBLCR(MFAP_RESULTADO.getString("DBLCR"));
+    //                    datos.setOFPN_LGSLCM(MFAP_RESULTADO.getString("LGSLCM"));
+    //                    datos.setOFPN_TBDALN(MFAP_RESULTADO.getString("TBDALN"));
+    //                    datos.setOFPN_DPALN(MFAP_RESULTADO.getString("DPALN"));
+    //                    datos.setOFPN_DDCCF(MFAP_RESULTADO.getString("DDCCF"));
+    //                    datos.setOFPN_ESTRENHIMIENTO(MFAP_RESULTADO.getString("ESTRENHIMIENTO"));
+    //                    datos.setOFPN_TDEDBU(MFAP_RESULTADO.getString("TDEDBU"));
+    //                    datos.setOFPN_CANSANCIO_FATIGA(MFAP_RESULTADO.getString("CANSANCIO_FATIGA"));
+    //                    datos.setOFPN_HICHAZON_ABDOMINAL(MFAP_RESULTADO.getString("HICHAZON_ABDOMINAL"));
+    //                    datos.setOFPN_INSOMNIO(MFAP_RESULTADO.getString("INSOMNIO"));
+    //                    datos.setOFPN_MUCOSIDAD_Y_CATARRO(MFAP_RESULTADO.getString("MUCOSIDAD_Y_CATARRO"));
+    //                    datos.setOFPN_CALAMBRES_Y_HORMIGUEOS(MFAP_RESULTADO.getString("CALAMBRES_Y_HORMIGUEOS"));
+    //                    datos.setOFPN_ZUMBIDOS_EN_EL_OIDO(MFAP_RESULTADO.getString("ZUMBIDOS_EN_EL_OIDO"));
+    //                    datos.setOFPN_CAIDA_DE_CABELLO(MFAP_RESULTADO.getString("CAIDA_DE_CABELLO"));
+    //                    datos.setOFPN_UNHAS_QUEBRADIZAS(MFAP_RESULTADO.getString("UNHAS_QUEBRADIZAS"));
+    //                    datos.setOFPN_PIEL_SECA(MFAP_RESULTADO.getString("PIEL_SECA"));
+    //                    datos.setOFPN_TIPO_DE_METABOLISMO(MFAP_RESULTADO.getString("TIPO_DE_METABOLISMO"));
+                        // bloque de mediciones.-
+                        datos.setOFPN_ESTATURA(MFAP_RESULTADO.getString("ESTATURA"));
+                        datos.setOFPN_PESO(MFAP_RESULTADO.getString("PESO"));
+                        datos.setOFPN_IMC(MFAP_RESULTADO.getString("IMC"));
+                        datos.setOFPN_PORC_GRASA(MFAP_RESULTADO.getString("PORC_GRASA"));
+                        datos.setOFPN_PORC_MUSCULO(MFAP_RESULTADO.getString("PORC_MUSCULO"));
+                        datos.setOFPN_VISCERAL(MFAP_RESULTADO.getString("VISCERAL"));
+                        datos.setOFPN_EDAD_METABOLICA(MFAP_RESULTADO.getString("EDAD_METABOLICA"));
+                        datos.setOFPN_RM(MFAP_RESULTADO.getString("RM"));
+                        datos.setOFPN_TIPO_DE_BALANZA(MFAP_RESULTADO.getString("TIPO_DE_BALANZA"));
+                        // bloque final.-
+    //                    datos.setOFPN_RESULTADOS_TEST_BIORESONANCIA(MFAP_RESULTADO.getString("RESULTADOS_TEST_BIORESONANCIA"));
+    //                    datos.setOFPN_SUPLEMENTACION_RECETADA(MFAP_RESULTADO.getString("SUPLEMENTACION_RECETADA"));
+    //                    datos.setOFPN_LABORATORIO(MFAP_RESULTADO.getString("LABORATORIO"));
+    //                    datos.setOFPN_COMENTARIOS_GENERALES(MFAP_RESULTADO.getString("COMENTARIOS_GENERALES"));
+    //                    datos.setOFPN_USU_ALTA(MFAP_RESULTADO.getString("USU_ALTA"));
+    //                    datos.setOFPN_FEC_ALTA(MFAP_RESULTADO.getString("FEC_ALTA"));
+                        datos.setOFPN_ESTADO(MFAP_RESULTADO.getString("ESTADO"));
+    //                    datos.setOFPN_USU_MODI(MFAP_RESULTADO.getString("USU_MODI"));
+    //                    datos.setOFPN_FEC_MODI(MFAP_RESULTADO.getString("PESO"));
+                        // USO LA VARIABLE DE "EXISTS_DET" PARA SABER SI LA FICHA CUENTA CON UN DETALLE QUE VENDRIAN SIENDO LOS ARCHIVOS ADJUNTOS 
+                        if (MFAP_RESULTADO.getString("EXISTS_DET").equals("1")) {
+                            datos.setOFPND_IDFICHAPAC(MFAP_RESULTADO.getString("IDFICHAPAC"));
+                        } else {
+                            datos.setOFPND_IDFICHAPAC("");
+                        }
+                    listado_de_fichas.add(datos);
+                }
+                
+                // SI LA CANTIDAD DE BOTON DE LA LISTA ES MAYOR YA AL BOTON DE LA PAGINA A MOSTRAR, CORTO EL WHILE PORQUE EL USUARIO YA VA A VER LOS REGISTROS DEL BOTON QUE PRESIONO 
+                if (cant_btn_lista > Integer.parseInt(NRO_PAG_ACTUAL_MOSTRAR)) {
+                    System.out.println("___IF____CORTAR_WHILE_____cant_btn_actual("+cant_btn_lista+") > nro_pag_mostrar("+NRO_PAG_ACTUAL_MOSTRAR+")______");
+                    break;
+                }
+                
+                // OBSERVACION: ESTE BLOQUE DE CODIGO DE IF, ME SIRVE MAS PARA IR ESCALANDO EL BOTON DE LA LISTA (cant_btn_lista) Y ASI IR COMPARANDO CON LA VARIABLE QUE ALMACENA EL NRO DE PAGINA A MOSTRAR (PARAM_NRO_PAG_MOSTRAR) 
+//                System.out.println("___cant_min_("+cant_min+")_____for_I_("+i+")_____");
+                // CONTROLO PRIMERAMENTE QUE LA CANTIDAD_MINIMA NO SEA TODOS LOS REGISTROS, SI FUESE ASI NO HACE FALTA QUE ENTRE AL IF Y QUE CARGUE TODO EN UNA PAGINA, PERO SI NO LO ES ENTONCES SI LE DEJO ENTRAR PARA QUE CONTROLE LA CANTIDAD DE REGISTROS Y ASI PUEDA DIVIDIR LOS BOTONES 
+                if ((cant_min.equalsIgnoreCase("Todos")) == false) {
+                    // CONTROLO SI SE ALCANZO EL LIMITE DE RESULTADOS PEDIDOS 
+                    if (cant_min.equals(String.valueOf(i))) {
+    //                    System.out.println("____IF_____CANTIDAD_LIMITE_DE_RESULTADOS_ALCANZADA_______");
+                        // LE SUMO LA MISMA CANTIDAD PARA QUE NO SE MANTENGA EL MISMO NUMERO COMO META PORQUE EL ITEM AL SER ASCENDENTE NO VOLVERA A REPETIR / AUNQUE PUEDO CREAR OTRA VARIABLE QUE ME SIRVA DE CONTADOR Y BANDERA Y LO USÉ PARA COMPARARSE CON LA CANTIDAD DE RESULTADOS QUE SE QUIERE MOSTRAR Y CUANDO ENTRE AL IF LO VUELVA A RESETEAR A 1 Y ASI VOLVERIA A SUMARSE HASTA ALCANZAR EL LIMITE NUEVAMENTE Y RESETEARSE / PERO SUMARLE LA MISMA CANTIDAD ME PARECE MAS OPTIMO PORQUE UTILIZARIA MENOS LINEAS DE CODIGO QUE SI HICIERA LA OTRA OPCION 
+                        cant_min = String.valueOf(Integer.parseInt(cant_min) + Integer.parseInt(cant_min_fija));
+                        // LE SUMO AL CONTADOR UNO PARA QUE VAYA ASCENDENTE LA NUMERACION YA QUE ESTO EQUIVALE A LA CANTIDAD DE BOTONES 
+                        cant_btn_lista = cant_btn_lista + 1;
+    //                    System.out.println("__NUEVO_CANT_LISTA: :"+cant_btn_lista);
+                    }
+                }
+//                System.out.println(".");
+//                System.out.println(".");
+                i = i +1; // le incremento para no mantener el mismo numero 
+            } // end while 
             cerrarConexiones();
         } catch (SQLException e) {
             Logger.getLogger(ModelFichaAtencionPacNutri.class.getName()).log(Level.SEVERE, null, e);
         }
+        
+        // CARGO LA PAGINA ACTUAL A MOSTRAR 
+        PARAM_SESION.setAttribute("PAG_RPT_FICHA_APN_LISTA_ACTUAL", NRO_PAG_ACTUAL_MOSTRAR);
+        // CARGO EL TOTAL DE LISTAS
+        PARAM_SESION.setAttribute("PAG_RPT_FICHA_APN_CANT_TOTAL_BTNS", ""+cant_btn_lista_final+"");
+//        PARAM_SESION.setAttribute("PAG_RPT_FICHA_APN_CANT_TOTAL_BTNS", ""+cant_btn_lista+"");
+        // VARIABLE QUE UTILIZO PARA SABER LA CANTIDAD DE FILAS QUE SE MUESTRAN PARA LUEGO UTILIZARLO AL COMIENZO DEL METODO PARA HACER UNA VALIDACION 
+        PARAM_SESION.setAttribute("PAG_RPT_FICHA_APN_CANT_ROWS_MOSTRAR", ""+PARAM_CBX_MOSTRAR+"");
+        // VARIABLE QUE UTILIZO PARA SABER LA CANTIDAD DE BOTONES A MOSTRAR DEACUERDO A LA CANTIDAD DE CLIS DERECHOS 
+        PARAM_SESION.setAttribute("PAG_RPT_FICHA_APN_CANT_BTN_DERE_CLIC", ""+CANT_CLICS_DERECHO+"");
+        
         return listado_de_fichas;
     }
     
