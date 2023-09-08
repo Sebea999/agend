@@ -2145,6 +2145,7 @@ public class ModelInicioSesion {
         Map<String, String> lista = new LinkedHashMap<>();
         
         if (paramValue == null || paramValue.isEmpty() || paramValue.equalsIgnoreCase("")) { // SI SE ENCUENTRA VACIO ENTONCES SUPONDRIA QUE QUIERE CREAR UN REGISTRO Y NO QUE ESTA RECUPERANDO UNO 
+            lista.put("3", "-");
             lista.put("2", "A veces");
 //            lista.put("null", "(Sin/Selección)");
             lista.put("0", "No");
@@ -2155,11 +2156,24 @@ public class ModelInicioSesion {
                 lista.put("0", "No");
                 lista.put("1", "Si");
                 lista.put("2", "A veces");
+                lista.put("3", "-");
             } else if (paramValue.equalsIgnoreCase("1") || paramValue.equalsIgnoreCase("Si")) {
                 lista.put("1", "Si");
                 lista.put("0", "No");
                 lista.put("2", "A veces");
+                lista.put("3", "-");
+            } else if (paramValue.equalsIgnoreCase("2") || paramValue.equalsIgnoreCase("A veces")) {
+                lista.put("2", "A veces");
+                lista.put("3", "-");
+                lista.put("0", "No");
+                lista.put("1", "Si");
+            } else if (paramValue.equalsIgnoreCase("3") || paramValue.equalsIgnoreCase("-")) {
+                lista.put("3", "-");
+                lista.put("2", "A veces");
+                lista.put("0", "No");
+                lista.put("1", "Si");
             } else {
+                lista.put("3", "-");
                 lista.put("2", "A veces");
                 lista.put("0", "No");
                 lista.put("1", "Si");
@@ -2171,15 +2185,17 @@ public class ModelInicioSesion {
     
     public String getDatoSiNoAv(String PARAM_SI_NO_AV) {
         if (PARAM_SI_NO_AV == null || PARAM_SI_NO_AV.isEmpty()) {
-            return "";
+            return "-";
         } else if (PARAM_SI_NO_AV.equals("0")) {
             return "No";
         } else if (PARAM_SI_NO_AV.equals("1")) {
             return "Si";
         } else if (PARAM_SI_NO_AV.equals("2")) {
             return "A veces";
+        } else if (PARAM_SI_NO_AV.equals("3")) {
+            return "-";
         } else {
-            return "";
+            return "-";
         }
     }
     
@@ -2231,16 +2247,20 @@ public class ModelInicioSesion {
         Map<String, String> lista = new LinkedHashMap<>();
         
         if (paramValue == null || paramValue.isEmpty() || paramValue.equalsIgnoreCase("")) { // SI SE ENCUENTRA VACIO ENTONCES SUPONDRIA QUE QUIERE CREAR UN REGISTRO Y NO QUE ESTA RECUPERANDO UNO 
+            lista.put("-", "-");
             lista.put("A", "Acelerado");
             lista.put("T", "Tranquilo");
         } else { // EN CASO DE QUE NO SE ENCUENTRE VACIO ENTONCES PREGUNTARIA POR SU VALOR PARA SABER CUAL CARGO PRIMERO 
             if (paramValue.equalsIgnoreCase("0") || paramValue.equalsIgnoreCase("A") || paramValue.equalsIgnoreCase("ACELERADO")) {
                 lista.put("A", "Acelerado");
                 lista.put("T", "Tranquilo");
+                lista.put("-", "-");
             } else if (paramValue.equalsIgnoreCase("1") || paramValue.equalsIgnoreCase("T") || paramValue.equalsIgnoreCase("TRANQUILO")) {
                 lista.put("T", "Tranquilo");
                 lista.put("A", "Acelerado");
+                lista.put("-", "-");
             } else {
+                lista.put("-", "-");
                 lista.put("A", "Acelerado");
                 lista.put("T", "Tranquilo");
             }
@@ -2254,14 +2274,14 @@ public class ModelInicioSesion {
     */
     public String getDescMetabolismo(String PARAM_VALUE) {
         if (PARAM_VALUE == null || PARAM_VALUE.isEmpty() || PARAM_VALUE.equalsIgnoreCase("")) { // SI SE ENCUENTRA VACIO ENTONCES SUPONDRIA QUE QUIERE CREAR UN REGISTRO Y NO QUE ESTA RECUPERANDO UNO 
-            return "Acelerado";
+            return "-";
         } else { // EN CASO DE QUE NO SE ENCUENTRE VACIO ENTONCES PREGUNTARIA POR SU VALOR PARA SABER CUAL CARGO PRIMERO 
             if (PARAM_VALUE.equalsIgnoreCase("0") || PARAM_VALUE.equalsIgnoreCase("A") || PARAM_VALUE.equalsIgnoreCase("ACELERADO")) {
                 return "Acelerado";
             } else if (PARAM_VALUE.equalsIgnoreCase("1") || PARAM_VALUE.equalsIgnoreCase("T") || PARAM_VALUE.equalsIgnoreCase("TRANQUILO")) {
                 return "Tranquilo";
             } else {
-                return "Acelerado";
+                return "-";
             }
         }
     } // end method 
@@ -2275,6 +2295,7 @@ public class ModelInicioSesion {
         Map<String, String> lista = new LinkedHashMap<>();
         
         if (paramValue == null || paramValue.isEmpty() || paramValue.equalsIgnoreCase("")) { // SI SE ENCUENTRA VACIO ENTONCES SUPONDRIA QUE QUIERE CREAR UN REGISTRO Y NO QUE ESTA RECUPERANDO UNO 
+            lista.put("-", "-");
             lista.put("1", "Tipo 1");
             lista.put("2", "Tipo 2");
             lista.put("3", "Tipo 3");
@@ -2289,42 +2310,49 @@ public class ModelInicioSesion {
                 lista.put("4", "Tipo 4");
                 lista.put("5", "Tipo 5");
                 lista.put("6", "Tipo 6");
+                lista.put("-", "-");
             } else if (paramValue.equalsIgnoreCase("2") || paramValue.equalsIgnoreCase("Tipo 2")) {
                 lista.put("2", "Tipo 2");
                 lista.put("3", "Tipo 3");
                 lista.put("4", "Tipo 4");
                 lista.put("5", "Tipo 5");
                 lista.put("6", "Tipo 6");
+                lista.put("-", "-");
                 lista.put("1", "Tipo 1");
             } else if (paramValue.equalsIgnoreCase("3") || paramValue.equalsIgnoreCase("Tipo 3")) {
                 lista.put("3", "Tipo 3");
                 lista.put("4", "Tipo 4");
                 lista.put("5", "Tipo 5");
                 lista.put("6", "Tipo 6");
+                lista.put("-", "-");
                 lista.put("1", "Tipo 1");
                 lista.put("2", "Tipo 2");
             } else if (paramValue.equalsIgnoreCase("4") || paramValue.equalsIgnoreCase("Tipo 4")) {
                 lista.put("4", "Tipo 4");
                 lista.put("5", "Tipo 5");
                 lista.put("6", "Tipo 6");
+                lista.put("-", "-");
                 lista.put("1", "Tipo 1");
                 lista.put("2", "Tipo 2");
                 lista.put("3", "Tipo 3");
             } else if (paramValue.equalsIgnoreCase("5") || paramValue.equalsIgnoreCase("Tipo 5")) {
                 lista.put("5", "Tipo 5");
                 lista.put("6", "Tipo 6");
+                lista.put("-", "-");
                 lista.put("1", "Tipo 1");
                 lista.put("2", "Tipo 2");
                 lista.put("3", "Tipo 3");
                 lista.put("4", "Tipo 4");
             } else if (paramValue.equalsIgnoreCase("6") || paramValue.equalsIgnoreCase("Tipo 6")) {
                 lista.put("6", "Tipo 6");
+                lista.put("-", "-");
                 lista.put("1", "Tipo 1");
                 lista.put("2", "Tipo 2");
                 lista.put("3", "Tipo 3");
                 lista.put("4", "Tipo 4");
                 lista.put("5", "Tipo 5");
             } else {
+                lista.put("-", "-");
                 lista.put("1", "Tipo 1");
                 lista.put("2", "Tipo 2");
                 lista.put("3", "Tipo 3");
@@ -2342,7 +2370,7 @@ public class ModelInicioSesion {
     */
     public String getDescEscalaBristol(String PARAM_VALUE) {
         if (PARAM_VALUE == null || PARAM_VALUE.isEmpty() || PARAM_VALUE.equalsIgnoreCase("")) { // SI SE ENCUENTRA VACIO ENTONCES SUPONDRIA QUE QUIERE CREAR UN REGISTRO Y NO QUE ESTA RECUPERANDO UNO 
-            return "Tipo 1";
+            return "-";
         } else { // EN CASO DE QUE NO SE ENCUENTRE VACIO ENTONCES PREGUNTARIA POR SU VALOR PARA SABER CUAL CARGO PRIMERO 
             if (PARAM_VALUE.equalsIgnoreCase("1") || PARAM_VALUE.equalsIgnoreCase("Tipo 1")) {
                 return "Tipo 1";
@@ -2357,7 +2385,7 @@ public class ModelInicioSesion {
             } else if (PARAM_VALUE.equalsIgnoreCase("6") || PARAM_VALUE.equalsIgnoreCase("Tipo 6")) {
                 return "Tipo 6";
             } else {
-                return "Tipo 1";
+                return "-";
             }
         }
     } // end method 

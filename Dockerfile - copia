@@ -1,0 +1,37 @@
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+#FROM alpine:latest
+#CMD ["/bin/sh"]
+
+#FROM openjdk:11
+#COPY ./dist/AgendApp.war
+#WORKDIR /usr/src/myapp
+#RUN javac Main.java
+#CMD ["java", "Main"]
+
+
+#FROM        java:8-jdk
+FROM        openjdk:8-jdk-alpine
+
+ENV         JAVA_HOME         /usr/lib/jvm/java-8-openjdk-amd64
+ENV         GLASSFISH_HOME    /usr/local/glassfish4
+ENV         PATH              $PATH:$JAVA_HOME/bin:$GLASSFISH_HOME/bin
+
+RUN         apt-get update && \ apt-get install -y curl unzip zip inotify-tools && \ rm -rf /var/lib/apt/lists/*
+
+RUN         curl -L -o /tmp/glassfish-4.1.zip http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip && \ unzip /tmp/glassfish-4.1.zip -d /usr/local && \ rm -f /tmp/glassfish-4.1.zip
+
+EXPOSE      8080 4848 8181
+
+WORKDIR     /usr/local/glassfish4
+
+# verbose causes the process to remain in the foreground so that docker can track it
+CMD         asadmin start-domain --verbose
+
+
+
+#FROM openjdk:8-jdk-alpine
+#COPY "./dist/.jar" "app.jar"
+#EXPOSE 8080
+#ENTRYPOINT ["java","-jar","app.jar"]

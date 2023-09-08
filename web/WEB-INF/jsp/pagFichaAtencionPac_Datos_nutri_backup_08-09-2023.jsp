@@ -487,11 +487,7 @@
                                     Medicamento y/o suplementación que este consumiendo:
                                     <input type="text" onchange="addClass('B1TM')" id="B1TM" name="B1TM" value="<%= TXT_MEDICAMENTO %>" class="form-control inactive">
                                 </div>
-                            </div>
                                 
-                            
-                            
-                            <div class="contenedor-cajas-onebox mb-4">
                                 <div class="form-group">
                                     Otros datos a tener en cuenta:
                                     <!--<input type="text" id="" name="" value="<%--= TXT_OTROS_DATOS --%>" class="form-control">-->
@@ -1015,15 +1011,15 @@
                                     
                                     <div class="col-auto mb-3">
                                         <div class="d-flex flex-row">
-                                            <label for="B3TP" class="form-label mr-2 pt-1">Peso:</label>
-                                            <input type="text" onchange="addClass('B3TP')" value="<%= TXT_PESO %>" name="B3TP" id="B3TP" class="form-control inactive" <%=VAR_PESO_LAST_VALUE%>>
+                                            <label class="form-label mr-2 pt-1" for="B3TPG">% Grasa:</label>
+                                            <input type="text" onchange="addClass('B3TPG')" id="B3TPG" name="B3TPG" value="<%= TXT_PORC_GRASA %>" class="form-control inactive" <%=VAR_PORC_GRASA_LAST_VALUE%>>
                                         </div>
                                     </div>
                                     
-                                    <div class="col-auto mb-3">
+                                    <div class="col-auto">
                                         <div class="d-flex flex-row">
-                                            <label for="B3TI" class="form-label mr-2 pt-1">IMC:</label>
-                                            <input type="text" onchange="addClass('B3TI')" value="<%= TXT_IMC  %>" name="B3TI" id="B3TI" class="form-control inactive" <%=VAR_IMC_LAST_VALUE%>>
+                                            <label class="form-label mr-2 pt-1" for="B3TEM">Edad M.:</label>
+                                            <input type="text" onchange="addClass('B3TEM')" id="B3TEM" name="B3TEM" value="<%= TXT_EDAD_M %>" class="form-control inactive" <%=VAR_EDAD_M_LAST_VALUE%>>
                                         </div>
                                     </div>
                                 </div>
@@ -1032,8 +1028,8 @@
                                 <div class="form-group row">
                                     <div class="col-auto mb-3">
                                         <div class="d-flex flex-row">
-                                            <label class="form-label mr-2 pt-1" for="B3TPG">% Grasa:</label>
-                                            <input type="text" onchange="addClass('B3TPG')" id="B3TPG" name="B3TPG" value="<%= TXT_PORC_GRASA %>" class="form-control inactive" <%=VAR_PORC_GRASA_LAST_VALUE%>>
+                                            <label for="B3TP" class="form-label mr-2 pt-1">Peso:</label>
+                                            <input type="text" onchange="addClass('B3TP')" value="<%= TXT_PESO %>" name="B3TP" id="B3TP" class="form-control inactive" <%=VAR_PESO_LAST_VALUE%>>
                                         </div>
                                     </div>
                                     
@@ -1044,27 +1040,27 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="col-auto mb-3">
+                                    <div class="col-auto">
                                         <div class="d-flex flex-row">
-                                            <label class="form-label mr-2 pt-1" for="B3TV">Visceral:</label>
-                                            <input type="text" onchange="addClass('B3TV')" id="B3TV" name="B3TV" value="<%= TXT_VISCERAL %>" class="form-control inactive" <%=VAR_VISCERAL_LAST_VALUE%>>
+                                            <label class="form-label mr-2 pt-1" for="B3TRM">RM:</label>
+                                            <input type="text" onchange="addClass('B3TRM')" id="B3TRM" name="B3TRM" value="<%= TXT_RM %>" class="form-control inactive" <%=VAR_RM_LAST_VALUE%>>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 
                                 <div class="form-group row">
-                                    <div class="col-auto">
+                                    <div class="col-auto mb-3">
                                         <div class="d-flex flex-row">
-                                            <label class="form-label mr-2 pt-1" for="B3TEM">Edad M.:</label>
-                                            <input type="text" onchange="addClass('B3TEM')" id="B3TEM" name="B3TEM" value="<%= TXT_EDAD_M %>" class="form-control inactive" <%=VAR_EDAD_M_LAST_VALUE%>>
+                                            <label for="B3TI" class="form-label mr-2 pt-1">IMC:</label>
+                                            <input type="text" onchange="addClass('B3TI')" value="<%= TXT_IMC  %>" name="B3TI" id="B3TI" class="form-control inactive" <%=VAR_IMC_LAST_VALUE%>>
                                         </div>
                                     </div>
                                     
-                                    <div class="col-auto">
+                                    <div class="col-auto mb-3">
                                         <div class="d-flex flex-row">
-                                            <label class="form-label mr-2 pt-1" for="B3TRM">RM:</label>
-                                            <input type="text" onchange="addClass('B3TRM')" id="B3TRM" name="B3TRM" value="<%= TXT_RM %>" class="form-control inactive" <%=VAR_RM_LAST_VALUE%>>
+                                            <label class="form-label mr-2 pt-1" for="B3TV">Visceral:</label>
+                                            <input type="text" onchange="addClass('B3TV')" id="B3TV" name="B3TV" value="<%= TXT_VISCERAL %>" class="form-control inactive" <%=VAR_VISCERAL_LAST_VALUE%>>
                                         </div>
                                     </div>
                                     

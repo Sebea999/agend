@@ -9,6 +9,15 @@ and open the template in the editor.
 */
  
 
+.contenedor-cajas-onebox {
+    /*border: 2px solid blue;*/
+    width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(1, 1200px);
+    grid-template-rows: auto;
+    grid-gap: 15px;
+}
+
 .contenedor-cajas {
     /*border: 2px solid red;*/
     width: 90vw;
@@ -97,6 +106,7 @@ and open the template in the editor.
 }
 
 .contenedor-cajas input[type="text"]:hover ,
+.contenedor-cajas-onebox input[type="text"]:hover ,
 .contenedor-cajas-selec div div div input[type="text"]:hover ,
 .contenedor-cajas-selec-3 div div div input[type="text"]:hover ,
 .contenedor-cajas-selec-footer div div div input[type="text"]:hover, 
@@ -116,6 +126,7 @@ and open the template in the editor.
 }
 
 .contenedor-cajas textarea:hover ,
+.contenedor-cajas-onebox textarea:hover ,
 .contenedor-cajas-selec div div div textarea:hover ,
 .contenedor-cajas-selec-3 div div div textarea:hover ,
 .contenedor-cajas-selec-footer div div div textarea:hover {
@@ -132,6 +143,7 @@ and open the template in the editor.
 }
 
 .contenedor-cajas input[type="text"]:focus ,
+.contenedor-cajas-onebox input[type="text"]:focus ,
 .contenedor-cajas-selec div div div input[type="text"]:focus ,
 .contenedor-cajas-selec-3 div div div input[type="text"]:focus ,
 .contenedor-cajas-selec-footer div div div input[type="text"]:focus {
@@ -382,6 +394,11 @@ and open the template in the editor.
         grid-template-columns: repeat(1, 600px);
     }
     
+    .contenedor-cajas-onebox {
+        /*border: 2px solid black;*/
+        grid-template-columns: repeat(1, 600px);
+    }
+    
     .contenedor-cajas-selec {
         /*border: 5px solid black;*/
         grid-template-columns: repeat(1, 600px);
@@ -425,6 +442,18 @@ and open the template in the editor.
 /*@media only screen and (max-width: 768px) {*/
 @media only screen and (max-width: 800px) {
     
+    .contenedor-cajas-onebox {
+        grid-template-columns: repeat(1, 400px);
+    }
+    
+    .contenedor-cajas-onebox textarea {
+        /*border: 2px solid red;*/
+        width: 490px;
+        min-width: 490px;
+        max-width: 490px;
+    }
+    
+    
     .contenedor-cajas {
         grid-template-columns: repeat(1, 400px);
     }
@@ -436,7 +465,6 @@ and open the template in the editor.
         min-width: 100%;
         max-width: 100%;
     }
-    
     
     .contenedor-cajas textarea {
         /*border: 2px solid red;*/
@@ -490,6 +518,18 @@ and open the template in the editor.
 
 @media screen and (max-width: 630px) {
     
+    .contenedor-cajas-onebox {
+        grid-template-columns: repeat(1, 400px);
+    }
+    
+    
+    .contenedor-cajas-onebox textarea {
+        width: 450px;
+        min-width: 450px;
+        max-width: 450px;
+    }
+    
+    
     .contenedor-cajas {
         grid-template-columns: repeat(1, 400px);
     }
@@ -530,6 +570,17 @@ and open the template in the editor.
 
 @media only screen and (max-width: 540px) {
     
+    .contenedor-cajas-onebox {
+        grid-template-columns: repeat(1, 400px);
+    }
+    
+    .contenedor-cajas-onebox {
+        width: 420px;
+        min-width: 420px;
+        max-width: 420px;
+    }
+    
+    
     .contenedor-cajas {
         grid-template-columns: repeat(1, 400px);
     }
@@ -560,10 +611,20 @@ and open the template in the editor.
 
 @media only screen and (max-width: 500px) {
     
-    .contenedor-cajas {
+    .contenedor-cajas-onebox {
         grid-template-columns: repeat(1, 400px);
     }
     
+    
+    .contenedor-cajas-onebox textarea {
+        width: 380px;
+        min-width: 380px;
+        max-width: 380px;
+    }
+    
+    .contenedor-cajas {
+        grid-template-columns: repeat(1, 400px);
+    }
     
     .contenedor-cajas textarea {
         width: 380px;
@@ -581,10 +642,19 @@ and open the template in the editor.
 
 @media only screen and (max-width: 500px) {
     
-    .contenedor-cajas {
+    .contenedor-cajas-onebox {
         grid-template-columns: repeat(1, 400px);
     }
     
+    .contenedor-cajas-onebox textarea {
+        width: 380px;
+        min-width: 380px;
+        max-width: 380px;
+    }
+    
+    .contenedor-cajas {
+        grid-template-columns: repeat(1, 400px);
+    }
     
     .contenedor-cajas textarea {
         width: 380px;

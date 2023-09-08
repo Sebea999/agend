@@ -3489,8 +3489,19 @@ public class ModelFichaAtencionPacNutri implements CRUD {
         }
         System.out.println("[+]__CANT_CLIC_DERECHO:     :"+CANT_CLICS_DERECHO);
         
+        System.out.println("[*] new control.---------------");
+        if (PARAM_CBX_MOSTRAR == null || PARAM_CBX_MOSTRAR.isEmpty()) {
+            System.out.println("[-] PARAM_CBX_MOSTRAR is null.-");
+            PARAM_CBX_MOSTRAR = metodosIniSes.minNroCbxCantFil(); // NRO DE REGISTROS A MOSTRAR EN LA GRILLA QUE MUESTRA EL COMBO POR DEFECTO 
+        } else {
+            System.out.println("[+] PARAM_CBX_MOSTRAR not is null, its value is :"+PARAM_CBX_MOSTRAR);
+        }
+        
+        
         // CANTIDAD MINIMA DE RESULTADO QUE SE SOLICITA MOSTRAR EN LA GRILLA DE LA PAGINA 
         String cant_min_fija = PARAM_CBX_MOSTRAR;
+        System.out.println("[*] CANT_MIN_FIJA:  :"+cant_min_fija);
+        
         String cant_inicial_anterior = (String) PARAM_SESION.getAttribute("PAG_RPT_FICHA_APN_CANT_ROWS_MOSTRAR"); // ESTA ES LA CANTIDAD DE LA ANTERIOR SELECCION DE CANTIDAD DE FILAS A MOSTRAR EN LA GRILLA, UTILIZO ESTA VARIABLE PARA COMPARARLA CON LA DE AHORA PARA SABER SI QUIERE CAMBIAR LA CANTIDAD DE FILAS A MOSTRAR O QUIERE CAMBIAR DE PAGINA NOMAS O ACTUALIZAR EL FILTRO 
         // [OBS] :IF PARA ESTABLECER EL VALOR INICIAL DE LA CANTIDAD DE FILAS ANTERIOR YA QUE EL RPT DE FICHA NO CUENTA CON UN CARGA_GRILLA, DONDE SE ESTABLECE EL VALOR INICIAL EN LA SESION Y POR ESO UTILIZO ESTE IF PARA EVITAR UN STOP-ERROR.-
         if (cant_inicial_anterior == null || cant_inicial_anterior.isEmpty()) {
